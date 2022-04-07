@@ -1,6 +1,6 @@
 format: jb-book
 root: landing-page
 parts:
-  - caption: Introduction
+  - caption: Foundations
     chapters:
-      - file: notebook-template
+      - file: foundations/pyart-basics

@@ -1,3 +1,3 @@
-# Cookbook Overview
+# Radar Cookbook
 
-This is the the landing page for your cookbook - update as neccessary!
+This Project Pythia Cookbook covers the basics of working with weather radar data in Python.
