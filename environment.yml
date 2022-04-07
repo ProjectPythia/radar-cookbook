@@ -1,0 +1,6 @@
+name: cookbook-dev
+channels:
+  - conda-forge
+dependencies:
+  - jupyter-book
+  - sphinx-pythia-theme
