@@ -4,3 +4,4 @@ parts:
   - caption: Foundations
     chapters:
       - file: foundations/pyart-basics
+      - file: foundations/pyart-gridding
