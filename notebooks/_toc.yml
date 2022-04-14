@@ -5,3 +5,6 @@ parts:
     chapters:
       - file: foundations/pyart-basics
       - file: foundations/pyart-gridding
+  - caption: Example Workflows
+    chapters:
+      - file: example-workflows/moore-oklahoma-tornado
