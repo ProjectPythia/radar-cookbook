@@ -10,6 +10,13 @@ copyright: '2022'
 # Don't execute the notebooks upon building the book
 execute:
   execute_notebooks: "off"
+  
+repository:
+  url: https://github.com/ProjectPythiaTutorials/radar-cookbook  # Online location of your book
+  path_to_book: notebooks  # Optional path to your book, relative to the repository root
+  branch: main  # Which branch of the repository should be used when creating links (optional)
+launch_buttons:
+  jupyterhub_url: "https://jupyterhub.arm.gov"
 
 # Add a few extensions to help with parsing content
 parse:
