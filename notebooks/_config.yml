@@ -10,13 +10,6 @@ copyright: '2022'
 # Don't execute the notebooks upon building the book
 execute:
   execute_notebooks: "off"
-  
-repository:
-  url: https://github.com/ProjectPythiaTutorials/radar-cookbook  # Online location of your book
-  path_to_book: notebooks  # Optional path to your book, relative to the repository root
-  branch: main  # Which branch of the repository should be used when creating links (optional)
-launch_buttons:
-  jupyterhub_url: "https://jupyterhub.arm.gov"
 
 # Add a few extensions to help with parsing content
 parse:
@@ -39,7 +32,7 @@ sphinx:
     html_permalinks_icon: '<i class="fas fa-link"></i>'
     html_theme_options:
       home_page_in_toc: true
-      repository_url: https://github.com/ProjectPythia/pythia-foundations # Online location of your book
+      repository_url: https://github.com/ProjectPythiaTutorials/radar-cookbook # Online location of your book
       repository_branch: main # Which branch of the repository should be used when creating links (optional)
       use_issues_button: true
       use_repository_button: true
@@ -54,6 +47,7 @@ sphinx:
       launch_buttons:
         binderhub_url: https://mybinder.org
         notebook_interface: jupyterlab
+        jupyterhub_url: https://jupyterhub.arm.gov
       extra_navbar: |
         Theme by <a href="https://projectpythia.org">Project Pythia</a>.<br><br>
         All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons BY 4.0 (CC BY 4.0)</a>.<br><br>
