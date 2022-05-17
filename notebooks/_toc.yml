@@ -4,6 +4,7 @@ parts:
   - caption: Foundations
     chapters:
       - file: foundations/pyart-basics
+      - file: foundations/pyart-corrections
       - file: foundations/pyart-gridding
   - caption: Example Workflows
     chapters:
