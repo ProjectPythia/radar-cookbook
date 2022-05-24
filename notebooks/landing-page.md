@@ -26,10 +26,24 @@ If you are new to Py-ART, starting with the basics is a good place to start, and
 Here, we **apply** the lessons learned in the foundational material to various analysis workflows, including everything from reading in the data to plotting a beautiful visualization at the end. We include the additional dataset-specific details, focusing on building upon the foundational materials rather than duplicating previous content.
 
 ## Running the Notebooks
-You can either run the notebook using binder
+You can either run the notebook using [Binder](https://mybinder.org/) or on your local machine.
 
 ### Running on Binder
 
+The simplest way to interact with a Jupyter Notebook is through
+[Binder](https://mybinder.org/), which enables the execution of a
+Jupyter Book in the cloud. The details of how this works are not
+important for now. All you need to know is how to launch a Pythia
+Foundations book chapter via Binder. Simply navigate your mouse to
+the top right corner of the book chapter you are viewing and click
+on the rocket ship icon, (see figure below), and be sure to select
+“launch Binder”. After a moment you should be presented with a
+notebook that you can interact with. I.e. you’ll be able to execute
+and even change the example programs. You’ll see that the code cells
+have no output at first, until you execute them by pressing
+{kbd}`Shift`\+{kbd}`Enter`. Complete details on how to interact with
+a live Jupyter notebook are described in [Getting Started with
+Jupyter](https://foundations.projectpythia.org/foundations/getting-started-jupyter.html).
 
 ### Running on Your Own Machine
 If you are interested in running this material locally on your computer, you will need to follow this workflow:
