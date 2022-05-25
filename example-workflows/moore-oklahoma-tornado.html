@@ -335,13 +335,13 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#how-to-access-nexrad-data-from-metpy-and-aws">
-   How to Access NEXRAD Data from MetPy and AWS
+  <a class="reference internal nav-link" href="#how-to-access-nexrad-data-from-amazon-web-services-aws">
+   How to Access NEXRAD Data from Amazon Web Services (AWS)
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#metpys-cookbook-datasets">
-     MetPy’s Cookbook Datasets
+    <a class="reference internal nav-link" href="#configure-our-filepath-for-nexrad-level-2">
+     Configure our Filepath for NEXRAD Level 2
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -350,8 +350,8 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#check-to-see-where-the-data-is-at">
-     Check to see where the data is at
+    <a class="reference internal nav-link" href="#search-for-data-from-the-moore-oklahoma-tornado-may-20-2013">
+     Search for Data from the Moore, Oklahoma Tornado (May 20, 2013)
     </a>
    </li>
   </ul>
@@ -431,7 +431,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <p>Within this notebook, we will cover:</p>
 <ol class="simple">
-<li><p>How to access NEXRAD data from AWS and test data from MetPy</p></li>
+<li><p>How to access NEXRAD data from AWS</p></li>
 <li><p>How to read this data into PyART</p></li>
 <li><p>How to customize your plots and maps</p></li>
 </ol>
@@ -470,7 +470,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyart</span>
-<span class="kn">from</span> <span class="nn">metpy.cbook</span> <span class="kn">import</span> <span class="n">get_test_data</span>
+<span class="kn">import</span> <span class="nn">fsspec</span>
 <span class="kn">from</span> <span class="nn">metpy.plots</span> <span class="kn">import</span> <span class="n">USCOUNTIES</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
@@ -480,29 +480,29 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </pre></div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="how-to-access-nexrad-data-from-metpy-and-aws">
-<h2>How to Access NEXRAD Data from MetPy and AWS<a class="headerlink" href="#how-to-access-nexrad-data-from-metpy-and-aws" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<p>Let’s start first with accessing data from the MetPy cookbook module!</p>
-<div class="section" id="metpys-cookbook-datasets">
-<h3>MetPy’s Cookbook Datasets<a class="headerlink" href="#metpys-cookbook-datasets" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
-<p>Similar to Pythia datasets, MetPy has a suite of data that can be used within examples and tests! We use the <code class="docutils literal notranslate"><span class="pre">metpy.cbook.get_test_data()</span></code> function to access the data.</p>
-<p>Note - there are only a few files here. This is meant to be small subset, not a full archive.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>get_test_data<span class="o">?</span>
-</pre></div>
-</div>
-</div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Signature:</span> get_test_data<span class=" -Color -Color-Blue">(</span>fname<span class=" -Color -Color-Blue">,</span> as_file_obj<span class=" -Color -Color-Blue">=</span><span class=" -Color -Color-Green">True</span><span class=" -Color -Color-Blue">,</span> mode<span class=" -Color -Color-Blue">=&#39;rb&#39;)</span>
-<span class=" -Color -Color-Red">Docstring:</span> Access a file from MetPy&#39;s collection of test data.
-<span class=" -Color -Color-Red">File:</span>      ~/opt/anaconda3/envs/radar-cookbook-dev/lib/python3.9/site-packages/metpy/cbook.py
-<span class=" -Color -Color-Red">Type:</span>      function
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>## You are using the Python ARM Radar Toolkit (Py-ART), an open source
+## library for working with weather radar data. Py-ART is partly
+## supported by the U.S. Department of Energy as part of the Atmospheric
+## Radiation Measurement (ARM) Climate Research Facility, an Office of
+## Science user facility.
+##
+## If you use this software to prepare a publication, please cite:
+##
+##     JJ Helmus and SM Collis, JORS 2016, doi: 10.5334/jors.119
 </pre></div>
 </div>
 </div>
+</div>
+</div>
+<div class="section" id="how-to-access-nexrad-data-from-amazon-web-services-aws">
+<h2>How to Access NEXRAD Data from Amazon Web Services (AWS)<a class="headerlink" href="#how-to-access-nexrad-data-from-amazon-web-services-aws" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<p>Let’s start first with NEXRAD Level 2 data, which is ground-based radar data collected by the National Oceanic and Atmospheric Administration (NOAA), as a part of the National Weather Service (NWS) observing network.</p>
+<div class="section" id="configure-our-filepath-for-nexrad-level-2">
+<h3>Configure our Filepath for NEXRAD Level 2<a class="headerlink" href="#configure-our-filepath-for-nexrad-level-2" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<p>Data We will access data from the <code class="docutils literal notranslate"><span class="pre">noaa-nexrad-level2</span></code> bucket, with the data organized as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s3</span><span class="p">:</span><span class="o">//</span><span class="n">noaa</span><span class="o">-</span><span class="n">nexrad</span><span class="o">-</span><span class="n">level2</span><span class="o">/</span><span class="n">year</span><span class="o">/</span><span class="n">month</span><span class="o">/</span><span class="n">date</span><span class="o">/</span><span class="n">radarsite</span><span class="o">/</span><span class="p">{</span><span class="n">radarsite</span><span class="p">}{</span><span class="n">year</span><span class="p">}{</span><span class="n">month</span><span class="p">}{</span><span class="n">date</span><span class="p">}</span><span class="n">_</span><span class="p">{</span><span class="n">hour</span><span class="p">}{</span><span class="n">minute</span><span class="p">}{</span><span class="n">second</span><span class="p">}</span><span class="n">_V06</span>
+</pre></div>
 </div>
 </div>
 <div class="section" id="level-2-data">
@@ -512,37 +512,58 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <li><p>Reflectivity</p></li>
 <li><p>Velocity</p></li>
 </ul>
+</div>
+<div class="section" id="search-for-data-from-the-moore-oklahoma-tornado-may-20-2013">
+<h3>Search for Data from the Moore, Oklahoma Tornado (May 20, 2013)<a class="headerlink" href="#search-for-data-from-the-moore-oklahoma-tornado-may-20-2013" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<p>Data We will access data from the <strong><code class="docutils literal notranslate"><span class="pre">noaa-nexrad-level2</span> <span class="pre">bucket</span></code></strong>, with the data organized as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s3</span><span class="p">:</span><span class="o">//</span><span class="n">noaa</span><span class="o">-</span><span class="n">nexrad</span><span class="o">-</span><span class="n">level2</span><span class="o">/</span><span class="n">year</span><span class="o">/</span><span class="n">month</span><span class="o">/</span><span class="n">date</span><span class="o">/</span><span class="n">radarsite</span><span class="o">/</span><span class="p">{</span><span class="n">radarsite</span><span class="p">}{</span><span class="n">year</span><span class="p">}{</span><span class="n">month</span><span class="p">}{</span><span class="n">date</span><span class="p">}</span><span class="n">_</span><span class="p">{</span><span class="n">hour</span><span class="p">}{</span><span class="n">minute</span><span class="p">}{</span><span class="n">second</span><span class="p">}</span><span class="n">_V06</span>
+</pre></div>
+</div>
+<p>We can use <a class="reference external" href="https://filesystem-spec.readthedocs.io/en/latest/">fsspec</a>, a tool to work with filesystems in Python, to search through the bucket to find our files!</p>
+<p>We start first by setting up our <a class="reference external" href="https://aws.amazon.com/s3/">AWS S3 filesystem</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">level2_file</span> <span class="o">=</span> <span class="n">get_test_data</span><span class="p">(</span><span class="s1">&#39;KTLX20130520_201643_V06.gz&#39;</span><span class="p">,</span> <span class="n">as_file_obj</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fs</span> <span class="o">=</span> <span class="n">fsspec</span><span class="o">.</span><span class="n">filesystem</span><span class="p">(</span><span class="s2">&quot;s3&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="check-to-see-where-the-data-is-at">
-<h3>Check to see where the data is at<a class="headerlink" href="#check-to-see-where-the-data-is-at" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
-<p>Let’s see where it downloaded data to - you’ll see it placed the data in the the MetPy cache directory!</p>
+<p>Once we setup our filesystem, we can list files from May 20, 2013 from the NWS Oklahoma City, Oklahoma (KTLX) site, around 2000 UTC.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">level2_file</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fs</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;s3://noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_20*&quot;</span><span class="p">))</span>
+<span class="n">files</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/mgrover/Library/Caches/metpy/v1.3.0/KTLX20130520_201643_V06.gz&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_200356_V06.gz&#39;,
+ &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_200811_V06.gz&#39;,
+ &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_201229_V06.gz&#39;,
+ &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_201643_V06.gz&#39;,
+ &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_202058_V06.gz&#39;,
+ &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_202511_V06.gz&#39;,
+ &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_202928_V06.gz&#39;,
+ &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_203346_V06.gz&#39;,
+ &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_203800_V06.gz&#39;,
+ &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_204215_V06.gz&#39;,
+ &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_204630_V06.gz&#39;,
+ &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_205045_V06.gz&#39;,
+ &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_205459_V06.gz&#39;,
+ &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_205914_V06.gz&#39;]
 </pre></div>
 </div>
 </div>
 </div>
+<p>We now have a list of files we can read in!</p>
 </div>
 </div>
 <div class="section" id="read-the-data-into-pyart">
 <h2>Read the Data into PyART<a class="headerlink" href="#read-the-data-into-pyart" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<p>When reading into PyART, we can use the <code class="docutils literal notranslate"><span class="pre">pyart.io.read_nexrad_archive</span></code>/<code class="docutils literal notranslate"><span class="pre">pyart.io.read_level3</span></code> module, or, we can use the <code class="docutils literal notranslate"><span class="pre">pyart.io.read</span></code> module which automatically detects the filetype being read in.</p>
+<p>When reading into PyART, we can use the <code class="docutils literal notranslate"><span class="pre">pyart.io.read_nexrad_archive</span></code> or <code class="docutils literal notranslate"><span class="pre">pyart.io.read</span></code> module to read in our data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">radar</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">level2_file</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">radar</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_nexrad_archive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;s3://</span><span class="si">{</span><span class="n">files</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -555,12 +576,12 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;differential_phase&#39;,
- &#39;reflectivity&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;cross_correlation_ratio&#39;,
+ &#39;differential_phase&#39;,
  &#39;velocity&#39;,
  &#39;differential_reflectivity&#39;,
- &#39;cross_correlation_ratio&#39;,
- &#39;spectrum_width&#39;]
+ &#39;spectrum_width&#39;,
+ &#39;reflectivity&#39;]
 </pre></div>
 </div>
 </div>
@@ -581,7 +602,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/moore-oklahoma-tornado_17_0.png" src="../_images/moore-oklahoma-tornado_17_0.png" />
+<img alt="../_images/moore-oklahoma-tornado_18_0.png" src="../_images/moore-oklahoma-tornado_18_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -594,7 +615,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/moore-oklahoma-tornado_18_0.png" src="../_images/moore-oklahoma-tornado_18_0.png" />
+<img alt="../_images/moore-oklahoma-tornado_19_0.png" src="../_images/moore-oklahoma-tornado_19_0.png" />
 </div>
 </div>
 </div>
@@ -640,7 +661,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/moore-oklahoma-tornado_21_0.png" src="../_images/moore-oklahoma-tornado_21_0.png" />
+<img alt="../_images/moore-oklahoma-tornado_22_0.png" src="../_images/moore-oklahoma-tornado_22_0.png" />
 </div>
 </div>
 </div>
@@ -691,7 +712,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/moore-oklahoma-tornado_23_0.png" src="../_images/moore-oklahoma-tornado_23_0.png" />
+<img alt="../_images/moore-oklahoma-tornado_24_0.png" src="../_images/moore-oklahoma-tornado_24_0.png" />
 </div>
 </div>
 </div>
@@ -742,7 +763,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/moore-oklahoma-tornado_25_0.png" src="../_images/moore-oklahoma-tornado_25_0.png" />
+<img alt="../_images/moore-oklahoma-tornado_26_0.png" src="../_images/moore-oklahoma-tornado_26_0.png" />
 </div>
 </div>
 </div>
@@ -823,12 +844,20 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <span class="n">ax2</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">USCOUNTIES</span><span class="p">,</span>
                 <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/moore-oklahoma-tornado_27_0.png" src="../_images/moore-oklahoma-tornado_27_0.png" />
+<img alt="../_images/moore-oklahoma-tornado_28_0.png" src="../_images/moore-oklahoma-tornado_28_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fs</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;s3://unidata-nexrad-level3/LTX_N0U_2013_05_22_12_01*&quot;</span><span class="p">))</span>
+<span class="n">files</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -836,7 +865,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <hr class="docutils" />
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<p>Within this example, we walked through how to use MetPy and PyART to read in sample NEXRAD Level 2 data from the Moore Oklahoma tornado in 2013, create some quick looks, and customize the plots to analyze the tornadic supercell closest to the radar.</p>
+<p>Within this example, we walked through how to use MetPy and PyART to read in NEXRAD Level 2 data from the Moore Oklahoma tornado in 2013, create some quick looks, and customize the plots to analyze the tornadic supercell closest to the radar.</p>
 <div class="section" id="whats-next">
 <h3>What’s next?<a class="headerlink" href="#whats-next" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
 <p>Other examples will look at additional data sources and radar types, including data from the Department of Energy (DOE) Atmospheric Radiation Measurement (ARM) Facility, and work through more advanced workflows such as completing a dual-Doppler analysis.</p>
@@ -845,8 +874,8 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <div class="section" id="resources-and-references">
 <h2>Resources and References<a class="headerlink" href="#resources-and-references" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://unidata.github.io/MetPy/latest/index.html">MetPy Documentation</a></p></li>
 <li><p><a class="reference external" href="https://registry.opendata.aws/noaa-nexrad/">NEXRAD Data on AWS</a></p></li>
+<li><p><a class="reference external" href="https://arm-doe.github.io/pyart/examples/io/plot_nexrad_data_aws.html#sphx-glr-examples-io-plot-nexrad-data-aws-py">Py-ART NEXRAD Data Example</a></p></li>
 </ul>
 </div>
 </div>
