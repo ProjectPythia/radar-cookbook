@@ -4,7 +4,6 @@ channels:
 dependencies:
   - jupyter-book
   - sphinx-pythia-theme
-  - arm_pyart
   - matplotlib
   - cartopy
   - numpy
