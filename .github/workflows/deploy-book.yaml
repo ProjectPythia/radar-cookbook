@@ -9,6 +9,8 @@ on:
     branches:
       - main
   workflow_dispatch:
+  schedule:
+  - cron: '0 0 * * *' # Daily “At 00:00”
 
 # This job installs dependencies, build the book, and pushes it to `gh-pages`
 jobs:
@@ -17,9 +19,13 @@ jobs:
     defaults:
       run:
         shell: bash -l {0}
+    if: github.repository == 'ProjectPythiaTutorials/radar-cookbook'
     steps:
+      - name: Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
       - uses: actions/checkout@v3
-
       # Install dependencies
       - uses: conda-incubator/setup-miniconda@master
         with:
@@ -35,6 +41,21 @@ jobs:
       - name: Build the book
         run: |
           jupyter-book build notebooks/
+      - name: Zip-book
+        run: |
+          set -x
+          set -e
+
+          if [ -f book.zip ]; then
+              rm -rf book.zip
+          fi
+          zip -r book.zip notebooks/_build/html
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: book-zip
+          path: ./book.zip
+
       # Deploy the book's HTML to gh-pages branch
       - name: GitHub Pages action
         uses: peaceiris/actions-gh-pages@v3.8.0
