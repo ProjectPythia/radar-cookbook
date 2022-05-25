@@ -18,7 +18,7 @@ jobs:
       run:
         shell: bash -l {0}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       # Install dependencies
       - uses: conda-incubator/setup-miniconda@master
@@ -38,7 +38,7 @@ jobs:
           jupyter-book build .
       # Deploy the book's HTML to gh-pages branch
       - name: GitHub Pages action
-        uses: peaceiris/actions-gh-pages@v3.6.1
+        uses: peaceiris/actions-gh-pages@v3.8.0
         if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
