@@ -9,3 +9,6 @@ dependencies:
   - cartopy
   - numpy
   - xarray
+  - pip
+  - pip:
+    - git+https://github.com/ARM-DOE/pyart.git
