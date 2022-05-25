@@ -33,13 +33,12 @@ jobs:
       - name: Disable notebook execution
         shell: python
         run: |
-          cd notebooks
           import yaml
-          with open('_config.yml') as f:
+          with open('notebooks/_config.yml') as f:
             data = yaml.safe_load(f)
           data['execute']['execute_notebooks'] = 'off'
-          with open('_config.yml', 'w') as f:
+          with open('notebooks/_config.yml', 'w') as f:
             yaml.dump(data, f)
       - name: Check external links
         run: |
-          jupyter-book build --builder linkcheck .
+          jupyter-book build --builder linkcheck notebooks/
