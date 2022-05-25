@@ -4,8 +4,10 @@ channels:
 dependencies:
   - jupyter-book
   - sphinx-pythia-theme
-  - arm_pyart
   - matplotlib
   - cartopy
   - numpy
   - xarray
+  - pip
+  - pip:
+    - git+https://github.com/ARM-DOE/pyart.git
