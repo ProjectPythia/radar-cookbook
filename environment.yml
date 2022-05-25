@@ -3,7 +3,6 @@ channels:
   - conda-forge
 dependencies:
   - jupyter-book
-  - sphinx-pythia-theme
   - matplotlib
   - cartopy
   - numpy
@@ -11,3 +10,4 @@ dependencies:
   - pip
   - pip:
     - git+https://github.com/ARM-DOE/pyart.git
+    - sphinx-pythia-theme
