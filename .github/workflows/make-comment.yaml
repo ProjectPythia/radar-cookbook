@@ -1,6 +1,8 @@
 name: make-comment
 on:
   pull_request_target:
+    types:
+      - opened  # only run when a new PR is opened
 
 jobs:
   build:
