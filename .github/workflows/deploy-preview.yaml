@@ -1,0 +1,38 @@
+name: deploy-preview
+on:
+  workflow_run:
+    workflows:
+      - build-book
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Download Artifact Book
+        uses: dawidd6/action-download-artifact@v2.19.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          workflow: build-book.yaml
+          run_id: ${{ github.event.workflow_run.id }}
+          name: book-zip
+      - name: Unzip the book
+        if: github.event.workflow_run.conclusion == 'success'
+        run: |
+          rm -rf notebooks/_build/html
+          unzip book.zip
+          rm -f book.zip
+      # Push the book's HTML to github-pages
+      # This will be published at /_preview/PRnumber/ relative to the main site
+      - name: Deploy to GitHub pages
+        uses: peaceiris/actions-gh-pages@v3.8.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: notebooks/_build/html
+          enable_jekyll: false
+          destination_dir: _preview/${{ github.event.number }}
