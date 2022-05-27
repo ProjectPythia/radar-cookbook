@@ -1,7 +1,6 @@
-name: preview-book
+name: build-book
 on:
   pull_request:
-  workflow_dispatch:
 
 jobs:
   build:
@@ -26,12 +25,16 @@ jobs:
       - name: Build the book
         run: |
           jupyter-book build notebooks/
-      # Push the book's HTML to github-pages
-      # This will be published at /_preview/PRnumber/ relative to the main site
-      - name: Deploy to GitHub pages
-        uses: peaceiris/actions-gh-pages@v3.8.0
+
+      - name: Zip-book
+        run: |
+          set -x
+          set -e
+          if [ -f book.zip ]; then
+              rm -rf book.zip
+          fi
+          zip -r book.zip notebooks/_build/html
+      - uses: actions/upload-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_build/html
-          enable_jekyll: false
-          destination_dir: _preview/${{github.event.number}}
+          name: book-zip
+          path: ./book.zip
