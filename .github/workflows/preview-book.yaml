@@ -25,7 +25,7 @@ jobs:
       # Build the book
       - name: Build the book
         run: |
-          jupyter-book build .
+          jupyter-book build notebooks/
       # Push the book's HTML to github-pages
       # This will be published at /_preview/PRnumber/ relative to the main site
       - name: Deploy to GitHub pages
