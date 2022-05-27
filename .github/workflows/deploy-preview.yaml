@@ -35,4 +35,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: notebooks/_build/html
           enable_jekyll: false
-          destination_dir: _preview/${{ github.event.number }}
+          destination_dir: _preview/${{ github.event.issue.number }}
