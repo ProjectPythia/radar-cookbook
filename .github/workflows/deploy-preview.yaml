@@ -16,8 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Fetch Repo Name
-         id: repo-name
-         run: echo "::set-output name=value::$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')"  # just the repo name, not owner
+        id: repo-name
+        run: echo "::set-output name=value::$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')"  # just the repo name, not owner
       - name: Set message value
         run: |
           echo "comment_message=👋 Thanks for opening this PR! The Cookbook will be automatically built with [GitHub Actions](https://github.com/features/actions). To see the status of your deployment, click below." >> $GITHUB_ENV
