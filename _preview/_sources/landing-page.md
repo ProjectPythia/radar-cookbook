@@ -1,7 +1,5 @@
 # Radar Cookbook
 
-**THIS TEXT REALLY SHOULDN'T BE HERE**
-
 This Project Pythia Cookbook covers the basics of working with weather radar data in Python.
 
 ## Motivation
