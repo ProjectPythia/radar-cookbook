@@ -28,8 +28,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
   <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
@@ -44,6 +43,7 @@
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -353,8 +353,8 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#an-overview-of-gridding-with-pyart">
-   An overview of gridding with PyART
+  <a class="reference internal nav-link" href="#an-overview-of-gridding-with-py-art">
+   An overview of gridding with Py-ART
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -404,16 +404,6 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#how-to-choose-a-gridding-routine">
-   How to choose a gridding routine
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gridding-multiple-radars-to-the-same-grid">
-   Gridding multiple radars to the same grid
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
    Summary
   </a>
@@ -450,7 +440,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <p>Within this notebook, we will cover:</p>
 <ol class="simple">
 <li><p>What is gridding and why is it important?</p></li>
-<li><p>An overview of gridding with PyART</p></li>
+<li><p>An overview of gridding with Py-ART</p></li>
 <li><p>How to choose a gridding routine</p></li>
 <li><p>Gridding multiple radars to the same grid</p></li>
 </ol>
@@ -465,7 +455,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><a class="reference internal" href="pyart-basics.html"><span class="doc std std-doc">PyART Basics</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pyart-basics.html"><span class="doc std std-doc">Py-ART Basics</span></a></p></td>
 <td><p>Helpful</p></td>
 <td><p>Basic features</p></td>
 </tr>
@@ -540,8 +530,8 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <p>While there is not always a right or wrong answer, it is important to understand the options available, and document which routine you used with your data! Also - experiment with different options and choose the best for your use case!</p>
 </div>
 </div>
-<div class="section" id="an-overview-of-gridding-with-pyart">
-<h2>An overview of gridding with PyART<a class="headerlink" href="#an-overview-of-gridding-with-pyart" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<div class="section" id="an-overview-of-gridding-with-py-art">
+<h2>An overview of gridding with Py-ART<a class="headerlink" href="#an-overview-of-gridding-with-py-art" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <p>Let’s dig into the regridding process with PyART!</p>
 <div class="section" id="read-in-and-visualize-a-test-dataset">
 <h3>Read in and Visualize a Test Dataset<a class="headerlink" href="#read-in-and-visualize-a-test-dataset" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
@@ -1864,13 +1854,6 @@ Data variables: (12/14)
 </div>
 </div>
 </div>
-<div class="section" id="how-to-choose-a-gridding-routine">
-<h2>How to choose a gridding routine<a class="headerlink" href="#how-to-choose-a-gridding-routine" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<p>One parameter for the radar gridding routine we didn’t specify, but should, is the <code class="docutils literal notranslate"><span class="pre">gridding_routine</span></code></p>
-</div>
-<div class="section" id="gridding-multiple-radars-to-the-same-grid">
-<h2>Gridding multiple radars to the same grid<a class="headerlink" href="#gridding-multiple-radars-to-the-same-grid" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-</div>
 <hr class="docutils" />
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
@@ -1879,8 +1862,6 @@ Data variables: (12/14)
 <li><p>What we mean by gridding and why is it matters</p></li>
 <li><p>Configuring your gridding routine</p></li>
 <li><p>Visualize gridded radar data</p></li>
-<li><p>Choose the right gridding routine</p></li>
-<li><p>Grid multiple radars</p></li>
 </ul>
 <div class="section" id="whats-next">
 <h3>What’s Next<a class="headerlink" href="#whats-next" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
@@ -1982,7 +1963,7 @@ Data variables: (12/14)
         
           By the <a href="https://projectpythia.org/">Project Pythia</a> Community.
         
-          Last updated on 2 June 2022.
+          Last updated on 6 June 2022.
         </p>
       </div>
     </div>

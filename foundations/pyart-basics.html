@@ -28,8 +28,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
   <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
@@ -44,6 +43,7 @@
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -336,13 +336,13 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#an-overview-of-pyart">
-   An Overview of PyART
+  <a class="reference internal nav-link" href="#an-overview-of-py-art">
+   An Overview of Py-ART
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#history-of-the-pyart">
-     History of the PyART
+    <a class="reference internal nav-link" href="#history-of-the-py-art">
+     History of the Py-ART
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -353,8 +353,8 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reading-in-data-using-pyart">
-   Reading in Data Using PyART
+  <a class="reference internal nav-link" href="#reading-in-data-using-py-art">
+   Reading in Data Using Py-ART
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -393,8 +393,8 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#an-overview-of-pyart-plotting-utilities">
-     An Overview of PyART Plotting Utilities
+    <a class="reference internal nav-link" href="#an-overview-of-py-art-plotting-utilities">
+     An Overview of Py-ART Plotting Utilities
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -440,8 +440,8 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <p>Within this notebook, we will cover:</p>
 <ol class="simple">
-<li><p>General overview of PyART and its functionality</p></li>
-<li><p>Reading data using PyART</p></li>
+<li><p>General overview of Py-ART and its functionality</p></li>
+<li><p>Reading data using Py-ART</p></li>
 <li><p>An overview of the <code class="docutils literal notranslate"><span class="pre">pyart.Radar</span></code> object</p></li>
 <li><p>Create a Plot of our Radar Data</p></li>
 </ol>
@@ -508,10 +508,10 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 </div>
-<div class="section" id="an-overview-of-pyart">
-<h2>An Overview of PyART<a class="headerlink" href="#an-overview-of-pyart" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<div class="section" id="history-of-the-pyart">
-<h3>History of the PyART<a class="headerlink" href="#history-of-the-pyart" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<div class="section" id="an-overview-of-py-art">
+<h2>An Overview of Py-ART<a class="headerlink" href="#an-overview-of-py-art" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<div class="section" id="history-of-the-py-art">
+<h3>History of the Py-ART<a class="headerlink" href="#history-of-the-py-art" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
 <ul class="simple">
 <li><p>Development began to address the needs of ARM with the acquisition of a number of
 new scanning cloud and precipitation radar as part of the American Recovery Act.</p></li>
@@ -541,15 +541,15 @@ processing pipelines. Specific uses for Py-ART include:</p>
 </ul>
 </div>
 </div>
-<div class="section" id="reading-in-data-using-pyart">
-<h2>Reading in Data Using PyART<a class="headerlink" href="#reading-in-data-using-pyart" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<div class="section" id="reading-in-data-using-py-art">
+<h2>Reading in Data Using Py-ART<a class="headerlink" href="#reading-in-data-using-py-art" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <div class="section" id="reading-data-in-using-pyart-io-read">
 <h3>Reading data in using <code class="docutils literal notranslate"><span class="pre">pyart.io.read</span></code><a class="headerlink" href="#reading-data-in-using-pyart-io-read" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
 <p>When reading in a radar file, we use the <code class="docutils literal notranslate"><span class="pre">pyart.io.read</span></code> module.</p>
 <p><code class="docutils literal notranslate"><span class="pre">pyart.io.read</span></code> can read a variety of different radar formats, such as Cf/Radial, LASSEN, and more.
 The documentation on what formats can be read by Py-ART can be found here:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://arm-doe.github.io/pyart/API/generated/pyart.io.html">PyART IO Documentation</a></p></li>
+<li><p><a class="reference external" href="https://arm-doe.github.io/pyart/API/generated/pyart.io.html">Py-ART IO Documentation</a></p></li>
 </ul>
 <p>For most file formats listed on the page, using <code class="docutils literal notranslate"><span class="pre">pyart.io.read</span></code> should suffice since Py-ART has the ability to automatically detect the file format.</p>
 <p>Let’s check out what arguments arguments <code class="docutils literal notranslate"><span class="pre">pyart.io.read()</span></code> takes in!</p>
@@ -755,8 +755,8 @@ the contents of that field.</p>
 </div>
 <div class="section" id="plotting-our-radar-data">
 <h2>Plotting our Radar Data<a class="headerlink" href="#plotting-our-radar-data" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<div class="section" id="an-overview-of-pyart-plotting-utilities">
-<h3>An Overview of PyART Plotting Utilities<a class="headerlink" href="#an-overview-of-pyart-plotting-utilities" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<div class="section" id="an-overview-of-py-art-plotting-utilities">
+<h3>An Overview of Py-ART Plotting Utilities<a class="headerlink" href="#an-overview-of-py-art-plotting-utilities" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
 <p>Now that we have loaded the data and inspected it, the next logical thing to do is to visualize the data! Py-ART’s visualization functionality is done through the objects in the <a class="reference external" href="https://arm-doe.github.io/pyart/API/generated/pyart.graph.html">pyart.graph</a> module.</p>
 <p>In Py-ART there are 4 primary visualization classes in pyart.graph:</p>
 <ul class="simple">
@@ -1165,7 +1165,7 @@ alpha : float or None
         
           By the <a href="https://projectpythia.org/">Project Pythia</a> Community.
         
-          Last updated on 2 June 2022.
+          Last updated on 6 June 2022.
         </p>
       </div>
     </div>
