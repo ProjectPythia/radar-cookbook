@@ -23,7 +23,7 @@ jobs:
           echo "comment_message=👋 Thanks for opening this PR! The Cookbook will be automatically built with [GitHub Actions](https://github.com/features/actions). To see the status of your deployment, click below." >> $GITHUB_ENV
 
       - name: Find Pull Request
-        uses: jwalton/gh-find-current-pr@v1.3
+        uses: jwalton/gh-find-current-pr@v1
         id: findPR
         with:
           state: all  # Can be "open", "closed", or "all".  Defaults to "open".
