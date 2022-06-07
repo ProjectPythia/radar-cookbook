@@ -58,7 +58,7 @@ jobs:
           comment-author: 'github-actions[bot]'
           body-includes: '${{ env.comment_message }}'
 
-      - name: Create comment
+      - name: Create preview comment
         if: |
           github.event.workflow_run.conclusion != 'success'
           && steps.find-pull-request.outputs.number != ''
@@ -71,7 +71,7 @@ jobs:
             🔍 Git commit SHA: ${{ steps.find-pull-request.outputs.sha }}
             ✅ Deployment Preview URL: In Progress
 
-      - name: Update comment
+      - name: Update preview comment
         if: |
           github.event.workflow_run.conclusion != 'success'
           && steps.find-pull-request.outputs.number != ''
@@ -121,7 +121,7 @@ jobs:
           enable_jekyll: false
           destination_dir: _preview/${{ steps.find-pull-request.outputs.number }}
 
-      - name: Update Cookbook preview comment
+      - name: Finalize preview comment
         if: |
           github.event.workflow_run.conclusion == 'success'
           && steps.find-pull-request.outputs.number != ''
@@ -134,3 +134,24 @@ jobs:
             ${{ env.comment_message }}
             🔍 Git commit SHA: ${{ steps.find-pull-request.outputs.sha }}
             ✅ Deployment Preview URL: https://${{ github.repository_owner }}.github.io/${{ steps.repo-name.outputs.value }}/_preview/${{ steps.find-pull-request.outputs.number }}
+
+      - name: Remove unzipped book
+        if: |
+          github.event.action == 'closed'
+          && steps.find-pull-request.outputs.number != ''
+          && steps.fc.outputs.comment-id != ''
+        run: |
+          rm -rf notebooks/_build/html
+          mkdir notebooks/_build/html
+
+      - name: Delete deployed preview
+        if: |
+          github.event.action == 'closed'
+          && steps.find-pull-request.outputs.number != ''
+          && steps.fc.outputs.comment-id != ''
+        uses: peaceiris/actions-gh-pages@v3.8.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: notebooks/_build/html
+          enable_jekyll: false
+          destination_dir: _preview/${{ steps.find-pull-request.outputs.number }}
