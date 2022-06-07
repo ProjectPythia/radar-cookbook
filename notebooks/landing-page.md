@@ -2,6 +2,8 @@
 
 This Project Pythia Cookbook covers the basics of working with weather radar data in Python.
 
+**IGNORE THIS TEXT**
+
 ## Motivation
 This cookbook provides the essential materials to learning how to work with weather radar data using Python.
 
