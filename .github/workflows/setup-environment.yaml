@@ -1,0 +1,24 @@
+name: Setup conda environment
+
+on:
+  workflow_call:
+
+jobs:
+  setup-conda:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup conda environment
+        uses: conda-incubator/setup-miniconda@master
+        with:
+          channels: conda-forge
+          channel-priority: strict
+          activate-environment: radar-cookbook-dev
+          auto-update-conda: false
+          python-version: 3.8
+          environment-file: environment.yml
+          mamba-version: '*'
+          use-mamba: true
