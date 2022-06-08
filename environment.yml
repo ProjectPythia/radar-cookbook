@@ -2,6 +2,7 @@ name: radar-cookbook-dev
 channels:
   - conda-forge
 dependencies:
+  - python=3.8
   - jupyter-book
   - matplotlib
   - cartopy
