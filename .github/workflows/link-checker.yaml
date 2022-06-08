@@ -1,14 +1,22 @@
-name: build-book
+name: link-checker
+
 on:
   pull_request:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: '30 0 * * SUN' # Sunday “At 00:30”
 
 jobs:
-  build:
+  link-checker:
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash -l {0}
     steps:
+      - name: Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
       - uses: actions/checkout@v3
 
       - name: Setup Mambaforge
@@ -32,19 +40,15 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: mamba env update -n radar-cookbook-dev -f environment.yml
 
-      - name: Build the book
+      - name: Disable notebook execution
+        shell: python
         run: |
-          jupyter-book build notebooks/
-      - name: Zip the book
+          import yaml
+          with open('notebooks/_config.yml') as f:
+            data = yaml.safe_load(f)
+          data['execute']['execute_notebooks'] = 'off'
+          with open('notebooks/_config.yml', 'w') as f:
+            yaml.dump(data, f)
+      - name: Check external links
         run: |
-          set -x
-          set -e
-          if [ -f book.zip ]; then
-              rm -rf book.zip
-          fi
-          zip -r book.zip notebooks/_build/html
-      - name: Upload zipped book artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: book-zip
-          path: ./book.zip
+          jupyter-book build --builder linkcheck notebooks/
