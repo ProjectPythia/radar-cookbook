@@ -18,6 +18,7 @@ jobs:
       - name: Fetch Repo Name
         id: repo-name
         run: echo "::set-output name=value::$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')"  # just the repo name, not owner
+
       - name: Set message value
         run: |
           echo "comment_message=👋 Thanks for opening this PR! The Cookbook will be automatically built with [GitHub Actions](https://github.com/features/actions). To see the status of your deployment, click below." >> $GITHUB_ENV
@@ -95,7 +96,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           workflow: build-book.yaml
           run_id: ${{ github.event.workflow_run.id }}
-          name: book-zip
+          name: book-zip-${{ steps.find-pull-request.outputs.number }}
 
       - name: Unzip the book
         if: |
