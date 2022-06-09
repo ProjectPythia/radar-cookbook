@@ -1,5 +1,8 @@
 # Radar Cookbook
 
+[![build-book](https://github.com/ProjectPythiaTutorials/radar-cookbook/actions/workflows/build-book.yaml/badge.svg)](https://github.com/ProjectPythiaTutorials/radar-cookbook/actions/workflows/build-book.yaml)
+[![link-checker](https://github.com/ProjectPythiaTutorials/radar-cookbook/actions/workflows/link-checker.yaml/badge.svg)](https://github.com/ProjectPythiaTutorials/radar-cookbook/actions/workflows/link-checker.yaml)
+
 This Project Pythia Cookbook covers the basics of working with weather radar data in Python.
 
 ## Motivation
