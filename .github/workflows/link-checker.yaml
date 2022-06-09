@@ -3,8 +3,8 @@ name: link-checker
 on:
   pull_request:
   workflow_dispatch:
-  # schedule:
-  #   - cron: '30 0 * * SUN' # Sunday “At 00:30”
+  schedule:
+    - cron: '10 0 * * *' # Daily “At 00:10”
 
 jobs:
   link-checker:
