@@ -7,13 +7,13 @@ on:
 
 jobs:
   build:
-    uses: ProjectPythiaTutorials/radar-cookbook/.github/build-book.yaml@main
+    uses: ProjectPythiaTutorials/radar-cookbook/.github/workflows/build-book.yaml@main
     with:
       environment_name: radar-cookbook-dev
       environment_file: environment.yml
       path_to_notebooks: notebooks/
   link-check:
-    uses: ProjectPythiaTutorials/radar-cookbook/.github/link-checker.yaml@main
+    uses: ProjectPythiaTutorials/radar-cookbook/.github/workflows/link-checker.yaml@main
     with:
       environment_name: radar-cookbook-dev
       environment_file: environment.yml
