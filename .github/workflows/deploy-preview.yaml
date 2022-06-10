@@ -2,7 +2,7 @@ name: deploy-preview
 on:
   workflow_run:
     workflows:
-      - trigger-build-book
+      - trigger-book-build
     types:
       - requested
       - completed
