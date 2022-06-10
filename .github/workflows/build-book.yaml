@@ -6,14 +6,17 @@ on:
       environment_name:
         description: 'Name of conda environment to activate'
         required: true
+        type: string
       environment_file:
         description: 'Name of conda environment file'
         required: false
         default: 'environment.yml'
+        type: string
       path_to_notebooks:
         description: 'Location of the JupyterBook source relative to repo root'
         required: false
         default: './'
+        type: string
 
 jobs:
   build:
