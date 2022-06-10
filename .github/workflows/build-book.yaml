@@ -1,6 +1,22 @@
 name: build-book
+
 on:
-  pull_request:
+  workflow_call:
+    inputs:
+      environment_name:
+        description: 'Name of conda environment to activate'
+        required: true
+        type: string
+      environment_file:
+        description: 'Name of conda environment file'
+        required: false
+        default: 'environment.yml'
+        type: string
+      path_to_notebooks:
+        description: 'Location of the JupyterBook source relative to repo root'
+        required: false
+        default: './'
+        type: string
 
 jobs:
   build:
@@ -16,7 +32,7 @@ jobs:
         with:
           miniforge-variant: Mambaforge
           miniforge-version: latest
-          activate-environment: radar-cookbook-dev
+          activate-environment: ${{ inputs.environment_name }}
           use-mamba: true
 
       - name: Set cache date
@@ -24,17 +40,17 @@ jobs:
 
       - uses: actions/cache@v3
         with:
-          path: /usr/share/miniconda3/envs/radar-cookbook-dev
-          key: linux-64-conda-${{ hashFiles('environment.yml') }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
+          path: /usr/share/miniconda3/envs/${{ inputs.environment_name }}
+          key: linux-64-conda-${{ hashFiles('${{ inputs.environment_file }}') }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
         id: cache
 
       - name: Update environment
         if: steps.cache.outputs.cache-hit != 'true'
-        run: mamba env update -n radar-cookbook-dev -f environment.yml
+        run: mamba env update -n ${{ inputs.environment_name }} -f ${{ inputs.environment_file }}
 
       - name: Build the book
         run: |
-          jupyter-book build notebooks/
+          jupyter-book build ${{ inputs.path_to_notebooks }}
       - name: Zip the book
         run: |
           set -x
@@ -42,9 +58,9 @@ jobs:
           if [ -f book.zip ]; then
               rm -rf book.zip
           fi
-          zip -r book.zip notebooks/_build/html
+          zip -r book.zip ${{ inputs.path_to_notebooks }}/_build/html
       - name: Upload zipped book artifact
         uses: actions/upload-artifact@v3
         with:
-          name: book-zip-${{github.event.pull_request.number}}
+          name: book-zip-${{github.event.number}}
           path: ./book.zip

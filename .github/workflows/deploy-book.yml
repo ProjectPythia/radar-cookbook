@@ -7,48 +7,39 @@ on:
       - main
   workflow_dispatch:
 
-# This job installs dependencies, build the book, and pushes it to `gh-pages`
 jobs:
-  build-and-deploy-book:
+  build:
+    uses: ./.github/workflows/build-book.yaml
+    with:
+      environment_name: radar-cookbook-dev
+      environment_file: environment.yml
+      path_to_notebooks: notebooks/
+
+  deploy:
+    needs: build
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash -l {0}
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Setup Mambaforge
-        uses: conda-incubator/setup-miniconda@v2
+      - name: Download Artifact Book
+        uses: dawidd6/action-download-artifact@v2.21.0
         with:
-          miniforge-variant: Mambaforge
-          miniforge-version: latest
-          activate-environment: radar-cookbook-dev
-          use-mamba: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          workflow: build-book.yaml
+          commit: ${{ github.sha }}
+          name: book-zip-${{ github.event.number }}
 
-      - name: Set cache date
-        run: echo "DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
-
-      - uses: actions/cache@v3
-        with:
-          path: /usr/share/miniconda3/envs/radar-cookbook-dev
-          key: linux-64-conda-${{ hashFiles('environment.yml') }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
-        id: cache
-
-      - name: Update environment
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: mamba env update -n radar-cookbook-dev -f environment.yml
-        
-      # Build the book
-      - name: Build the book
+      - name: Unzip the book
         run: |
-          cd notebooks
-          jupyter-book build .
+          rm -rf notebooks/_build/html
+          unzip book.zip
+          rm -f book.zip
 
-      # Deploy the book's HTML to gh-pages branch
-      - name: GitHub Pages action
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3.8.0
         if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: notebooks/_build/html
-          keep_files: true  # This should preserve existing previews from other PRs
+          keep_files: true  # This preserves existing previews from open PRs
