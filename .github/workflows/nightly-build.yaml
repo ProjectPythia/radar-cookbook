@@ -8,13 +8,15 @@ on:
 jobs:
   build:
     uses: ./.github/build-book.yaml
-      with:
-        environment_name: radar-cookbook-dev
-        environment_file: environment.yml
-        path_to_notebooks: notebooks/
+    with:
+      environment_name: radar-cookbook-dev
+      environment_file: environment.yml
+      path_to_notebooks: notebooks/
+
   link-check:
     uses: ./.github/link-checker.yaml
-      with:
-        environment_name: radar-cookbook-dev
-        environment_file: environment.yml
-        path_to_notebooks: notebooks/
+    with:
+      environment_name: radar-cookbook-dev
+      environment_file: environment.yml
+      path_to_notebooks: notebooks/
+      
