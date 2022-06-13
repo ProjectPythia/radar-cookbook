@@ -2,12 +2,14 @@ name: radar-cookbook-dev
 channels:
   - conda-forge
 dependencies:
+  - python=3.8
   - jupyter-book
-  - sphinx-pythia-theme
   - matplotlib
   - cartopy
   - numpy
   - xarray
+  - metpy
   - pip
   - pip:
     - git+https://github.com/ARM-DOE/pyart.git
+    - sphinx-pythia-theme
