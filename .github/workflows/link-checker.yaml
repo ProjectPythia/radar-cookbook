@@ -5,7 +5,8 @@ on:
     inputs:
       environment_name:
         description: 'Name of conda environment to activate'
-        required: true
+        required: false
+        default: 'cookbook-dev'
         type: string
       environment_file:
         description: 'Name of conda environment file'
@@ -16,6 +17,11 @@ on:
         description: 'Location of the JupyterBook source relative to repo root'
         required: false
         default: './'
+        type: string
+      use_cached_environment:
+        description: 'Flag for whether we should attempt to retrieve a previously cached environment.'
+        required: false
+        default: 'true'
         type: string
 
 jobs:
@@ -40,16 +46,20 @@ jobs:
           use-mamba: true
 
       - name: Set cache date
+        if: inputs.use_cached_environment == 'true'
         run: echo "DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
 
       - uses: actions/cache@v3
+        if: inputs.use_cached_environment == 'true'
         with:
           path: /usr/share/miniconda3/envs/${{ inputs.environment_name }}
-          key: linux-64-conda-${{ hashFiles('${{ inputs.environment_file }}') }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
+          key: linux-64-conda-${{ hashFiles('${{ inputs.environment_file }}') }}-${{ env.DATE }}
         id: cache
 
       - name: Update environment
-        if: steps.cache.outputs.cache-hit != 'true'
+        if: |
+          inputs.use_cached_environment != 'true'
+          || steps.cache.outputs.cache-hit != 'true'
         run: mamba env update -n ${{ inputs.environment_name }} -f ${{ inputs.environment_file }}
 
       - name: Disable notebook execution
