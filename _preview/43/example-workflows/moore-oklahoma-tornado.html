@@ -525,20 +525,191 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_200356_V06.gz&#39;,
- &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_200811_V06.gz&#39;,
- &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_201229_V06.gz&#39;,
- &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_201643_V06.gz&#39;,
- &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_202058_V06.gz&#39;,
- &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_202511_V06.gz&#39;,
- &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_202928_V06.gz&#39;,
- &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_203346_V06.gz&#39;,
- &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_203800_V06.gz&#39;,
- &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_204215_V06.gz&#39;,
- &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_204630_V06.gz&#39;,
- &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_205045_V06.gz&#39;,
- &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_205459_V06.gz&#39;,
- &#39;noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_205914_V06.gz&#39;]
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NoCredentialsError</span><span class="g g-Whitespace">                        </span>Traceback (most recent call last)
+<span class="nn">Input In [3],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fs</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;s3://noaa-nexrad-level2/2013/05/20/KTLX/KTLX20130520_20*&quot;</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">files</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/fsspec/asyn.py:86,</span> in <span class="ni">sync_wrapper.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">83</span> <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">84</span> <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">85</span>     <span class="bp">self</span> <span class="o">=</span> <span class="n">obj</span> <span class="ow">or</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="ne">---&gt; </span><span class="mi">86</span>     <span class="k">return</span> <span class="n">sync</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/fsspec/asyn.py:66,</span> in <span class="ni">sync</span><span class="nt">(loop, func, timeout, *args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">64</span>     <span class="k">raise</span> <span class="n">FSTimeoutError</span> <span class="kn">from</span> <span class="nn">return_result</span>
+<span class="g g-Whitespace">     </span><span class="mi">65</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">return_result</span><span class="p">,</span> <span class="ne">BaseException</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">66</span>     <span class="k">raise</span> <span class="n">return_result</span>
+<span class="g g-Whitespace">     </span><span class="mi">67</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">68</span>     <span class="k">return</span> <span class="n">return_result</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/fsspec/asyn.py:26,</span> in <span class="ni">_runner</span><span class="nt">(event, coro, result, timeout)</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span>     <span class="n">coro</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">wait_for</span><span class="p">(</span><span class="n">coro</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">26</span>     <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="n">coro</span>
+<span class="g g-Whitespace">     </span><span class="mi">27</span> <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">28</span>     <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">ex</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/s3fs/core.py:679,</span> in <span class="ni">S3FileSystem._glob</span><span class="nt">(self, path, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">677</span> <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">678</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Cannot traverse all of S3&quot;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">679</span> <span class="k">return</span> <span class="k">await</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_glob</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/fsspec/asyn.py:640,</span> in <span class="ni">AsyncFileSystem._glob</span><span class="nt">(self, path, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">637</span>     <span class="n">root</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">638</span>     <span class="n">depth</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="s2">&quot;**&quot;</span> <span class="ow">in</span> <span class="n">path</span> <span class="k">else</span> <span class="n">path</span><span class="p">[</span><span class="n">ind</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:]</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="ne">--&gt; </span><span class="mi">640</span> <span class="n">allpaths</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">641</span>     <span class="n">root</span><span class="p">,</span> <span class="n">maxdepth</span><span class="o">=</span><span class="n">depth</span><span class="p">,</span> <span class="n">withdirs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="g g-Whitespace">    </span><span class="mi">642</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">643</span> <span class="c1"># Escape characters special to python regex, leaving our supported</span>
+<span class="g g-Whitespace">    </span><span class="mi">644</span> <span class="c1"># special characters in place.</span>
+<span class="g g-Whitespace">    </span><span class="mi">645</span> <span class="c1"># See https://www.gnu.org/software/bash/manual/html_node/Pattern-Matching.html</span>
+<span class="g g-Whitespace">    </span><span class="mi">646</span> <span class="c1"># for shell globbing details.</span>
+<span class="g g-Whitespace">    </span><span class="mi">647</span> <span class="n">pattern</span> <span class="o">=</span> <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">648</span>     <span class="s2">&quot;^&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">649</span>     <span class="o">+</span> <span class="p">(</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">664</span>     <span class="o">+</span> <span class="s2">&quot;$&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">665</span> <span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/s3fs/core.py:706,</span> in <span class="ni">S3FileSystem._find</span><span class="nt">(self, path, maxdepth, withdirs, detail, prefix)</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span>         <span class="s2">&quot;Can not specify &#39;prefix&#39; option alongside &#39;withdirs&#39;/&#39;maxdepth&#39; options.&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">705</span> <span class="k">if</span> <span class="n">maxdepth</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">706</span>     <span class="k">return</span> <span class="k">await</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_find</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">707</span>         <span class="n">bucket</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">key</span><span class="p">,</span> <span class="n">maxdepth</span><span class="o">=</span><span class="n">maxdepth</span><span class="p">,</span> <span class="n">withdirs</span><span class="o">=</span><span class="n">withdirs</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="n">detail</span>
+<span class="g g-Whitespace">    </span><span class="mi">708</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">709</span> <span class="c1"># TODO: implement find from dircache, if all listings are present</span>
+<span class="g g-Whitespace">    </span><span class="mi">710</span> <span class="c1"># if refresh is False:</span>
+<span class="g g-Whitespace">    </span><span class="mi">711</span> <span class="c1">#     out = incomplete_tree_dirs(self.dircache, path)</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">716</span> <span class="c1">#         return super().find(path)</span>
+<span class="g g-Whitespace">    </span><span class="mi">717</span> <span class="c1">#     # else: we refresh anyway, having at least two missing trees</span>
+<span class="g g-Whitespace">    </span><span class="mi">718</span> <span class="n">out</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lsdir</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">prefix</span><span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/fsspec/asyn.py:695,</span> in <span class="ni">AsyncFileSystem._find</span><span class="nt">(self, path, maxdepth, withdirs, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">693</span> <span class="n">detail</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;detail&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">694</span> <span class="c1"># async for?</span>
+<span class="ne">--&gt; </span><span class="mi">695</span> <span class="k">async</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_walk</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">maxdepth</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">696</span>     <span class="k">if</span> <span class="n">withdirs</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">697</span>         <span class="n">files</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">dirs</span><span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/s3fs/core.py:1793,</span> in <span class="ni">S3FileSystem._walk</span><span class="nt">(self, path, maxdepth, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1791</span> <span class="k">if</span> <span class="n">path</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;*&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">://&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">protocol</span><span class="p">]:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1792</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Cannot crawl all of S3&quot;</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1793</span> <span class="k">async</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_walk</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">maxdepth</span><span class="o">=</span><span class="n">maxdepth</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1794</span>     <span class="k">yield</span> <span class="n">_</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/fsspec/asyn.py:567,</span> in <span class="ni">AsyncFileSystem._walk</span><span class="nt">(self, path, maxdepth, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">565</span> <span class="n">detail</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;detail&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">566</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">567</span>     <span class="n">listing</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ls</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">568</span> <span class="k">except</span> <span class="p">(</span><span class="ne">FileNotFoundError</span><span class="p">,</span> <span class="ne">IOError</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">569</span>     <span class="k">if</span> <span class="n">detail</span><span class="p">:</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/s3fs/core.py:863,</span> in <span class="ni">S3FileSystem._ls</span><span class="nt">(self, path, detail, refresh)</span>
+<span class="g g-Whitespace">    </span><span class="mi">861</span>     <span class="n">files</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lsbuckets</span><span class="p">(</span><span class="n">refresh</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">862</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">863</span>     <span class="n">files</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lsdir</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">refresh</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">864</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">files</span> <span class="ow">and</span> <span class="s2">&quot;/&quot;</span> <span class="ow">in</span> <span class="n">path</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">865</span>         <span class="n">files</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lsdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="n">refresh</span><span class="o">=</span><span class="n">refresh</span><span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/s3fs/core.py:646,</span> in <span class="ni">S3FileSystem._lsdir</span><span class="nt">(self, path, refresh, max_items, delimiter, prefix)</span>
+<span class="g g-Whitespace">    </span><span class="mi">644</span> <span class="n">files</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="g g-Whitespace">    </span><span class="mi">645</span> <span class="n">dircache</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="ne">--&gt; </span><span class="mi">646</span> <span class="k">async</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">it</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">647</span>     <span class="n">dircache</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;CommonPrefixes&quot;</span><span class="p">,</span> <span class="p">[]))</span>
+<span class="g g-Whitespace">    </span><span class="mi">648</span>     <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">i</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Contents&quot;</span><span class="p">,</span> <span class="p">[]):</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/aiobotocore/paginate.py:32,</span> in <span class="ni">AioPageIterator.__anext__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">     </span><span class="mi">29</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inject_starting_params</span><span class="p">(</span><span class="n">current_kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">32</span>     <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_request</span><span class="p">(</span><span class="n">current_kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">33</span>     <span class="n">parsed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extract_parsed_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span>     <span class="k">if</span> <span class="n">first_request</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span>         <span class="c1"># The first request is handled differently.  We could</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span>         <span class="c1"># possibly have a resume/starting token that tells us where</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span>         <span class="c1"># to index into the retrieved page.</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/aiobotocore/client.py:251,</span> in <span class="ni">AioBaseClient._make_api_call</span><span class="nt">(self, operation_name, api_params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">249</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">250</span>     <span class="n">apply_request_checksum</span><span class="p">(</span><span class="n">request_dict</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">251</span>     <span class="n">http</span><span class="p">,</span> <span class="n">parsed_response</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_request</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">252</span>         <span class="n">operation_model</span><span class="p">,</span> <span class="n">request_dict</span><span class="p">,</span> <span class="n">request_context</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">254</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">255</span>     <span class="s1">&#39;after-call.</span><span class="si">{service_id}</span><span class="s1">.</span><span class="si">{operation_name}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">256</span>         <span class="n">service_id</span><span class="o">=</span><span class="n">service_id</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">259</span>     <span class="n">model</span><span class="o">=</span><span class="n">operation_model</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">request_context</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">262</span> <span class="k">if</span> <span class="n">http</span><span class="o">.</span><span class="n">status_code</span> <span class="o">&gt;=</span> <span class="mi">300</span><span class="p">:</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/aiobotocore/client.py:271,</span> in <span class="ni">AioBaseClient._make_request</span><span class="nt">(self, operation_model, request_dict, request_context)</span>
+<span class="g g-Whitespace">    </span><span class="mi">269</span> <span class="k">async</span> <span class="k">def</span> <span class="nf">_make_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operation_model</span><span class="p">,</span> <span class="n">request_dict</span><span class="p">,</span> <span class="n">request_context</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">270</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">271</span>         <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_endpoint</span><span class="o">.</span><span class="n">make_request</span><span class="p">(</span><span class="n">operation_model</span><span class="p">,</span> <span class="n">request_dict</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">272</span>     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">273</span>         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">274</span>             <span class="s1">&#39;after-call-error.</span><span class="si">{service_id}</span><span class="s1">.</span><span class="si">{operation_name}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">275</span>                 <span class="n">service_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_service_model</span><span class="o">.</span><span class="n">service_id</span><span class="o">.</span><span class="n">hyphenize</span><span class="p">(),</span>
+<span class="g g-Whitespace">    </span><span class="mi">276</span>                 <span class="n">operation_name</span><span class="o">=</span><span class="n">operation_model</span><span class="o">.</span><span class="n">name</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">277</span>             <span class="n">exception</span><span class="o">=</span><span class="n">e</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">request_context</span>
+<span class="g g-Whitespace">    </span><span class="mi">278</span>         <span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/aiobotocore/endpoint.py:76,</span> in <span class="ni">AioEndpoint._send_request</span><span class="nt">(self, request_dict, operation_model)</span>
+<span class="g g-Whitespace">     </span><span class="mi">74</span> <span class="n">context</span> <span class="o">=</span> <span class="n">request_dict</span><span class="p">[</span><span class="s1">&#39;context&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">75</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_retries_context</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">attempts</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">76</span> <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_request</span><span class="p">(</span><span class="n">request_dict</span><span class="p">,</span> <span class="n">operation_model</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">77</span> <span class="n">context</span> <span class="o">=</span> <span class="n">request_dict</span><span class="p">[</span><span class="s1">&#39;context&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">78</span> <span class="n">success_response</span><span class="p">,</span> <span class="n">exception</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_response</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">79</span>     <span class="n">request</span><span class="p">,</span> <span class="n">operation_model</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/aiobotocore/endpoint.py:67,</span> in <span class="ni">AioEndpoint.create_request</span><span class="nt">(self, params, operation_model)</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span>     <span class="n">service_id</span> <span class="o">=</span> <span class="n">operation_model</span><span class="o">.</span><span class="n">service_model</span><span class="o">.</span><span class="n">service_id</span><span class="o">.</span><span class="n">hyphenize</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">64</span>     <span class="n">event_name</span> <span class="o">=</span> <span class="s1">&#39;request-created.</span><span class="si">{service_id}</span><span class="s1">.</span><span class="si">{op_name}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">65</span>         <span class="n">service_id</span><span class="o">=</span><span class="n">service_id</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">66</span>         <span class="n">op_name</span><span class="o">=</span><span class="n">operation_model</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">67</span>     <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_event_emitter</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">event_name</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">68</span>                                    <span class="n">operation_name</span><span class="o">=</span><span class="n">operation_model</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span> <span class="n">prepared_request</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prepare_request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">70</span> <span class="k">return</span> <span class="n">prepared_request</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/aiobotocore/hooks.py:50,</span> in <span class="ni">AioHierarchicalEmitter._emit</span><span class="nt">(self, event_name, kwargs, stop_on_response)</span>
+<span class="g g-Whitespace">     </span><span class="mi">47</span> <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Event </span><span class="si">%s</span><span class="s1">: calling handler </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">event_name</span><span class="p">,</span> <span class="n">handler</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">49</span> <span class="c1"># Await the handler if its a coroutine.</span>
+<span class="ne">---&gt; </span><span class="mi">50</span> <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">resolve_awaitable</span><span class="p">(</span><span class="n">handler</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">51</span> <span class="n">responses</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">handler</span><span class="p">,</span> <span class="n">response</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">52</span> <span class="k">if</span> <span class="n">stop_on_response</span> <span class="ow">and</span> <span class="n">response</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/aiobotocore/_helpers.py:11,</span> in <span class="ni">resolve_awaitable</span><span class="nt">(obj)</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="k">async</span> <span class="k">def</span> <span class="nf">resolve_awaitable</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isawaitable</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">11</span>         <span class="k">return</span> <span class="k">await</span> <span class="n">obj</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="k">return</span> <span class="n">obj</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/aiobotocore/signers.py:16,</span> in <span class="ni">AioRequestSigner.handler</span><span class="nt">(self, operation_name, request, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="k">async</span> <span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operation_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="c1"># This is typically hooked up to the &quot;request-created&quot; event</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="c1"># from a client&#39;s event emitter.  When a new request is created</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span>     <span class="c1"># this method is invoked to sign the request.</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span>     <span class="c1"># Don&#39;t call this method directly.</span>
+<span class="ne">---&gt; </span><span class="mi">16</span>     <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">operation_name</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/aiobotocore/signers.py:63,</span> in <span class="ni">AioRequestSigner.sign</span><span class="nt">(self, operation_name, request, region_name, signing_type, expires_in, signing_name)</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">61</span>         <span class="k">raise</span> <span class="n">e</span>
+<span class="ne">---&gt; </span><span class="mi">63</span> <span class="n">auth</span><span class="o">.</span><span class="n">add_auth</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/botocore/auth.py:388,</span> in <span class="ni">SigV4Auth.add_auth</span><span class="nt">(self, request)</span>
+<span class="g g-Whitespace">    </span><span class="mi">386</span> <span class="k">def</span> <span class="nf">add_auth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">387</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">credentials</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">388</span>         <span class="k">raise</span> <span class="n">NoCredentialsError</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">389</span>     <span class="n">datetime_now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">390</span>     <span class="n">request</span><span class="o">.</span><span class="n">context</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">datetime_now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="n">SIGV4_TIMESTAMP</span><span class="p">)</span>
+
+<span class="ne">NoCredentialsError</span>: Unable to locate credentials
 </pre></div>
 </div>
 </div>
@@ -555,6 +726,16 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [4],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">radar</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_nexrad_archive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;s3://</span><span class="si">{</span><span class="n">files</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;files&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 <p>Notice how for the <strong>NEXRAD Level 2</strong> data, we have several fields available</p>
 <div class="cell docutils container">
@@ -564,12 +745,12 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;velocity&#39;,
- &#39;cross_correlation_ratio&#39;,
- &#39;spectrum_width&#39;,
- &#39;reflectivity&#39;,
- &#39;differential_phase&#39;,
- &#39;differential_reflectivity&#39;]
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [5],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">list</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">fields</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;radar&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -590,7 +771,20 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/moore-oklahoma-tornado_17_0.png" src="../_images/moore-oklahoma-tornado_17_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [6],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">display</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">RadarMapDisplay</span><span class="p">(</span><span class="n">radar</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span><span class="s1">&#39;reflectivity&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>                      <span class="n">sweep</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>                      <span class="n">vmin</span><span class="o">=-</span><span class="mi">20</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>                      <span class="n">vmax</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>                      <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>                     <span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;radar&#39; is not defined
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -603,7 +797,17 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/moore-oklahoma-tornado_18_0.png" src="../_images/moore-oklahoma-tornado_18_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="nn">Input In [7],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span><span class="s1">&#39;velocity&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>                      <span class="n">sweep</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>                      <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>                     <span class="p">)</span>
+
+<span class="ne">AttributeError</span>: &#39;function&#39; object has no attribute &#39;plot_ppi_map&#39;
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -613,7 +817,12 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;ppi&#39;
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [8],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">radar</span><span class="o">.</span><span class="n">scan_type</span>
+
+<span class="ne">NameError</span>: name &#39;radar&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -661,7 +870,23 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/moore-oklahoma-tornado_22_0.png" src="../_images/moore-oklahoma-tornado_22_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [9],</span> in <span class="ni">&lt;cell line: 6&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Setup our first axis with reflectivity</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">display</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">RadarMapDisplay</span><span class="p">(</span><span class="n">radar</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span><span class="s1">&#39;reflectivity&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>                      <span class="n">sweep</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>                      <span class="n">vmin</span><span class="o">=-</span><span class="mi">20</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>                      <span class="n">vmax</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>                      <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,)</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1"># Zoom in by setting the xlim/ylim</span>
+
+<span class="ne">NameError</span>: name &#39;radar&#39; is not defined
+</pre></div>
+</div>
+<img alt="../_images/moore-oklahoma-tornado_22_1.png" src="../_images/moore-oklahoma-tornado_22_1.png" />
 </div>
 </div>
 </div>
@@ -712,7 +937,23 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/moore-oklahoma-tornado_24_0.png" src="../_images/moore-oklahoma-tornado_24_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [10],</span> in <span class="ni">&lt;cell line: 6&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Setup our first axis with reflectivity</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">display</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">RadarMapDisplay</span><span class="p">(</span><span class="n">radar</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span><span class="s1">&#39;reflectivity&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>                      <span class="n">sweep</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>                      <span class="n">vmin</span><span class="o">=-</span><span class="mi">20</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>                      <span class="n">vmax</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>                      <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,)</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1"># Zoom in by setting the xlim/ylim</span>
+
+<span class="ne">NameError</span>: name &#39;radar&#39; is not defined
+</pre></div>
+</div>
+<img alt="../_images/moore-oklahoma-tornado_24_1.png" src="../_images/moore-oklahoma-tornado_24_1.png" />
 </div>
 </div>
 </div>
@@ -763,7 +1004,23 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/moore-oklahoma-tornado_26_0.png" src="../_images/moore-oklahoma-tornado_26_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [11],</span> in <span class="ni">&lt;cell line: 6&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Setup our first axis with reflectivity</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">display</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">RadarMapDisplay</span><span class="p">(</span><span class="n">radar</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span><span class="s1">&#39;reflectivity&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>                      <span class="n">sweep</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>                      <span class="n">vmin</span><span class="o">=-</span><span class="mi">20</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>                      <span class="n">vmax</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>                      <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,)</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1"># Zoom in by setting the xlim/ylim</span>
+
+<span class="ne">NameError</span>: name &#39;radar&#39; is not defined
+</pre></div>
+</div>
+<img alt="../_images/moore-oklahoma-tornado_26_1.png" src="../_images/moore-oklahoma-tornado_26_1.png" />
 </div>
 </div>
 </div>
@@ -849,7 +1106,24 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/moore-oklahoma-tornado_28_0.png" src="../_images/moore-oklahoma-tornado_28_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [12],</span> in <span class="ni">&lt;cell line: 6&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Setup our first axis with reflectivity</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">display</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">RadarMapDisplay</span><span class="p">(</span><span class="n">radar</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">ref_map</span> <span class="o">=</span> <span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span><span class="s1">&#39;reflectivity&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>                                <span class="n">sweep</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>                                <span class="n">vmin</span><span class="o">=-</span><span class="mi">20</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>                                <span class="n">vmax</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>                                <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span>                                <span class="n">colorbar_label</span><span class="o">=</span><span class="s1">&#39;Equivalent Relectivity ($Z_</span><span class="si">{e}</span><span class="s1">$) (dBZ)&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="c1"># Zoom in by setting the xlim/ylim</span>
+
+<span class="ne">NameError</span>: name &#39;radar&#39; is not defined
+</pre></div>
+</div>
+<img alt="../_images/moore-oklahoma-tornado_28_1.png" src="../_images/moore-oklahoma-tornado_28_1.png" />
 </div>
 </div>
 </div>
