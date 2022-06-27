@@ -11,6 +11,8 @@ copyright: '2022'
 # See https://jupyterbook.org/en/stable/content/execute.html
 execute:
   execute_notebooks: cache
+  timeout: 600
+  allow_errors: True
 
 # Add a few extensions to help with parsing content
 parse:
