@@ -49,7 +49,7 @@ sphinx:
           icon: fab fa-youtube-square
           type: fontawesome
       launch_buttons:
-        binderhub_url: https://mybinder.org
+        binderhub_url: https://binder-staging.2i2c.cloud
         notebook_interface: jupyterlab
         jupyterhub_url: https://jupyterhub.arm.gov
       extra_navbar: |
