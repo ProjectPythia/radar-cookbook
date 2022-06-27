@@ -7,9 +7,12 @@ logo: images/logos/pythia_logo-white-rtext.svg
 email: projectpythia@ucar.edu
 copyright: '2022'
 
-# Don't execute the notebooks upon building the book
+# Execute the notebooks upon building the book?
+# See https://jupyterbook.org/en/stable/content/execute.html
 execute:
-  execute_notebooks: "off"
+  execute_notebooks: cache
+  timeout: 600
+  allow_errors: True
 
 # Add a few extensions to help with parsing content
 parse:
@@ -46,7 +49,7 @@ sphinx:
           icon: fab fa-youtube-square
           type: fontawesome
       launch_buttons:
-        binderhub_url: https://mybinder.org
+        binderhub_url: https://binder-staging.2i2c.cloud
         notebook_interface: jupyterlab
         jupyterhub_url: https://jupyterhub.arm.gov
       extra_navbar: |
