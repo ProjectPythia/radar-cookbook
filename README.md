@@ -1,7 +1,7 @@
 # Radar Cookbook
 
 [![nightly-build](https://github.com/ProjectPythiaTutorials/radar-cookbook/actions/workflows/nightly-build.yaml/badge.svg)](https://github.com/ProjectPythiaTutorials/radar-cookbook/actions/workflows/nightly-build.yaml)
-[![Binder](https://binder-staging.2i2c.cloud/badge_logo.svg)](https://binder-staging.2i2c.cloud/v2/gh/ProjectPythiaTutorials/radar-cookbook.git/main)
+[![Binder](https://binder-staging.2i2c.cloud/badge_logo.svg)](https://binder-staging.2i2c.cloud/v2/gh/ProjectPythiaCookbooks/radar-cookbook/main?labpath=notebooks)
 
 This Project Pythia Cookbook covers the basics of working with weather radar data in Python.
 
