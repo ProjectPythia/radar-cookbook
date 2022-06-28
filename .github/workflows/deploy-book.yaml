@@ -29,7 +29,7 @@ jobs:
 
       - name: Unzip the book
         run: |
-          rm -rf notebooks/_build/html
+          rm -rf _build/html
           unzip book.zip
           rm -f book.zip
 
