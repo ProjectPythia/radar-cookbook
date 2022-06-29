@@ -1,3 +1,5 @@
+<img src="thumbnail.png" alt="radar thumbnail" width="300"/>
+
 # Radar Cookbook
 
 [![nightly-build](https://github.com/ProjectPythiaCookbooks/radar-cookbook/actions/workflows/nightly-build.yaml/badge.svg)](https://github.com/ProjectPythiaCookbooks/radar-cookbook/actions/workflows/nightly-build.yaml)
