@@ -16,7 +16,7 @@ Once you go through this material, you will have the skills to read in radar dat
 
 ## Authors
 
-[Max Grover](@mgrover1), [Zachary Sherman](@zssherman)
+[Max Grover](https://github.com/mgrover1), [Zachary Sherman](https://github.com/zssherman)
 
 ### Contributors
 
