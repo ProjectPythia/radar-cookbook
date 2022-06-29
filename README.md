@@ -14,6 +14,16 @@ Most of the curriculum is focused around the Python ARM Toolkit, which is define
 
 Once you go through this material, you will have the skills to read in radar data, apply data corrections, and visualize your data, building off of the core foundational Python material covered in the [Foundations Book](https://foundations.projectpythia.org/landing-page.html)
 
+## Authors
+
+[Max Grover](@mgrover1), [Zachary Sherman](@zssherman)
+
+### Contributors
+
+<a href="https://github.com/ProjectPythiaCookbooks/radar-cookbook/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=ProjectPythiaCookbooks/radar-cookbook" />
+</a>
+
 ## Structure
 This cookbook is broken up into two main sections - "Foundations" and "Example Workflows."
 
