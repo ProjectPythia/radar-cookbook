@@ -1,8 +1,8 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: Pythia Foundations
-author: the <a href="https://projectpythia.org/">Project Pythia</a> Community
+title: Radar Cookbook
+author: Max Grover, Zachary Sherman
 logo: notebooks/images/logos/pythia_logo-white-rtext.svg
 email: projectpythia@ucar.edu
 copyright: '2022'
