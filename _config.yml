@@ -7,6 +7,13 @@ logo: notebooks/images/logos/pythia_logo-white-rtext.svg
 email: projectpythia@ucar.edu
 copyright: '2022'
 
+thumbnail: thumbnail.png
+tags:
+  domains:
+    radar
+  packages:
+    Py-Art
+
 # Execute the notebooks upon building the book?
 # See https://jupyterbook.org/en/stable/content/execute.html
 execute:
