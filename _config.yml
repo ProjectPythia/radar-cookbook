@@ -10,9 +10,9 @@ copyright: '2022'
 thumbnail: thumbnail.png
 tags:
   domains:
-    radar
+    - radar
   packages:
-    Py-Art
+    - Py-Art
 
 # Execute the notebooks upon building the book?
 # See https://jupyterbook.org/en/stable/content/execute.html
