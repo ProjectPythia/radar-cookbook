@@ -10,6 +10,7 @@ dependencies:
   - numpy
   - xarray
   - metpy
+  - act-atmos
   - pip
   - pip:
     - git+https://github.com/ARM-DOE/pyart.git
