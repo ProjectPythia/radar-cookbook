@@ -475,14 +475,14 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 5&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">os</span>
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 6&gt;</span><span class="nt">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">act</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">imageio.v2</span> <span class="k">as</span> <span class="nn">imageio</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">act</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">imageio.v2</span> <span class="k">as</span> <span class="nn">imageio</span>
 <span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;act&#39;
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;imageio&#39;
 </pre></div>
 </div>
 </div>
@@ -509,11 +509,6 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>act.discovery.download_data<span class="o">?</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Object `act.discovery.download_data` not found.
 </pre></div>
 </div>
 </div>
@@ -552,7 +547,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
 <span class="nn">Input In [4],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">june2_csapr_files</span> <span class="o">=</span> <span class="n">act</span><span class="o">.</span><span class="n">discovery</span><span class="o">.</span><span class="n">download_data</span><span class="p">(</span><span class="n">arm_username</span><span class="p">,</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span>                                                 <span class="n">arm_password</span><span class="p">,</span>
@@ -561,7 +556,17 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <span class="g g-Whitespace">      </span><span class="mi">5</span>                                                 <span class="n">end_date</span><span class="p">,</span>
 <span class="g g-Whitespace">      </span><span class="mi">6</span>                                                <span class="p">)</span>
 
-<span class="ne">NameError</span>: name &#39;act&#39; is not defined
+<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/act/discovery/get_armfiles.py:96,</span> in <span class="ni">download_data</span><span class="nt">(username, token, datastream, startdate, enddate, time, output)</span>
+<span class="g g-Whitespace">     </span><span class="mi">92</span>     <span class="n">end</span> <span class="o">=</span> <span class="s2">&quot;&amp;end=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">enddate</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">93</span> <span class="c1"># build the url to query the web service using the arguments provided</span>
+<span class="g g-Whitespace">     </span><span class="mi">94</span> <span class="n">query_url</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;https://adc.arm.gov/armlive/livedata/query?&#39;</span> <span class="o">+</span>
+<span class="g g-Whitespace">     </span><span class="mi">95</span>              <span class="s1">&#39;user=</span><span class="si">{0}</span><span class="s1">&amp;ds=</span><span class="si">{1}{2}{3}</span><span class="s1">&amp;wt=json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+<span class="ne">---&gt; </span><span class="mi">96</span>     <span class="s1">&#39;:&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">username</span><span class="p">,</span> <span class="n">token</span><span class="p">]),</span> <span class="n">datastream</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">98</span> <span class="c1"># get url response, read the body of the message,</span>
+<span class="g g-Whitespace">     </span><span class="mi">99</span> <span class="c1"># and decode from bytes type to utf-8 string</span>
+<span class="g g-Whitespace">    </span><span class="mi">100</span> <span class="n">response_body</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">query_url</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+
+<span class="ne">TypeError</span>: sequence item 0: expected str instance, NoneType found
 </pre></div>
 </div>
 </div>
@@ -578,20 +583,10 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mkdir quicklooks/rhi
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mkdir quicklooks
+<span class="o">!</span>mkdir quicklooks/rhi
 <span class="o">!</span>mkdir quicklooks/ppi
 <span class="o">!</span>mkdir quicklooks/vpt
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mkdir: cannot create directory ‘quicklooks/rhi’: No such file or directory
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mkdir: cannot create directory ‘quicklooks/ppi’: No such file or directory
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mkdir: cannot create directory ‘quicklooks/vpt’: No such file or directory
 </pre></div>
 </div>
 </div>
