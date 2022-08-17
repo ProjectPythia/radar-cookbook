@@ -7,6 +7,10 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  ARM_USERNAME: ${{ secrets.ARM_USERNAME }}
+  ARM_PASSWORD: ${{ secrets.ARM_PASSWORD }}
+
 jobs:
   build:
     uses: ProjectPythiaCookbooks/cookbook-actions/.github/workflows/build-book.yaml@main

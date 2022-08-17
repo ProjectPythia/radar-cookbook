@@ -1,6 +1,9 @@
 name: trigger-book-build
 on:
   pull_request:
+env:
+  ARM_USERNAME: ${{ secrets.ARM_USERNAME }}
+  ARM_PASSWORD: ${{ secrets.ARM_PASSWORD }}
 
 jobs:
   build:
@@ -9,7 +12,7 @@ jobs:
       environment_name: radar-cookbook-dev
       environment_file: environment.yml
       path_to_notebooks: "."
-      use_cached_environment: 'true'  # This is default, not strickly needed. Set to 'false' to always build a new environment
+      use_cached_environment: 'false'  # This is default, not strickly needed. Set to 'false' to always build a new environment
   link-check:
     uses: ProjectPythiaCookbooks/cookbook-actions/.github/workflows/link-checker.yaml@main
     with:

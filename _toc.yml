@@ -9,3 +9,4 @@ parts:
   - caption: Example Workflows
     chapters:
       - file: notebooks/example-workflows/moore-oklahoma-tornado
+      - file: notebooks/example-workflows/tracer-example
