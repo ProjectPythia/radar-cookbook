@@ -6,6 +6,12 @@ on:
     branches:
       - main
   workflow_dispatch:
+  workflow_call:
+    secrets:
+      ARM_USERNAME:
+        required: true
+      ARM_PASSWORD:
+        required: true
 
 env:
   ARM_USERNAME: ${{ secrets.ARM_USERNAME }}

@@ -1,6 +1,12 @@
 name: trigger-book-build
 on:
   pull_request:
+  workflow_call:
+    secrets:
+      ARM_USERNAME:
+        required: true
+      ARM_PASSWORD:
+        required: true
 env:
   ARM_USERNAME: ${{ secrets.ARM_USERNAME }}
   ARM_PASSWORD: ${{ secrets.ARM_PASSWORD }}
