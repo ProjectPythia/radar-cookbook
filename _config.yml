@@ -1,4 +1,5 @@
 # Book settings
+# Learn more at https://jupyterbook.org/customize/config.html
 
 title: Radar Cookbook
 author: Max Grover, Zachary Sherman
