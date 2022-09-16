@@ -10,7 +10,7 @@ dependencies:
   - numpy
   - xarray
   - metpy
-  - act-atmos
+  - act-atmos>=1.2.0
   - imageio
   - pip
   - pip:
