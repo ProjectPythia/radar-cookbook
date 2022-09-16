@@ -535,14 +535,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">Input In [3],</span> in <span class="ni">&lt;cell line: 9&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">start_date</span> <span class="o">=</span> <span class="s2">&quot;2022-06-02T11:30:00&quot;</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">end_date</span> <span class="o">=</span> <span class="s2">&quot;2022-06-02T11:40:00&quot;</span>
-<span class="ne">----&gt; </span><span class="mi">9</span> <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arm_username</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">arm_password</span><span class="p">))</span>
-
-<span class="ne">TypeError</span>: object of type &#39;NoneType&#39; has no len()
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8 16
 </pre></div>
 </div>
 </div>
@@ -559,27 +552,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">Input In [4],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">june2_csapr_files</span> <span class="o">=</span> <span class="n">act</span><span class="o">.</span><span class="n">discovery</span><span class="o">.</span><span class="n">download_data</span><span class="p">(</span><span class="n">arm_username</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>                                                 <span class="n">arm_password</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>                                                 <span class="n">datastream</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>                                                 <span class="n">start_date</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>                                                 <span class="n">end_date</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>                                                <span class="p">)</span>
-
-<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/act/discovery/get_armfiles.py:96,</span> in <span class="ni">download_data</span><span class="nt">(username, token, datastream, startdate, enddate, time, output)</span>
-<span class="g g-Whitespace">     </span><span class="mi">92</span>     <span class="n">end</span> <span class="o">=</span> <span class="s2">&quot;&amp;end=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">enddate</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">93</span> <span class="c1"># build the url to query the web service using the arguments provided</span>
-<span class="g g-Whitespace">     </span><span class="mi">94</span> <span class="n">query_url</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;https://adc.arm.gov/armlive/livedata/query?&#39;</span> <span class="o">+</span>
-<span class="g g-Whitespace">     </span><span class="mi">95</span>              <span class="s1">&#39;user=</span><span class="si">{0}</span><span class="s1">&amp;ds=</span><span class="si">{1}{2}{3}</span><span class="s1">&amp;wt=json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-<span class="ne">---&gt; </span><span class="mi">96</span>     <span class="s1">&#39;:&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">username</span><span class="p">,</span> <span class="n">token</span><span class="p">]),</span> <span class="n">datastream</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">98</span> <span class="c1"># get url response, read the body of the message,</span>
-<span class="g g-Whitespace">     </span><span class="mi">99</span> <span class="c1"># and decode from bytes type to utf-8 string</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span> <span class="n">response_body</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">query_url</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
-
-<span class="ne">TypeError</span>: sequence item 0: expected str instance, NoneType found
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ARM Data Live Webservice does not appear to be functioning
 </pre></div>
 </div>
 </div>
@@ -618,18 +591,6 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
     <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;quicklooks/</span><span class="si">{</span><span class="n">radar</span><span class="o">.</span><span class="n">scan_type</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">Path</span><span class="p">(</span><span class="n">file</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> 
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">Input In [6],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">june2_csapr_files</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">radar</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="nb">print</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">scan_type</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;june2_csapr_files&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -698,7 +659,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">Input In [8],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">radar_files</span><span class="p">:</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">radar</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="k">if</span> <span class="n">radar</span><span class="o">.</span><span class="n">scan_type</span> <span class="o">==</span> <span class="s1">&#39;rhi&#39;</span><span class="p">:</span>
@@ -840,7 +801,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
         
           By Max Grover, Zachary Sherman.
         
-          Last updated on 30 August 2022.
+          Last updated on 16 September 2022.
         </p>
       </div>
     </div>
