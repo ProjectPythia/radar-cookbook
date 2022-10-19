@@ -1,9 +1,11 @@
-name: nightly-build
+name: publish-book
 
 on:
+  # Trigger the workflow on push to main branch
+  push:
+    branches:
+      - main
   workflow_dispatch:
-  schedule:
-    - cron: '0 0 * * *' # Daily “At 00:00”
 
 env:
   ARM_USERNAME: ${{ secrets.ARM_USERNAME }}
@@ -11,7 +13,6 @@ env:
 
 jobs:
   build:
-    if: ${{ github.repository_owner == 'ProjectPythiaCookbooks' }}
     uses: ProjectPythiaCookbooks/cookbook-actions/.github/workflows/build-book.yaml@main
     secrets:
       ARM_USERNAME: ${{ secrets.ARM_USERNAME }}
@@ -21,10 +22,7 @@ jobs:
       environment_file: environment.yml
       path_to_notebooks: ./
 
-  link-check:
-    if: ${{ github.repository_owner == 'ProjectPythiaCookbooks' }}
-    uses: ProjectPythiaCookbooks/cookbook-actions/.github/workflows/link-checker.yaml@main
-    with:
-      environment_name: radar-cookbook-dev
-      environment_file: environment.yml
-      path_to_notebooks: ./
+  deploy:
+    needs: build
+    uses: ProjectPythiaCookbooks/cookbook-actions/.github/workflows/deploy-book.yaml@main
+  
