@@ -376,6 +376,11 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
      List the available fields and plot the corrected and uncorrected data
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot-a-quick-look-of-reflectivity-and-velocity">
+     Plot a Quick-Look of Reflectivity and Velocity
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -389,8 +394,13 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#plot-up-phidp-and-kdp">
-     Plot up PhiDP and KDP
+    <a class="reference internal nav-link" href="#compare-uncorrected-and-corrected-phidp-and-kdp">
+     Compare Uncorrected and Corrected PhiDP and KDP
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-three-panel-figure-visualizing-reflectivity-gate-id-and-kdp">
+     Create a Three Panel Figure Visualizing Reflectivity, Gate ID, and KDP
     </a>
    </li>
   </ul>
@@ -423,7 +433,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
               
               <div>
                 
-  <p><a class="reference internal" href="../../_images/phidp_kdp_comparison_cacti.png"><img alt="Dual-Pol Comparison" src="../../_images/phidp_kdp_comparison_cacti.png" style="width: 600px;" /></a></img></p>
+  <p><a class="reference internal" href="../../_images/phidp_kdp_comparison_cacti.png"><img alt="Dual-Pol Comparison" src="../../_images/phidp_kdp_comparison_cacti.png" style="width: 700px;" /></a></img></p>
 <div class="tex2jax_ignore mathjax_ignore section" id="data-quality-check-from-the-cacti-field-campaign">
 <h1>Data Quality Check from the CACTI Field Campaign<a class="headerlink" href="#data-quality-check-from-the-cacti-field-campaign" title="Permalink to this headline"><i class="fas fa-link"></i></a></h1>
 <div class="section" id="overview">
@@ -457,6 +467,10 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <td><p>Required</p></td>
 <td><p>IO/Visualization</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../foundations/pyart-corrections.html"><span class="doc std std-doc">Py-ART Corrections</span></a></p></td>
+<td><p>Required</p></td>
+<td><p>Radar Corrections</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -465,11 +479,15 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">act</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">import</span> <span class="nn">act</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
 <span class="kn">import</span> <span class="nn">pyart</span>
+<span class="kn">import</span> <span class="nn">glob</span>
 </pre></div>
 </div>
 </div>
@@ -526,15 +544,22 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">arm_username</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;ARM_USERNAME&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">arm_password</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;ARM_PASSWORD&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">datastream</span> <span class="o">=</span> <span class="s2">&quot;corcsapr2cmacppiM1.c1&quot;</span>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#arm_username = os.getenv(&quot;ARM_USERNAME&quot;)</span>
+<span class="c1">#arm_password = os.getenv(&quot;ARM_PASSWORD&quot;)</span>
 
-<span class="ne">NameError</span>: name &#39;os&#39; is not defined
+<span class="n">arm_username</span> <span class="o">=</span> <span class="s1">&#39;mgrover4&#39;</span>
+<span class="n">arm_password</span> <span class="o">=</span> <span class="s1">&#39;176e1559b67be630&#39;</span>
+
+<span class="c1">#datastream = f&quot;{site}csapr2cmacppiM1.c1&quot;</span>
+
+<span class="c1"># North Slope of Alaska Site</span>
+<span class="n">datastream</span> <span class="o">=</span> <span class="s1">&#39;nsaxsaprcmacppiC1.c1&#39;</span>
+
+<span class="n">start_date</span> <span class="o">=</span> <span class="s2">&quot;2019-11-23T01:30:00&quot;</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="s2">&quot;2019-11-23T01:50:00&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -551,17 +576,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">csapr_files</span> <span class="o">=</span> <span class="n">act</span><span class="o">.</span><span class="n">discovery</span><span class="o">.</span><span class="n">download_data</span><span class="p">(</span><span class="n">arm_username</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>                                           <span class="n">arm_password</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>                                           <span class="n">datastream</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>                                           <span class="n">start_date</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>                                           <span class="n">end_date</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>                                          <span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;arm_username&#39; is not defined
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[DOWNLOADING] nsaxsaprcmacppiC1.c1.20191123.013710.nc
 </pre></div>
 </div>
 </div>
@@ -577,12 +592,12 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">radar</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">csapr_files</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-
-<span class="ne">NameError</span>: name &#39;csapr_files&#39; is not defined
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/pyart/io/cfradial.py:376: UserWarning: WARNING: valid_min not used since it
+cannot be safely cast to variable data type
+  data = self.ncvar[:]
+/usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/pyart/io/cfradial.py:376: UserWarning: WARNING: valid_max not used since it
+cannot be safely cast to variable data type
+  data = self.ncvar[:]
 </pre></div>
 </div>
 </div>
@@ -596,16 +611,52 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">fields</span><span class="p">))</span>
-
-<span class="ne">NameError</span>: name &#39;radar&#39; is not defined
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;attenuation_corrected_differential_reflectivity&#39;,
+ &#39;attenuation_corrected_reflectivity_h&#39;,
+ &#39;clutter_masked_velocity&#39;,
+ &#39;corrected_differential_phase&#39;,
+ &#39;corrected_differential_reflectivity&#39;,
+ &#39;corrected_reflectivity&#39;,
+ &#39;corrected_specific_diff_phase&#39;,
+ &#39;corrected_velocity&#39;,
+ &#39;cross_correlation_ratio_hv&#39;,
+ &#39;differential_phase&#39;,
+ &#39;differential_reflectivity&#39;,
+ &#39;filtered_corrected_differential_phase&#39;,
+ &#39;filtered_corrected_specific_diff_phase&#39;,
+ &#39;gate_id&#39;,
+ &#39;ground_clutter&#39;,
+ &#39;height&#39;,
+ &#39;height_over_iso0&#39;,
+ &#39;mean_doppler_velocity&#39;,
+ &#39;normalized_coherent_power&#39;,
+ &#39;path_integrated_attenuation&#39;,
+ &#39;path_integrated_differential_attenuation&#39;,
+ &#39;radar_echo_classification&#39;,
+ &#39;rain_rate_A&#39;,
+ &#39;reflectivity&#39;,
+ &#39;reflectivity_enhanced&#39;,
+ &#39;reflectivity_v&#39;,
+ &#39;signal_to_noise_ratio&#39;,
+ &#39;simulated_velocity&#39;,
+ &#39;sounding_temperature&#39;,
+ &#39;specific_attenuation&#39;,
+ &#39;specific_differential_attenuation&#39;,
+ &#39;specific_differential_phase&#39;,
+ &#39;spectral_width&#39;,
+ &#39;total_power&#39;,
+ &#39;total_power_enhanced&#39;,
+ &#39;total_power_v&#39;,
+ &#39;unfolded_differential_phase&#39;,
+ &#39;velocity_texture&#39;]
 </pre></div>
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="plot-a-quick-look-of-reflectivity-and-velocity">
+<h3>Plot a Quick-Look of Reflectivity and Velocity<a class="headerlink" href="#plot-a-quick-look-of-reflectivity-and-velocity" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<p>Let’s start by plotting our reflectivity and velocity fields, using a four panel plot showing the uncorrected and corrected fields. Notice how the data is masked, and the radial velocities are unfolded.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
@@ -627,20 +678,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">display</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">RadarDisplay</span><span class="p">(</span><span class="n">radar</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">display</span><span class="o">.</span><span class="n">plot_ppi</span><span class="p">(</span><span class="s2">&quot;reflectivity&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;radar&#39; is not defined
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1200x1000 with 0 Axes&gt;
-</pre></div>
-</div>
+<img alt="../../_images/cacti-data-quality-example_17_0.png" src="../../_images/cacti-data-quality-example_17_0.png" />
 </div>
 </div>
 </div>
@@ -653,82 +691,99 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <h3>Differential Phase Shift (PhiDP) and Specific Differential Phase (KDP)<a class="headerlink" href="#differential-phase-shift-phidp-and-specific-differential-phase-kdp" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
 <p>One of these dual-pol variables is called the <strong>Differential Phase Shift (PhiDP)</strong>, which is the difference in 2-way attenuation for the horizontal and vertical radar pulses moving through some target. This gives us information about the shape and concentration of the features we are interested in! It is also used to calculate the specific differential phase (KDP), which is the gradient in PhiDP, where positive KDP values indicate greater phase shift in the horizontal. Higher values of KDP can indicate an increase in the size and concentration of rain drops.</p>
 </div>
-<div class="section" id="plot-up-phidp-and-kdp">
-<h3>Plot up PhiDP and KDP<a class="headerlink" href="#plot-up-phidp-and-kdp" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
-<p>We start with the uncorrected fields, <code class="docutils literal notranslate"><span class="pre">specific_differential_phase</span></code> and <code class="docutils literal notranslate"><span class="pre">uncorrected_differential_phase</span></code>, and compare to the corrected fields <code class="docutils literal notranslate"><span class="pre">corrected_specific_diff_phase</span></code> and <code class="docutils literal notranslate"><span class="pre">filtered_corrected_differential_phase</span></code>.</p>
+<div class="section" id="compare-uncorrected-and-corrected-phidp-and-kdp">
+<h3>Compare Uncorrected and Corrected PhiDP and KDP<a class="headerlink" href="#compare-uncorrected-and-corrected-phidp-and-kdp" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<p>We start with the uncorrected fields, <code class="docutils literal notranslate"><span class="pre">specific_differential_phase</span></code> and <code class="docutils literal notranslate"><span class="pre">uncorrected_differential_phase</span></code>, and compare to the corrected fields <code class="docutils literal notranslate"><span class="pre">filtered_corrected_specific_diff_phase</span></code> and <code class="docutils literal notranslate"><span class="pre">filtered_corrected_differential_phase</span></code>.</p>
 <p>Notice how much cleaner the corrected fields are, and how the noise has been filtered, leading a more analysis-ready dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lon_lines</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">65.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">63.</span><span class="p">,</span> <span class="mf">.5</span><span class="p">)</span>
-<span class="n">lat_lines</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">33</span><span class="p">,</span> <span class="o">-</span><span class="mf">30.5</span><span class="p">,</span> <span class="mf">.5</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">RadarMapDisplay</span><span class="p">(</span><span class="n">radar</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="c1"># Extract the latitude and longitude of the radar and use it for the center of the map</span>
+<span class="n">lat_center</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">latitude</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">lon_center</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">longitude</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Set the projection - in this case, we use a general PlateCarree projection</span>
+<span class="n">projection</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">()</span>
+
+<span class="c1"># Determine the ticks</span>
+<span class="n">lat_ticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">lat_center</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">lat_center</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="mf">.5</span><span class="p">)</span>
+<span class="n">lon_ticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">lon_center</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">lon_center</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">231</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span><span class="s2">&quot;reflectivity&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;10m&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> <span class="n">lat_lines</span><span class="o">=</span><span class="n">lat_ticks</span><span class="p">,</span> <span class="n">lon_lines</span><span class="o">=</span><span class="n">lon_ticks</span><span class="p">)</span>
 
 
-<span class="n">display</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">RadarMapDisplay</span><span class="p">(</span><span class="n">radar</span><span class="p">)</span>
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">232</span><span class="p">,</span><span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span><span class="s2">&quot;differential_phase&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;10m&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax3</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">360</span><span class="p">,</span> <span class="n">lat_lines</span><span class="o">=</span><span class="n">lat_ticks</span><span class="p">,</span> <span class="n">lon_lines</span><span class="o">=</span><span class="n">lon_ticks</span><span class="p">)</span>
 
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
-<span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span><span class="s1">&#39;specific_differential_phase&#39;</span><span class="p">,</span>
-                     <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span>
-                     <span class="n">lat_lines</span><span class="o">=</span><span class="n">lat_lines</span><span class="p">,</span>
-                     <span class="n">lon_lines</span><span class="o">=</span><span class="n">lon_lines</span><span class="p">,</span>
-                     <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                     <span class="n">vmax</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
-                     <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;pyart_Carbone42&#39;</span><span class="p">)</span>
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">233</span><span class="p">,</span><span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span><span class="s2">&quot;specific_differential_phase&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;10m&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax3</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;pyart_Carbone42&#39;</span><span class="p">,</span> <span class="n">lat_lines</span><span class="o">=</span><span class="n">lat_ticks</span><span class="p">,</span> <span class="n">lon_lines</span><span class="o">=</span><span class="n">lon_ticks</span><span class="p">)</span>
 
-<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
-<span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span><span class="s1">&#39;uncorrected_differential_phase&#39;</span><span class="p">,</span>
-                     <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span>
-                     <span class="n">lat_lines</span><span class="o">=</span><span class="n">lat_lines</span><span class="p">,</span>
-                     <span class="n">lon_lines</span><span class="o">=</span><span class="n">lon_lines</span><span class="p">,</span>
-                     <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                     <span class="n">vmax</span><span class="o">=</span><span class="mi">360</span><span class="p">,</span>
-                     <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;pyart_Wild25&#39;</span><span class="p">)</span>
+<span class="n">ax4</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">234</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span><span class="s2">&quot;corrected_reflectivity&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;10m&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax4</span><span class="p">,</span> <span class="n">lat_lines</span><span class="o">=</span><span class="n">lat_ticks</span><span class="p">,</span> <span class="n">lon_lines</span><span class="o">=</span><span class="n">lon_ticks</span><span class="p">)</span>
 
-<span class="n">ax3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">223</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
-<span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span><span class="s1">&#39;corrected_specific_diff_phase&#39;</span><span class="p">,</span>
-                     <span class="n">ax</span><span class="o">=</span><span class="n">ax3</span><span class="p">,</span>
-                     <span class="n">lat_lines</span><span class="o">=</span><span class="n">lat_lines</span><span class="p">,</span>
-                     <span class="n">lon_lines</span><span class="o">=</span><span class="n">lon_lines</span><span class="p">,</span>
-                     <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                     <span class="n">vmax</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
-                     <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;pyart_Carbone42&#39;</span><span class="p">)</span>
 
-<span class="n">ax4</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
-<span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span><span class="s1">&#39;filtered_corrected_differential_phase&#39;</span><span class="p">,</span>
-                     <span class="n">ax</span><span class="o">=</span><span class="n">ax4</span><span class="p">,</span>
-                     <span class="n">lat_lines</span><span class="o">=</span><span class="n">lat_lines</span><span class="p">,</span>
-                     <span class="n">lon_lines</span><span class="o">=</span><span class="n">lon_lines</span><span class="p">,</span>
-                     <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                     <span class="n">vmax</span><span class="o">=</span><span class="mi">360</span><span class="p">,</span>
-                     <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;pyart_Wild25&#39;</span><span class="p">)</span>
+<span class="n">ax5</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">235</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span><span class="s2">&quot;filtered_corrected_differential_phase&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;10m&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax5</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">360</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;pyart_Wild25&#39;</span><span class="p">,</span> <span class="n">lat_lines</span><span class="o">=</span><span class="n">lat_ticks</span><span class="p">,</span> <span class="n">lon_lines</span><span class="o">=</span><span class="n">lon_ticks</span><span class="p">)</span>
+
+<span class="n">ax6</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">236</span><span class="p">,</span><span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span><span class="s2">&quot;filtered_corrected_specific_diff_phase&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;10m&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax6</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;pyart_Carbone42&#39;</span><span class="p">,</span> <span class="n">lat_lines</span><span class="o">=</span><span class="n">lat_ticks</span><span class="p">,</span> <span class="n">lon_lines</span><span class="o">=</span><span class="n">lon_ticks</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;phidp_kdp_comparison_cacti.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;phidp_kdp_comparison_cacti.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">7</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">lat_lines</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">33</span><span class="p">,</span> <span class="o">-</span><span class="mf">30.5</span><span class="p">,</span> <span class="mf">.5</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-<span class="ne">----&gt; </span><span class="mi">7</span> <span class="n">display</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">RadarMapDisplay</span><span class="p">(</span><span class="n">radar</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span><span class="s1">&#39;specific_differential_phase&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span>                      <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span>                      <span class="n">lat_lines</span><span class="o">=</span><span class="n">lat_lines</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span>                      <span class="n">vmax</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span>                      <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;pyart_Carbone42&#39;</span><span class="p">)</span>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_1_states_provinces_lines.zip
+  warnings.warn(f&#39;Downloading: {url}&#39;, DownloadWarning)
+</pre></div>
+</div>
+<img alt="../../_images/cacti-data-quality-example_20_1.png" src="../../_images/cacti-data-quality-example_20_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="create-a-three-panel-figure-visualizing-reflectivity-gate-id-and-kdp">
+<h3>Create a Three Panel Figure Visualizing Reflectivity, Gate ID, and KDP<a class="headerlink" href="#create-a-three-panel-figure-visualizing-reflectivity-gate-id-and-kdp" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<p>Now that we understand how valuable these corrections can be, let’s create a summary figure, giving a quick overview of the scatterers and associated polarimetric fields.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">RadarMapDisplay</span><span class="p">(</span><span class="n">radar</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 
-<span class="ne">NameError</span>: name &#39;radar&#39; is not defined
+<span class="c1"># Extract the latitude and longitude of the radar and use it for the center of the map</span>
+<span class="n">lat_center</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">latitude</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">lon_center</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">longitude</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">projection</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">()</span>
+
+<span class="c1"># Determine the ticks</span>
+<span class="n">lat_ticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">lat_center</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">lat_center</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="mf">.5</span><span class="p">)</span>
+<span class="n">lon_ticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">lon_center</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">lon_center</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="mf">.5</span><span class="p">)</span>
+
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">131</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span><span class="s2">&quot;corrected_reflectivity&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;10m&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> <span class="n">lat_lines</span><span class="o">=</span><span class="n">lat_ticks</span><span class="p">,</span> <span class="n">lon_lines</span><span class="o">=</span><span class="n">lon_ticks</span><span class="p">)</span>
+
+
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">132</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+<span class="n">gate_ids</span> <span class="o">=</span> <span class="n">radar</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s2">&quot;gate_id&quot;</span><span class="p">][</span><span class="s2">&quot;flag_meanings&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+<span class="n">ticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">gate_ids</span><span class="p">))</span>
+<span class="n">boundaries</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">gate_ids</span><span class="p">))</span>
+<span class="n">norm</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">BoundaryNorm</span><span class="p">(</span><span class="n">boundaries</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span><span class="s2">&quot;gate_id&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">lat_lines</span><span class="o">=</span><span class="n">lat_ticks</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;10m&#39;</span><span class="p">,</span> <span class="n">lon_lines</span><span class="o">=</span><span class="n">lon_ticks</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;pyart_LangRainbow12&#39;</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="n">ticks</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">ticklabs</span><span class="o">=</span><span class="n">gate_ids</span><span class="p">)</span>
+
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">133</span><span class="p">,</span><span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span><span class="s2">&quot;filtered_corrected_specific_diff_phase&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;10m&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax3</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;pyart_Carbone42&#39;</span><span class="p">,</span> <span class="n">lat_lines</span><span class="o">=</span><span class="n">lat_ticks</span><span class="p">,</span> <span class="n">lon_lines</span><span class="o">=</span><span class="n">lon_ticks</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;three_panel_summary_cacti.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1200x1000 with 0 Axes&gt;
-</pre></div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cacti-data-quality-example_22_0.png" src="../../_images/cacti-data-quality-example_22_0.png" />
 </div>
 </div>
 </div>
@@ -841,7 +896,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
         
           By Max Grover, Zachary Sherman.
         
-          Last updated on 20 October 2022.
+          Last updated on 21 October 2022.
         </p>
       </div>
     </div>
