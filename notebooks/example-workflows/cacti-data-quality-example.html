@@ -547,25 +547,6 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#arm_username = os.getenv(&quot;ARM_USERNAME&quot;)</span>
-<span class="c1">#arm_password = os.getenv(&quot;ARM_PASSWORD&quot;)</span>
-
-<span class="n">arm_username</span> <span class="o">=</span> <span class="s1">&#39;mgrover4&#39;</span>
-<span class="n">arm_password</span> <span class="o">=</span> <span class="s1">&#39;176e1559b67be630&#39;</span>
-
-<span class="c1">#datastream = f&quot;{site}csapr2cmacppiM1.c1&quot;</span>
-
-<span class="c1"># North Slope of Alaska Site</span>
-<span class="n">datastream</span> <span class="o">=</span> <span class="s1">&#39;nsaxsaprcmacppiC1.c1&#39;</span>
-
-<span class="n">start_date</span> <span class="o">=</span> <span class="s2">&quot;2019-11-23T01:30:00&quot;</span>
-<span class="n">end_date</span> <span class="o">=</span> <span class="s2">&quot;2019-11-23T01:50:00&quot;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">csapr_files</span> <span class="o">=</span> <span class="n">act</span><span class="o">.</span><span class="n">discovery</span><span class="o">.</span><span class="n">download_data</span><span class="p">(</span><span class="n">arm_username</span><span class="p">,</span>
                                           <span class="n">arm_password</span><span class="p">,</span>
                                           <span class="n">datastream</span><span class="p">,</span>
@@ -576,7 +557,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[DOWNLOADING] nsaxsaprcmacppiC1.c1.20191123.013710.nc
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[DOWNLOADING] corcsapr2cmacppiM1.c1.20181111.030003.nc
 </pre></div>
 </div>
 </div>
@@ -612,16 +593,21 @@ cannot be safely cast to variable data type
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;attenuation_corrected_differential_reflectivity&#39;,
+ &#39;attenuation_corrected_differential_reflectivity_lag_1&#39;,
  &#39;attenuation_corrected_reflectivity_h&#39;,
+ &#39;censor_mask&#39;,
+ &#39;classification_mask&#39;,
  &#39;clutter_masked_velocity&#39;,
+ &#39;copol_correlation_coeff&#39;,
  &#39;corrected_differential_phase&#39;,
  &#39;corrected_differential_reflectivity&#39;,
  &#39;corrected_reflectivity&#39;,
  &#39;corrected_specific_diff_phase&#39;,
  &#39;corrected_velocity&#39;,
- &#39;cross_correlation_ratio_hv&#39;,
+ &#39;cumulative_beam_blockage&#39;,
  &#39;differential_phase&#39;,
  &#39;differential_reflectivity&#39;,
+ &#39;differential_reflectivity_lag_1&#39;,
  &#39;filtered_corrected_differential_phase&#39;,
  &#39;filtered_corrected_specific_diff_phase&#39;,
  &#39;gate_id&#39;,
@@ -629,25 +615,38 @@ cannot be safely cast to variable data type
  &#39;height&#39;,
  &#39;height_over_iso0&#39;,
  &#39;mean_doppler_velocity&#39;,
+ &#39;mean_doppler_velocity_v&#39;,
  &#39;normalized_coherent_power&#39;,
+ &#39;normalized_coherent_power_v&#39;,
+ &#39;partial_beam_blockage&#39;,
  &#39;path_integrated_attenuation&#39;,
  &#39;path_integrated_differential_attenuation&#39;,
- &#39;radar_echo_classification&#39;,
  &#39;rain_rate_A&#39;,
  &#39;reflectivity&#39;,
- &#39;reflectivity_enhanced&#39;,
  &#39;reflectivity_v&#39;,
  &#39;signal_to_noise_ratio&#39;,
+ &#39;signal_to_noise_ratio_copolar_h&#39;,
+ &#39;signal_to_noise_ratio_copolar_v&#39;,
  &#39;simulated_velocity&#39;,
  &#39;sounding_temperature&#39;,
  &#39;specific_attenuation&#39;,
  &#39;specific_differential_attenuation&#39;,
  &#39;specific_differential_phase&#39;,
  &#39;spectral_width&#39;,
- &#39;total_power&#39;,
- &#39;total_power_enhanced&#39;,
- &#39;total_power_v&#39;,
+ &#39;spectral_width_v&#39;,
+ &#39;uncorrected_copol_correlation_coeff&#39;,
+ &#39;uncorrected_differential_phase&#39;,
+ &#39;uncorrected_differential_reflectivity&#39;,
+ &#39;uncorrected_differential_reflectivity_lag_1&#39;,
+ &#39;uncorrected_mean_doppler_velocity_h&#39;,
+ &#39;uncorrected_mean_doppler_velocity_v&#39;,
+ &#39;uncorrected_reflectivity_h&#39;,
+ &#39;uncorrected_reflectivity_v&#39;,
+ &#39;uncorrected_spectral_width_h&#39;,
+ &#39;uncorrected_spectral_width_v&#39;,
  &#39;unfolded_differential_phase&#39;,
+ &#39;unthresholded_power_copolar_h&#39;,
+ &#39;unthresholded_power_copolar_v&#39;,
  &#39;velocity_texture&#39;]
 </pre></div>
 </div>
@@ -678,7 +677,7 @@ cannot be safely cast to variable data type
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/cacti-data-quality-example_17_0.png" src="../../_images/cacti-data-quality-example_17_0.png" />
+<img alt="../../_images/cacti-data-quality-example_16_0.png" src="../../_images/cacti-data-quality-example_16_0.png" />
 </div>
 </div>
 </div>
@@ -745,7 +744,7 @@ cannot be safely cast to variable data type
   warnings.warn(f&#39;Downloading: {url}&#39;, DownloadWarning)
 </pre></div>
 </div>
-<img alt="../../_images/cacti-data-quality-example_20_2.png" src="../../_images/cacti-data-quality-example_20_2.png" />
+<img alt="../../_images/cacti-data-quality-example_19_2.png" src="../../_images/cacti-data-quality-example_19_2.png" />
 </div>
 </div>
 </div>
@@ -787,7 +786,7 @@ cannot be safely cast to variable data type
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/cacti-data-quality-example_22_0.png" src="../../_images/cacti-data-quality-example_22_0.png" />
+<img alt="../../_images/cacti-data-quality-example_21_0.png" src="../../_images/cacti-data-quality-example_21_0.png" />
 </div>
 </div>
 </div>
