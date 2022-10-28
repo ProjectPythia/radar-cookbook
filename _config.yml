@@ -56,7 +56,7 @@ sphinx:
           icon: fab fa-youtube-square
           type: fontawesome
       launch_buttons:
-        binderhub_url: https://aws-uswest2-binder.pangeo.io/
+        binderhub_url: https://aws-uswest2-binder.pangeo.io
         notebook_interface: jupyterlab
         jupyterhub_url: https://jupyterhub.arm.gov
       extra_navbar: |
