@@ -557,7 +557,27 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[DOWNLOADING] corcsapr2cmacppiM1.c1.20181111.030003.nc
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">csapr_files</span> <span class="o">=</span> <span class="n">act</span><span class="o">.</span><span class="n">discovery</span><span class="o">.</span><span class="n">download_data</span><span class="p">(</span><span class="n">arm_username</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>                                           <span class="n">arm_password</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>                                           <span class="n">datastream</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>                                           <span class="n">start_date</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>                                           <span class="n">end_date</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>                                          <span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/act/discovery/get_armfiles.py:113,</span> in <span class="ni">download_data</span><span class="nt">(username, token, datastream, startdate, enddate, time, output)</span>
+<span class="g g-Whitespace">    </span><span class="mi">109</span>     <span class="n">end</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&amp;end=</span><span class="si">{</span><span class="n">end</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="c1"># build the url to query the web service using the arguments provided</span>
+<span class="g g-Whitespace">    </span><span class="mi">111</span> <span class="n">query_url</span> <span class="o">=</span> <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">112</span>     <span class="s1">&#39;https://adc.arm.gov/armlive/livedata/query?&#39;</span> <span class="o">+</span> <span class="s1">&#39;user=</span><span class="si">{0}</span><span class="s1">&amp;ds=</span><span class="si">{1}{2}{3}</span><span class="s1">&amp;wt=json&#39;</span>
+<span class="ne">--&gt; </span><span class="mi">113</span> <span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">username</span><span class="p">,</span> <span class="n">token</span><span class="p">]),</span> <span class="n">datastream</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="c1"># get url response, read the body of the message,</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span> <span class="c1"># and decode from bytes type to utf-8 string</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span> <span class="n">response_body</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">query_url</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+
+<span class="ne">TypeError</span>: sequence item 0: expected str instance, NoneType found
 </pre></div>
 </div>
 </div>
@@ -573,12 +593,12 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/pyart/io/cfradial.py:376: UserWarning: WARNING: valid_min not used since it
-cannot be safely cast to variable data type
-  data = self.ncvar[:]
-/usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/pyart/io/cfradial.py:376: UserWarning: WARNING: valid_max not used since it
-cannot be safely cast to variable data type
-  data = self.ncvar[:]
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">radar</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">csapr_files</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="ne">NameError</span>: name &#39;csapr_files&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -592,62 +612,12 @@ cannot be safely cast to variable data type
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;attenuation_corrected_differential_reflectivity&#39;,
- &#39;attenuation_corrected_differential_reflectivity_lag_1&#39;,
- &#39;attenuation_corrected_reflectivity_h&#39;,
- &#39;censor_mask&#39;,
- &#39;classification_mask&#39;,
- &#39;clutter_masked_velocity&#39;,
- &#39;copol_correlation_coeff&#39;,
- &#39;corrected_differential_phase&#39;,
- &#39;corrected_differential_reflectivity&#39;,
- &#39;corrected_reflectivity&#39;,
- &#39;corrected_specific_diff_phase&#39;,
- &#39;corrected_velocity&#39;,
- &#39;cumulative_beam_blockage&#39;,
- &#39;differential_phase&#39;,
- &#39;differential_reflectivity&#39;,
- &#39;differential_reflectivity_lag_1&#39;,
- &#39;filtered_corrected_differential_phase&#39;,
- &#39;filtered_corrected_specific_diff_phase&#39;,
- &#39;gate_id&#39;,
- &#39;ground_clutter&#39;,
- &#39;height&#39;,
- &#39;height_over_iso0&#39;,
- &#39;mean_doppler_velocity&#39;,
- &#39;mean_doppler_velocity_v&#39;,
- &#39;normalized_coherent_power&#39;,
- &#39;normalized_coherent_power_v&#39;,
- &#39;partial_beam_blockage&#39;,
- &#39;path_integrated_attenuation&#39;,
- &#39;path_integrated_differential_attenuation&#39;,
- &#39;rain_rate_A&#39;,
- &#39;reflectivity&#39;,
- &#39;reflectivity_v&#39;,
- &#39;signal_to_noise_ratio&#39;,
- &#39;signal_to_noise_ratio_copolar_h&#39;,
- &#39;signal_to_noise_ratio_copolar_v&#39;,
- &#39;simulated_velocity&#39;,
- &#39;sounding_temperature&#39;,
- &#39;specific_attenuation&#39;,
- &#39;specific_differential_attenuation&#39;,
- &#39;specific_differential_phase&#39;,
- &#39;spectral_width&#39;,
- &#39;spectral_width_v&#39;,
- &#39;uncorrected_copol_correlation_coeff&#39;,
- &#39;uncorrected_differential_phase&#39;,
- &#39;uncorrected_differential_reflectivity&#39;,
- &#39;uncorrected_differential_reflectivity_lag_1&#39;,
- &#39;uncorrected_mean_doppler_velocity_h&#39;,
- &#39;uncorrected_mean_doppler_velocity_v&#39;,
- &#39;uncorrected_reflectivity_h&#39;,
- &#39;uncorrected_reflectivity_v&#39;,
- &#39;uncorrected_spectral_width_h&#39;,
- &#39;uncorrected_spectral_width_v&#39;,
- &#39;unfolded_differential_phase&#39;,
- &#39;unthresholded_power_copolar_h&#39;,
- &#39;unthresholded_power_copolar_v&#39;,
- &#39;velocity_texture&#39;]
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">fields</span><span class="p">))</span>
+
+<span class="ne">NameError</span>: name &#39;radar&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -677,7 +647,20 @@ cannot be safely cast to variable data type
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/cacti-data-quality-example_16_0.png" src="../../_images/cacti-data-quality-example_16_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">display</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">RadarDisplay</span><span class="p">(</span><span class="n">radar</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">display</span><span class="o">.</span><span class="n">plot_ppi</span><span class="p">(</span><span class="s2">&quot;reflectivity&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;radar&#39; is not defined
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1200x1000 with 0 Axes&gt;
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -736,15 +719,16 @@ cannot be safely cast to variable data type
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_coastline.zip
-  warnings.warn(f&#39;Downloading: {url}&#39;, DownloadWarning)
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">display</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">RadarMapDisplay</span><span class="p">(</span><span class="n">radar</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Extract the latitude and longitude of the radar and use it for the center of the map</span>
+
+<span class="ne">NameError</span>: name &#39;radar&#39; is not defined
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.8/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_1_states_provinces_lines.zip
-  warnings.warn(f&#39;Downloading: {url}&#39;, DownloadWarning)
-</pre></div>
-</div>
-<img alt="../../_images/cacti-data-quality-example_19_2.png" src="../../_images/cacti-data-quality-example_19_2.png" />
 </div>
 </div>
 </div>
@@ -786,7 +770,16 @@ cannot be safely cast to variable data type
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/cacti-data-quality-example_21_0.png" src="../../_images/cacti-data-quality-example_21_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">display</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">RadarMapDisplay</span><span class="p">(</span><span class="n">radar</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Extract the latitude and longitude of the radar and use it for the center of the map</span>
+
+<span class="ne">NameError</span>: name &#39;radar&#39; is not defined
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -899,7 +892,7 @@ cannot be safely cast to variable data type
         
           By Max Grover, Zachary Sherman.
         
-          Last updated on 1 November 2022.
+          Last updated on 5 December 2022.
         </p>
       </div>
     </div>
