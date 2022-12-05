@@ -2,8 +2,8 @@
 
 # Radar Cookbook
 
-[![nightly-build](https://github.com/ProjectPythiaCookbooks/radar-cookbook/actions/workflows/nightly-build.yaml/badge.svg)](https://github.com/ProjectPythiaCookbooks/radar-cookbook/actions/workflows/nightly-build.yaml)
-[![Binder](https://aws-uswest2-binder.pangeo.io/badge_logo.svg)](https://aws-uswest2-binder.pangeo.io/v2/gh/ProjectPythiaCookbooks/radar-cookbook/main?labpath=notebooks)
+[![nightly-build](https://github.com/ProjectPythia/radar-cookbook/actions/workflows/nightly-build.yaml/badge.svg)](https://github.com/ProjectPythia/radar-cookbook/actions/workflows/nightly-build.yaml)
+[![Binder](https://aws-uswest2-binder.pangeo.io/badge_logo.svg)](https://aws-uswest2-binder.pangeo.io/v2/gh/ProjectPythia/radar-cookbook/main?labpath=notebooks)
 
 This Project Pythia Cookbook covers the basics of working with weather radar data in Python.
 
@@ -22,8 +22,8 @@ Once you go through this material, you will have the skills to read in radar dat
 
 ### Contributors
 
-<a href="https://github.com/ProjectPythiaCookbooks/radar-cookbook/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=ProjectPythiaCookbooks/radar-cookbook" />
+<a href="https://github.com/ProjectPythia/radar-cookbook/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=ProjectPythia/radar-cookbook" />
 </a>
 
 ## Structure
@@ -63,9 +63,9 @@ Jupyter](https://foundations.projectpythia.org/foundations/getting-started-jupyt
 ### Running on Your Own Machine
 If you are interested in running this material locally on your computer, you will need to follow this workflow:
 
-1. Clone the ["radar-cookbook"](https://github.com/ProjectPythiaCookbooks/radar-cookbook) repository
+1. Clone the ["radar-cookbook"](https://github.com/ProjectPythia/radar-cookbook) repository
     ```bash
-    git clone https://github.com/ProjectPythiaCookbooks/radar-cookbook.git
+    git clone https://github.com/ProjectPythia/radar-cookbook.git
     ```
 
 2. Move into the `radar-cookbook` directory

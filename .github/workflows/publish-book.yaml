@@ -13,7 +13,7 @@ env:
 
 jobs:
   build:
-    uses: ProjectPythiaCookbooks/cookbook-actions/.github/workflows/build-book.yaml@main
+    uses: ProjectPythia/cookbook-actions/.github/workflows/build-book.yaml@main
     secrets:
       ARM_USERNAME: ${{ secrets.ARM_USERNAME }}
       ARM_PASSWORD: ${{ secrets.ARM_PASSWORD }}
@@ -24,5 +24,5 @@ jobs:
 
   deploy:
     needs: build
-    uses: ProjectPythiaCookbooks/cookbook-actions/.github/workflows/deploy-book.yaml@main
+    uses: ProjectPythia/cookbook-actions/.github/workflows/deploy-book.yaml@main
   
