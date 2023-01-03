@@ -7,12 +7,13 @@ dependencies:
   - jupyterlab
   - matplotlib
   - cartopy
+  - jupyter_server<2
   - numpy
   - xarray
   - metpy
   - act-atmos>=1.2.0
   - imageio
+  - arm_pyart
   - pip
   - pip:
-    - git+https://github.com/ARM-DOE/pyart.git
     - sphinx-pythia-theme
