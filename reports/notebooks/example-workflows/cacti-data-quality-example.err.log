@@ -1,0 +1,50 @@
+Traceback (most recent call last):
+  File "/usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.9/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.9/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.9/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "/usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.9/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.9/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.9/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+csapr_files = act.discovery.download_data(arm_username,
+                                          arm_password,
+                                          datastream,
+                                          start_date,
+                                          end_date,
+                                         )
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[3], line 1[0m
+[0;32m----> 1[0m csapr_files [38;5;241m=[39m [43mact[49m[38;5;241;43m.[39;49m[43mdiscovery[49m[38;5;241;43m.[39;49m[43mdownload_data[49m[43m([49m[43marm_username[49m[43m,[49m
+[1;32m      2[0m [43m                                          [49m[43marm_password[49m[43m,[49m
+[1;32m      3[0m [43m                                          [49m[43mdatastream[49m[43m,[49m
+[1;32m      4[0m [43m                                          [49m[43mstart_date[49m[43m,[49m
+[1;32m      5[0m [43m                                          [49m[43mend_date[49m[43m,[49m
+[1;32m      6[0m [43m                                         [49m[43m)[49m
+
+File [0;32m/usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.9/site-packages/act/discovery/get_armfiles.py:113[0m, in [0;36mdownload_data[0;34m(username, token, datastream, startdate, enddate, time, output)[0m
+[1;32m    109[0m     end [38;5;241m=[39m [38;5;124mf[39m[38;5;124m'[39m[38;5;124m&end=[39m[38;5;132;01m{[39;00mend[38;5;132;01m}[39;00m[38;5;124m'[39m
+[1;32m    110[0m [38;5;66;03m# build the url to query the web service using the arguments provided[39;00m
+[1;32m    111[0m query_url [38;5;241m=[39m (
+[1;32m    112[0m     [38;5;124m'[39m[38;5;124mhttps://adc.arm.gov/armlive/livedata/query?[39m[38;5;124m'[39m [38;5;241m+[39m [38;5;124m'[39m[38;5;124muser=[39m[38;5;132;01m{0}[39;00m[38;5;124m&ds=[39m[38;5;132;01m{1}[39;00m[38;5;132;01m{2}[39;00m[38;5;132;01m{3}[39;00m[38;5;124m&wt=json[39m[38;5;124m'[39m
+[0;32m--> 113[0m )[38;5;241m.[39mformat([38;5;124;43m'[39;49m[38;5;124;43m:[39;49m[38;5;124;43m'[39;49m[38;5;241;43m.[39;49m[43mjoin[49m[43m([49m[43m[[49m[43musername[49m[43m,[49m[43m [49m[43mtoken[49m[43m][49m[43m)[49m, datastream, start, end)
+[1;32m    115[0m [38;5;66;03m# get url response, read the body of the message,[39;00m
+[1;32m    116[0m [38;5;66;03m# and decode from bytes type to utf-8 string[39;00m
+[1;32m    117[0m response_body [38;5;241m=[39m urlopen(query_url)[38;5;241m.[39mread()[38;5;241m.[39mdecode([38;5;124m'[39m[38;5;124mutf-8[39m[38;5;124m'[39m)
+
+[0;31mTypeError[0m: sequence item 0: expected str instance, NoneType found
+TypeError: sequence item 0: expected str instance, NoneType found
+

@@ -26,9 +26,9 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-pythia-theme.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
     
   <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
@@ -42,7 +42,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js"></script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -439,7 +439,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <p>Within this notebook, we will cover:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>How to access multiple datasets from the Atmospheric Radiation Measurment (ARM) user facility</p></li>
 <li><p>How to create a multipanel plot</p></li>
 <li><p>How to compare uncorrected vs. corrected data</p></li>
@@ -488,6 +488,19 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
 <span class="kn">import</span> <span class="nn">pyart</span>
 <span class="kn">import</span> <span class="nn">glob</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>## You are using the Python ARM Radar Toolkit (Py-ART), an open source
+## library for working with weather radar data. Py-ART is partly
+## supported by the U.S. Department of Energy as part of the Atmospheric
+## Radiation Measurement (ARM) Climate Research Facility, an Office of
+## Science user facility.
+##
+## If you use this software to prepare a publication, please cite:
+##
+##     JJ Helmus and SM Collis, JORS 2016, doi: 10.5334/jors.119
 </pre></div>
 </div>
 </div>
@@ -544,7 +557,27 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[DOWNLOADING] corcsapr2cmacppiM1.c1.20181111.030003.nc
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">csapr_files</span> <span class="o">=</span> <span class="n">act</span><span class="o">.</span><span class="n">discovery</span><span class="o">.</span><span class="n">download_data</span><span class="p">(</span><span class="n">arm_username</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>                                           <span class="n">arm_password</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>                                           <span class="n">datastream</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>                                           <span class="n">start_date</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>                                           <span class="n">end_date</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>                                          <span class="p">)</span>
+
+<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.9/site-packages/act/discovery/get_armfiles.py:113,</span> in <span class="ni">download_data</span><span class="nt">(username, token, datastream, startdate, enddate, time, output)</span>
+<span class="g g-Whitespace">    </span><span class="mi">109</span>     <span class="n">end</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&amp;end=</span><span class="si">{</span><span class="n">end</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="c1"># build the url to query the web service using the arguments provided</span>
+<span class="g g-Whitespace">    </span><span class="mi">111</span> <span class="n">query_url</span> <span class="o">=</span> <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">112</span>     <span class="s1">&#39;https://adc.arm.gov/armlive/livedata/query?&#39;</span> <span class="o">+</span> <span class="s1">&#39;user=</span><span class="si">{0}</span><span class="s1">&amp;ds=</span><span class="si">{1}{2}{3}</span><span class="s1">&amp;wt=json&#39;</span>
+<span class="ne">--&gt; </span><span class="mi">113</span> <span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">username</span><span class="p">,</span> <span class="n">token</span><span class="p">]),</span> <span class="n">datastream</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="c1"># get url response, read the body of the message,</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span> <span class="c1"># and decode from bytes type to utf-8 string</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span> <span class="n">response_body</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">query_url</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+
+<span class="ne">TypeError</span>: sequence item 0: expected str instance, NoneType found
 </pre></div>
 </div>
 </div>
@@ -664,7 +697,7 @@ cannot be safely cast to variable data type
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/cacti-data-quality-example_16_0.png" src="../../_images/cacti-data-quality-example_16_0.png" />
+<img alt="../../_images/40459d8045f6b301bd1843a2192d698cf54c3cf65a4b2e44581393d2f394990c.png" src="../../_images/40459d8045f6b301bd1843a2192d698cf54c3cf65a4b2e44581393d2f394990c.png" />
 </div>
 </div>
 </div>
@@ -723,7 +756,7 @@ cannot be safely cast to variable data type
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/cacti-data-quality-example_19_0.png" src="../../_images/cacti-data-quality-example_19_0.png" />
+<img alt="../../_images/437ec9c7ecb1ef31be3446eb27ff86aaa426e7b7ea4795e9bbde3b8bf6f54ead.png" src="../../_images/437ec9c7ecb1ef31be3446eb27ff86aaa426e7b7ea4795e9bbde3b8bf6f54ead.png" />
 </div>
 </div>
 </div>
@@ -765,7 +798,7 @@ cannot be safely cast to variable data type
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/cacti-data-quality-example_21_0.png" src="../../_images/cacti-data-quality-example_21_0.png" />
+<img alt="../../_images/6bb42f2990c7d45235fb04e4b85e9c4fd5f98e37eb9607e48537baa2d16c3730.png" src="../../_images/6bb42f2990c7d45235fb04e4b85e9c4fd5f98e37eb9607e48537baa2d16c3730.png" />
 </div>
 </div>
 </div>
@@ -878,7 +911,7 @@ cannot be safely cast to variable data type
         
           By Max Grover, Zachary Sherman.
         
-          Last updated on 27 February 2023.
+          Last updated on 21 March 2023.
         </p>
       </div>
     </div>

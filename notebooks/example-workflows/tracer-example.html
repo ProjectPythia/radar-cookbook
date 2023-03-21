@@ -26,9 +26,9 @@
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-pythia-theme.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
     
   <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
@@ -42,7 +42,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js"></script>
     <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
@@ -435,7 +435,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
 <p>Within this notebook, we will cover:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>How to access data from the Atmospheric Radiation Measurment (ARM) user facility</p></li>
 <li><p>How to setup a workflow to plot both cross sections (RHIs) and horizontal scans (PPIs)</p></li>
 </ol>
@@ -517,78 +517,6 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Signature:</span>
-act<span class=" -Color -Color-Blue">.</span>discovery<span class=" -Color -Color-Blue">.</span>download_data<span class=" -Color -Color-Blue">(</span>
-    username<span class=" -Color -Color-Blue">,</span>
-    token<span class=" -Color -Color-Blue">,</span>
-    datastream<span class=" -Color -Color-Blue">,</span>
-    startdate<span class=" -Color -Color-Blue">,</span>
-    enddate<span class=" -Color -Color-Blue">,</span>
-    output<span class=" -Color -Color-Blue">=</span><span class=" -Color -Color-Green">None</span><span class=" -Color -Color-Blue">,</span>
-<span class=" -Color -Color-Blue">)</span>
-<span class=" -Color -Color-Red">Docstring:</span>
-This tool will help users utilize the ARM Live Data Webservice to download
-ARM data.
-
-Parameters
-----------
-username : str
-    The username to use for logging into the ADC archive.
-token : str
-    The access token for accessing the ADC archive.
-datastream : str
-    The name of the datastream to acquire.
-startdate : str
-    The start date of the data to acquire. Format is YYYY-MM-DD.
-enddate : str
-    The end date of the data to acquire. Format is YYYY-MM-DD.
-output : str
-    The output directory for the data. Set to None to make a folder in the
-    current working directory with the same name as *datastream* to place
-    the files in.
-
-Notes
------
-This programmatic interface allows users to query and automate
-machine-to-machine downloads of ARM data. This tool uses a REST URL and
-specific parameters (saveData, query), user ID and access token, a
-datastream name, a start date, and an end date, and data files matching
-the criteria will be returned to the user and downloaded.
-
-By using this web service, users can setup cron jobs and automatically
-download data from /data/archive into their workspace. This will also
-eliminate the manual step of following a link in an email to download data.
-All other data files, which are not on the spinning
-disk (on HPSS), will have to go through the regular ordering process.
-More information about this REST API and tools can be found on `ARM Live
-&lt;https://adc.arm.gov/armlive/#scripts&gt;`_.
-
-To login/register for an access token click `here
-&lt;https://adc.arm.gov/armlive/livedata/home&gt;`_.
-
-Author: Michael Giansiracusa
-Email: giansiracumt@ornl.gov
-
-Web Tools Contact: Ranjeet Devarakonda zzr@ornl.gov
-
-Examples
---------
-This code will download the netCDF files from the sgpmetE13.b1 datastream
-and place them in a directory named sgpmetE13.b1. The data from 14 Jan to
-20 Jan 2017 will be downloaded. Replace *userName* and *XXXXXXXXXXXXXXXX*
-with your username and token for ARM Data Discovery. See the Notes for
-information on how to obtain a username and token.
-
-.. code-block:: python
-
-    act.discovery.download_data(&#39;userName&#39;,&#39;XXXXXXXXXXXXXXXX&#39;, &#39;sgpmetE13.b1&#39;,
-                                &#39;2017-01-14&#39;, &#39;2017-01-20&#39;)
-<span class=" -Color -Color-Red">File:</span>      ~/miniforge3/envs/radar-cookbook-dev/lib/python3.8/site-packages/act/discovery/get_armfiles.py
-<span class=" -Color -Color-Red">Type:</span>      function
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="setup-our-download-query">
@@ -613,7 +541,14 @@ information on how to obtain a username and token.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8 16
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">9</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">start_date</span> <span class="o">=</span> <span class="s2">&quot;2022-06-02T11:30:00&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">end_date</span> <span class="o">=</span> <span class="s2">&quot;2022-06-02T11:40:00&quot;</span>
+<span class="ne">----&gt; </span><span class="mi">9</span> <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arm_username</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">arm_password</span><span class="p">))</span>
+
+<span class="ne">TypeError</span>: object of type &#39;NoneType&#39; has no len()
 </pre></div>
 </div>
 </div>
@@ -719,131 +654,131 @@ mkdir: quicklooks/vpt: File exists
   a.partition(kth, axis=axis, kind=kind, order=order)
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_2.png" src="../../_images/tracer-example_15_2.png" />
+<img alt="../../_images/d6953c934ebf468247a7d6ffd78da3144dcefc3bb13fb3497e7ef3352c96ccaa.png" src="../../_images/d6953c934ebf468247a7d6ffd78da3144dcefc3bb13fb3497e7ef3352c96ccaa.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_4.png" src="../../_images/tracer-example_15_4.png" />
+<img alt="../../_images/c97a6caa152fa78df6c91646f70085dcc059c1766ec7681c0a4c461e95073246.png" src="../../_images/c97a6caa152fa78df6c91646f70085dcc059c1766ec7681c0a4c461e95073246.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_6.png" src="../../_images/tracer-example_15_6.png" />
+<img alt="../../_images/28f6b8ad316c64e1b411d6c6851c641fcde50f70c3f2dc4dc508e2c284b31e92.png" src="../../_images/28f6b8ad316c64e1b411d6c6851c641fcde50f70c3f2dc4dc508e2c284b31e92.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_8.png" src="../../_images/tracer-example_15_8.png" />
+<img alt="../../_images/9fc14535b1b09f7162a9f25e60a17265b6733f4fc20d47182a3887239c284b73.png" src="../../_images/9fc14535b1b09f7162a9f25e60a17265b6733f4fc20d47182a3887239c284b73.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_10.png" src="../../_images/tracer-example_15_10.png" />
+<img alt="../../_images/b7a8abf98eddcd49921ed6c7352bb9475daa96c5c41030d5599605f88312e349.png" src="../../_images/b7a8abf98eddcd49921ed6c7352bb9475daa96c5c41030d5599605f88312e349.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_12.png" src="../../_images/tracer-example_15_12.png" />
+<img alt="../../_images/4eee4a0462cfd963dd97bc15da0046191fbccfe6685238592a907da0de7971b5.png" src="../../_images/4eee4a0462cfd963dd97bc15da0046191fbccfe6685238592a907da0de7971b5.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_14.png" src="../../_images/tracer-example_15_14.png" />
+<img alt="../../_images/4b6dd9560daa6913157c46f1cebfeab2fde3b5aeba2734feaa9804009b14850f.png" src="../../_images/4b6dd9560daa6913157c46f1cebfeab2fde3b5aeba2734feaa9804009b14850f.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_16.png" src="../../_images/tracer-example_15_16.png" />
+<img alt="../../_images/47b5ad2aadbe6627e6e7d6d533cc69158ebc7cc56c2ef39f75a4ca4ee84cde82.png" src="../../_images/47b5ad2aadbe6627e6e7d6d533cc69158ebc7cc56c2ef39f75a4ca4ee84cde82.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ppi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_18.png" src="../../_images/tracer-example_15_18.png" />
+<img alt="../../_images/7e4d2709204bae72f6e0885f1e6c648b354dded178fb6d8ceb018b3031905f08.png" src="../../_images/7e4d2709204bae72f6e0885f1e6c648b354dded178fb6d8ceb018b3031905f08.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_20.png" src="../../_images/tracer-example_15_20.png" />
+<img alt="../../_images/e0f7f9c56ecc39bba51793a9503716ef91db1a2fe4cdd259c288fd844f89e1dc.png" src="../../_images/e0f7f9c56ecc39bba51793a9503716ef91db1a2fe4cdd259c288fd844f89e1dc.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_22.png" src="../../_images/tracer-example_15_22.png" />
+<img alt="../../_images/b097d16f2e41a4d833fb34098050351210ec201027bbe0a1558599247846e309.png" src="../../_images/b097d16f2e41a4d833fb34098050351210ec201027bbe0a1558599247846e309.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_24.png" src="../../_images/tracer-example_15_24.png" />
+<img alt="../../_images/cc1ed8e622a2b26687c049fcdaed80504655e701b6541fdbe1d7fe62abded9fa.png" src="../../_images/cc1ed8e622a2b26687c049fcdaed80504655e701b6541fdbe1d7fe62abded9fa.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ppi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_26.png" src="../../_images/tracer-example_15_26.png" />
+<img alt="../../_images/4604a41d9a82e28f915aa1963b0986f5824018f7188f97ed9f6280289a09dec8.png" src="../../_images/4604a41d9a82e28f915aa1963b0986f5824018f7188f97ed9f6280289a09dec8.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_28.png" src="../../_images/tracer-example_15_28.png" />
+<img alt="../../_images/6da3d85c8e9e6d88c058afb9b4eb6a976a352ec72de6e37aa8b78f49d3593aa0.png" src="../../_images/6da3d85c8e9e6d88c058afb9b4eb6a976a352ec72de6e37aa8b78f49d3593aa0.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_30.png" src="../../_images/tracer-example_15_30.png" />
+<img alt="../../_images/dd112c298c6d40f2b9edc0ff7a977c5c065340dae138e006725da9570a1f03f5.png" src="../../_images/dd112c298c6d40f2b9edc0ff7a977c5c065340dae138e006725da9570a1f03f5.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_32.png" src="../../_images/tracer-example_15_32.png" />
+<img alt="../../_images/8576c30eec17d7187c0a264145d3cc81ae5e770ff6482e50940cf81b67284d2b.png" src="../../_images/8576c30eec17d7187c0a264145d3cc81ae5e770ff6482e50940cf81b67284d2b.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_34.png" src="../../_images/tracer-example_15_34.png" />
+<img alt="../../_images/3bc8619776080d6a9481a441b4c86480a418b3112f852b983671a1478c7d40f2.png" src="../../_images/3bc8619776080d6a9481a441b4c86480a418b3112f852b983671a1478c7d40f2.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_36.png" src="../../_images/tracer-example_15_36.png" />
+<img alt="../../_images/e0f53ffa6b169f93d016ea27e747e0a6ef17b684306cee32a7d55efdb3711113.png" src="../../_images/e0f53ffa6b169f93d016ea27e747e0a6ef17b684306cee32a7d55efdb3711113.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ppi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_38.png" src="../../_images/tracer-example_15_38.png" />
+<img alt="../../_images/d59965b26f3c18ee69a53f6ead4e3dcea57926ef748fc28753f868cc3b9a05b6.png" src="../../_images/d59965b26f3c18ee69a53f6ead4e3dcea57926ef748fc28753f868cc3b9a05b6.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_40.png" src="../../_images/tracer-example_15_40.png" />
+<img alt="../../_images/127ebfac4033963fe32decbb1ac3fc63e7f36eed5b1c6ba1f86c7e626393239c.png" src="../../_images/127ebfac4033963fe32decbb1ac3fc63e7f36eed5b1c6ba1f86c7e626393239c.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_42.png" src="../../_images/tracer-example_15_42.png" />
+<img alt="../../_images/8c780e115082b5a4df27cc1fa136bfbd5810630b84b48ca46b44d8cc04431e30.png" src="../../_images/8c780e115082b5a4df27cc1fa136bfbd5810630b84b48ca46b44d8cc04431e30.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_44.png" src="../../_images/tracer-example_15_44.png" />
+<img alt="../../_images/bcc149096558e381405d59f560f75b8dd2fe96b98e415d3cd7970b00409ae10c.png" src="../../_images/bcc149096558e381405d59f560f75b8dd2fe96b98e415d3cd7970b00409ae10c.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ppi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_46.png" src="../../_images/tracer-example_15_46.png" />
+<img alt="../../_images/63b75c24c72d519d113adf1e09666d6b7297658ca4ad8e0e9b4aa9d5886ddd52.png" src="../../_images/63b75c24c72d519d113adf1e09666d6b7297658ca4ad8e0e9b4aa9d5886ddd52.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_48.png" src="../../_images/tracer-example_15_48.png" />
+<img alt="../../_images/80a66577d3be329e7c8489259d3c069fb0406c490baaf87be041389064e6448e.png" src="../../_images/80a66577d3be329e7c8489259d3c069fb0406c490baaf87be041389064e6448e.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_50.png" src="../../_images/tracer-example_15_50.png" />
+<img alt="../../_images/8d21615ad83fe5362b343b08f4ba5173464342ca1bf3b31e48d957cb7110a9f1.png" src="../../_images/8d21615ad83fe5362b343b08f4ba5173464342ca1bf3b31e48d957cb7110a9f1.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_52.png" src="../../_images/tracer-example_15_52.png" />
+<img alt="../../_images/92b940a8e87efad5e7caf67c5f18fbcc4386d1bb28364b622f43503e6ae33c25.png" src="../../_images/92b940a8e87efad5e7caf67c5f18fbcc4386d1bb28364b622f43503e6ae33c25.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_54.png" src="../../_images/tracer-example_15_54.png" />
+<img alt="../../_images/f7d9612a3c87cf8364f1b4c621a8bf0334e8d0448aaa6ad68b367acb61e275bc.png" src="../../_images/f7d9612a3c87cf8364f1b4c621a8bf0334e8d0448aaa6ad68b367acb61e275bc.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_56.png" src="../../_images/tracer-example_15_56.png" />
+<img alt="../../_images/a7bb0e287cd4938c6885cffbaf4a9c4a7dc84039418e2eb15df69d236bb22dab.png" src="../../_images/a7bb0e287cd4938c6885cffbaf4a9c4a7dc84039418e2eb15df69d236bb22dab.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_58.png" src="../../_images/tracer-example_15_58.png" />
+<img alt="../../_images/fd2250013e0f44566b4b35d343a6e7830fa848606fddfa80ac1cace9a9c6d97d.png" src="../../_images/fd2250013e0f44566b4b35d343a6e7830fa848606fddfa80ac1cace9a9c6d97d.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_60.png" src="../../_images/tracer-example_15_60.png" />
+<img alt="../../_images/5e55711ea8482d1fecff648d29b9dda573edc05b4e13479eb45c851537a72077.png" src="../../_images/5e55711ea8482d1fecff648d29b9dda573edc05b4e13479eb45c851537a72077.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ppi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_62.png" src="../../_images/tracer-example_15_62.png" />
+<img alt="../../_images/53b19c5c90586b6c3893179dfcc4adf65cf6ba1b03197241ba74f14cf288553a.png" src="../../_images/53b19c5c90586b6c3893179dfcc4adf65cf6ba1b03197241ba74f14cf288553a.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ppi
 </pre></div>
 </div>
-<img alt="../../_images/tracer-example_15_64.png" src="../../_images/tracer-example_15_64.png" />
+<img alt="../../_images/448356f59ddecb8e7da45eb2cbb6e036ecb40739ef70ec8a241dfb88c0e9c711.png" src="../../_images/448356f59ddecb8e7da45eb2cbb6e036ecb40739ef70ec8a241dfb88c0e9c711.png" />
 </div>
 </div>
 </div>
@@ -908,32 +843,32 @@ mkdir: quicklooks/vpt: File exists
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/tracer-example_20_0.png" src="../../_images/tracer-example_20_0.png" />
-<img alt="../../_images/tracer-example_20_1.png" src="../../_images/tracer-example_20_1.png" />
-<img alt="../../_images/tracer-example_20_2.png" src="../../_images/tracer-example_20_2.png" />
-<img alt="../../_images/tracer-example_20_3.png" src="../../_images/tracer-example_20_3.png" />
-<img alt="../../_images/tracer-example_20_4.png" src="../../_images/tracer-example_20_4.png" />
-<img alt="../../_images/tracer-example_20_5.png" src="../../_images/tracer-example_20_5.png" />
-<img alt="../../_images/tracer-example_20_6.png" src="../../_images/tracer-example_20_6.png" />
-<img alt="../../_images/tracer-example_20_7.png" src="../../_images/tracer-example_20_7.png" />
-<img alt="../../_images/tracer-example_20_8.png" src="../../_images/tracer-example_20_8.png" />
-<img alt="../../_images/tracer-example_20_9.png" src="../../_images/tracer-example_20_9.png" />
-<img alt="../../_images/tracer-example_20_10.png" src="../../_images/tracer-example_20_10.png" />
-<img alt="../../_images/tracer-example_20_11.png" src="../../_images/tracer-example_20_11.png" />
-<img alt="../../_images/tracer-example_20_12.png" src="../../_images/tracer-example_20_12.png" />
-<img alt="../../_images/tracer-example_20_13.png" src="../../_images/tracer-example_20_13.png" />
-<img alt="../../_images/tracer-example_20_14.png" src="../../_images/tracer-example_20_14.png" />
-<img alt="../../_images/tracer-example_20_15.png" src="../../_images/tracer-example_20_15.png" />
-<img alt="../../_images/tracer-example_20_16.png" src="../../_images/tracer-example_20_16.png" />
-<img alt="../../_images/tracer-example_20_17.png" src="../../_images/tracer-example_20_17.png" />
-<img alt="../../_images/tracer-example_20_18.png" src="../../_images/tracer-example_20_18.png" />
-<img alt="../../_images/tracer-example_20_19.png" src="../../_images/tracer-example_20_19.png" />
-<img alt="../../_images/tracer-example_20_20.png" src="../../_images/tracer-example_20_20.png" />
-<img alt="../../_images/tracer-example_20_21.png" src="../../_images/tracer-example_20_21.png" />
-<img alt="../../_images/tracer-example_20_22.png" src="../../_images/tracer-example_20_22.png" />
-<img alt="../../_images/tracer-example_20_23.png" src="../../_images/tracer-example_20_23.png" />
-<img alt="../../_images/tracer-example_20_24.png" src="../../_images/tracer-example_20_24.png" />
-<img alt="../../_images/tracer-example_20_25.png" src="../../_images/tracer-example_20_25.png" />
+<img alt="../../_images/c41d317afc60ed52a85f7a9bf38db34695273d727e171bdbaf4b6b5d3c941af9.png" src="../../_images/c41d317afc60ed52a85f7a9bf38db34695273d727e171bdbaf4b6b5d3c941af9.png" />
+<img alt="../../_images/4b23f8a0e0e50236a51c688bbb62c5f18abd65d4d2fc0127a09284887dc3698c.png" src="../../_images/4b23f8a0e0e50236a51c688bbb62c5f18abd65d4d2fc0127a09284887dc3698c.png" />
+<img alt="../../_images/e28abb89f91bc4e4f0f0dd12bc31297eb2e4cec27ca3dc657d063a389d08074e.png" src="../../_images/e28abb89f91bc4e4f0f0dd12bc31297eb2e4cec27ca3dc657d063a389d08074e.png" />
+<img alt="../../_images/e23c0d146f8a0d6044eafb40dfd0300dbacc6432ebf41804399e380a61cf26c6.png" src="../../_images/e23c0d146f8a0d6044eafb40dfd0300dbacc6432ebf41804399e380a61cf26c6.png" />
+<img alt="../../_images/714f55e9410ed83c1bab917fb556d5a3656ebf73a6c32c7fe7607fe8ed15bb05.png" src="../../_images/714f55e9410ed83c1bab917fb556d5a3656ebf73a6c32c7fe7607fe8ed15bb05.png" />
+<img alt="../../_images/1813d6ee0c451b28819608a59a8e767108a77271555cb6e0f140b49db9bfe6ec.png" src="../../_images/1813d6ee0c451b28819608a59a8e767108a77271555cb6e0f140b49db9bfe6ec.png" />
+<img alt="../../_images/a7d59d583a31e24da95d52f4c6f286fd9ad96a5b84a02496b2410995bb0fcb7a.png" src="../../_images/a7d59d583a31e24da95d52f4c6f286fd9ad96a5b84a02496b2410995bb0fcb7a.png" />
+<img alt="../../_images/cf20fe5c261930ee17f0e08dceb17557e744d455b36f06350b4d4fad6b174b32.png" src="../../_images/cf20fe5c261930ee17f0e08dceb17557e744d455b36f06350b4d4fad6b174b32.png" />
+<img alt="../../_images/4697457ce2a19eaf3cc8665929e857bd7847cb2b4d47a7adef157e0a625bcb4c.png" src="../../_images/4697457ce2a19eaf3cc8665929e857bd7847cb2b4d47a7adef157e0a625bcb4c.png" />
+<img alt="../../_images/5a765076101081378c798939cb7e55db0fb610a55d448032ab00e9eef1b52f15.png" src="../../_images/5a765076101081378c798939cb7e55db0fb610a55d448032ab00e9eef1b52f15.png" />
+<img alt="../../_images/35637e82a01b762ff47c6f58b38a1419401f8febc750a1d50f58f2c8bd4a4464.png" src="../../_images/35637e82a01b762ff47c6f58b38a1419401f8febc750a1d50f58f2c8bd4a4464.png" />
+<img alt="../../_images/a9277390cb1a426b5b4b15f085b1956514bfc816268fffa1b5cc76a6f739e269.png" src="../../_images/a9277390cb1a426b5b4b15f085b1956514bfc816268fffa1b5cc76a6f739e269.png" />
+<img alt="../../_images/0a3c03454555f8442d37978e77cf2991a7a32c918b9ff9d3deb00bab42f0602b.png" src="../../_images/0a3c03454555f8442d37978e77cf2991a7a32c918b9ff9d3deb00bab42f0602b.png" />
+<img alt="../../_images/33127ed09c2f9090e5d5749389241aa9920cc98b89621cca66781179b3caf11b.png" src="../../_images/33127ed09c2f9090e5d5749389241aa9920cc98b89621cca66781179b3caf11b.png" />
+<img alt="../../_images/25ba5028dd5bf67f161906125a0f0fa7f701143ae0754771b0c11cfb879cbcdb.png" src="../../_images/25ba5028dd5bf67f161906125a0f0fa7f701143ae0754771b0c11cfb879cbcdb.png" />
+<img alt="../../_images/b74d52233a5aa54104795f78ce197f733cba6f1aa0017b88576e09aea2bf6c21.png" src="../../_images/b74d52233a5aa54104795f78ce197f733cba6f1aa0017b88576e09aea2bf6c21.png" />
+<img alt="../../_images/5c62125342649b6f3727ba82a9f0dfde45ad65224052d6e911f4e9a4c7968233.png" src="../../_images/5c62125342649b6f3727ba82a9f0dfde45ad65224052d6e911f4e9a4c7968233.png" />
+<img alt="../../_images/39f143d069b23c223b397dd7cfcd00e4599b989b953c3970511f615bf9694952.png" src="../../_images/39f143d069b23c223b397dd7cfcd00e4599b989b953c3970511f615bf9694952.png" />
+<img alt="../../_images/931c479fda538237e9b5bb69fcd45246144c9d30fa35454d2c01ea86abf838f4.png" src="../../_images/931c479fda538237e9b5bb69fcd45246144c9d30fa35454d2c01ea86abf838f4.png" />
+<img alt="../../_images/fc37423b749d9dca611ab07a31df0a30649ee5b3afe4190cec19645d66981dde.png" src="../../_images/fc37423b749d9dca611ab07a31df0a30649ee5b3afe4190cec19645d66981dde.png" />
+<img alt="../../_images/1eae44acf4c688a146858dba7e29c3c00246fd8c3766a423c5f71dc492f810eb.png" src="../../_images/1eae44acf4c688a146858dba7e29c3c00246fd8c3766a423c5f71dc492f810eb.png" />
+<img alt="../../_images/3e2450f0743fefbe2e3f9e1e366bb3efe9b55774ec1a22abc0c03ed186d314e9.png" src="../../_images/3e2450f0743fefbe2e3f9e1e366bb3efe9b55774ec1a22abc0c03ed186d314e9.png" />
+<img alt="../../_images/e0d5aff4faa8167651f5b6ec709b279992e6927ce7d97fd6d7338b8d663ffb07.png" src="../../_images/e0d5aff4faa8167651f5b6ec709b279992e6927ce7d97fd6d7338b8d663ffb07.png" />
+<img alt="../../_images/23648c999c051d3938e61f89f7f562e872571078a496079a125c1ca1a152994e.png" src="../../_images/23648c999c051d3938e61f89f7f562e872571078a496079a125c1ca1a152994e.png" />
+<img alt="../../_images/222ecf4bd5d557dbeb7ba660c567ce43dc64553733569266c94e607daa7fab9f.png" src="../../_images/222ecf4bd5d557dbeb7ba660c567ce43dc64553733569266c94e607daa7fab9f.png" />
+<img alt="../../_images/ef9b83e5af50e94091074decfd6fc364c17e6442f7b4e0c5cada063e77a98667.png" src="../../_images/ef9b83e5af50e94091074decfd6fc364c17e6442f7b4e0c5cada063e77a98667.png" />
 </div>
 </div>
 </div>
@@ -1075,7 +1010,7 @@ mkdir: quicklooks/vpt: File exists
         
           By Max Grover, Zachary Sherman.
         
-          Last updated on 27 February 2023.
+          Last updated on 21 March 2023.
         </p>
       </div>
     </div>
