@@ -1,9 +1,9 @@
 <img src="thumbnail.png" alt="radar thumbnail" width="300"/>
 
 # Radar Cookbook
-
+http://binder.mypythia.org
 [![nightly-build](https://github.com/ProjectPythia/radar-cookbook/actions/workflows/nightly-build.yaml/badge.svg)](https://github.com/ProjectPythia/radar-cookbook/actions/workflows/nightly-build.yaml)
-[![Binder](https://aws-uswest2-binder.pangeo.io/badge_logo.svg)](https://aws-uswest2-binder.pangeo.io/v2/gh/ProjectPythia/radar-cookbook/main?labpath=notebooks)
+[![Binder](http://binder.mypythia.org/badge_logo.svg)](http://binder.mypythia.org/v2/gh/ProjectPythia/radar-cookbook/main?labpath=notebooks)
 
 This Project Pythia Cookbook covers the basics of working with weather radar data in Python.
 
