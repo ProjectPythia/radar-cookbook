@@ -1,7 +1,7 @@
 <img src="thumbnail.png" alt="radar thumbnail" width="300"/>
 
 # Radar Cookbook
-http://binder.mypythia.org
+
 [![nightly-build](https://github.com/ProjectPythia/radar-cookbook/actions/workflows/nightly-build.yaml/badge.svg)](https://github.com/ProjectPythia/radar-cookbook/actions/workflows/nightly-build.yaml)
 [![Binder](http://binder.mypythia.org/badge_logo.svg)](http://binder.mypythia.org/v2/gh/ProjectPythia/radar-cookbook/main?labpath=notebooks)
 
