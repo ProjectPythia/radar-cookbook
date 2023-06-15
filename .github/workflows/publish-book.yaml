@@ -19,8 +19,6 @@ jobs:
       ARM_PASSWORD: ${{ secrets.ARM_PASSWORD }}
     with:
       environment_name: radar-cookbook-dev
-      environment_file: environment.yml
-      path_to_notebooks: ./
 
   deploy:
     needs: build
