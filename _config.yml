@@ -5,7 +5,7 @@ title: Radar Cookbook
 author: Max Grover, Zachary Sherman
 logo: notebooks/images/logos/pythia_logo-white-rtext.svg
 email: projectpythia@ucar.edu
-copyright: '2022'
+copyright: '2023'
 
 description: A cookbook meant to work with various weather radar data.
 thumbnail: thumbnail.png
@@ -15,8 +15,8 @@ tags:
   packages:
     - Py-Art
 
-# Execute the notebooks via binderbot
 execute:
+  # To execute notebooks via a Binder instead, replace 'cache' with 'binder'
   execute_notebooks: cache
   timeout: 600
   allow_errors: False  # cells with expected failures must set the `raises-exception` cell tag
@@ -36,6 +36,8 @@ parse:
 
 sphinx:
   config:
+    linkcheck_ignore: ["https://doi.org/*"] # don't run link checker on DOI links since they are immutable
+    nb_execution_raise_on_error: true # raise exception in build if there are notebook errors (this flag is ignored if building on binde
     html_favicon: notebooks/images/icons/favicon.ico
     html_last_updated_fmt: '%-d %B %Y'
     html_theme: sphinx_pythia_theme
@@ -55,7 +57,7 @@ sphinx:
           icon: fab fa-youtube-square
           type: fontawesome
       launch_buttons:
-        binderhub_url: http://binder.mypythia.org
+        binderhub_url: https://binder.projectpythia.org
         notebook_interface: jupyterlab
         jupyterhub_url: https://jupyterhub.arm.gov
       extra_navbar: |
