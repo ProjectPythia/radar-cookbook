@@ -17,3 +17,4 @@ dependencies:
   - pip
   - pip:
     - sphinx-pythia-theme
+    - fast-barnes-py
