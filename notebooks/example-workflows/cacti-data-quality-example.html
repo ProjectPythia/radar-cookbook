@@ -301,7 +301,7 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="http://binder.mypythia.org/v2/gh/ProjectPythiaTutorials/radar-cookbook/main?urlpath=lab/tree/notebooks/example-workflows/cacti-data-quality-example.ipynb"><button type="button"
+        <a class="binder-button" href="https://binder.projectpythia.org/v2/gh/ProjectPythiaTutorials/radar-cookbook/main?urlpath=lab/tree/notebooks/example-workflows/cacti-data-quality-example.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../../_static/images/logo_binder.svg"
@@ -557,27 +557,14 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">csapr_files</span> <span class="o">=</span> <span class="n">act</span><span class="o">.</span><span class="n">discovery</span><span class="o">.</span><span class="n">download_data</span><span class="p">(</span><span class="n">arm_username</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>                                           <span class="n">arm_password</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>                                           <span class="n">datastream</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>                                           <span class="n">start_date</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>                                           <span class="n">end_date</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>                                          <span class="p">)</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[DOWNLOADING] corcsapr2cmacppiM1.c1.20181111.030003.nc
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>If you use these data to prepare a publication, please cite:
 
-<span class="nn">File /usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.9/site-packages/act/discovery/get_armfiles.py:113,</span> in <span class="ni">download_data</span><span class="nt">(username, token, datastream, startdate, enddate, time, output)</span>
-<span class="g g-Whitespace">    </span><span class="mi">109</span>     <span class="n">end</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&amp;end=</span><span class="si">{</span><span class="n">end</span><span class="si">}</span><span class="s1">&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="c1"># build the url to query the web service using the arguments provided</span>
-<span class="g g-Whitespace">    </span><span class="mi">111</span> <span class="n">query_url</span> <span class="o">=</span> <span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">112</span>     <span class="s1">&#39;https://adc.arm.gov/armlive/livedata/query?&#39;</span> <span class="o">+</span> <span class="s1">&#39;user=</span><span class="si">{0}</span><span class="s1">&amp;ds=</span><span class="si">{1}{2}{3}</span><span class="s1">&amp;wt=json&#39;</span>
-<span class="ne">--&gt; </span><span class="mi">113</span> <span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">username</span><span class="p">,</span> <span class="n">token</span><span class="p">]),</span> <span class="n">datastream</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="c1"># get url response, read the body of the message,</span>
-<span class="g g-Whitespace">    </span><span class="mi">116</span> <span class="c1"># and decode from bytes type to utf-8 string</span>
-<span class="g g-Whitespace">    </span><span class="mi">117</span> <span class="n">response_body</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">query_url</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-
-<span class="ne">TypeError</span>: sequence item 0: expected str instance, NoneType found
+Collis, S., &amp; Giangrande, S. Corrected Moments in Antenna Coordinates, Version 2
+(CSAPR2CMACPPI). Atmospheric Radiation Measurement (ARM) User Facility.
+https://doi.org/10.5439/1668872
 </pre></div>
 </div>
 </div>
@@ -593,10 +580,10 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/mgrover/git_repos/pyart/pyart/io/cfradial.py:376: UserWarning: WARNING: valid_min not used since it
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.9/site-packages/pyart/io/cfradial.py:408: UserWarning: WARNING: valid_min not used since it
 cannot be safely cast to variable data type
   data = self.ncvar[:]
-/Users/mgrover/git_repos/pyart/pyart/io/cfradial.py:376: UserWarning: WARNING: valid_max not used since it
+/usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.9/site-packages/pyart/io/cfradial.py:408: UserWarning: WARNING: valid_max not used since it
 cannot be safely cast to variable data type
   data = self.ncvar[:]
 </pre></div>
@@ -697,7 +684,7 @@ cannot be safely cast to variable data type
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/40459d8045f6b301bd1843a2192d698cf54c3cf65a4b2e44581393d2f394990c.png" src="../../_images/40459d8045f6b301bd1843a2192d698cf54c3cf65a4b2e44581393d2f394990c.png" />
+<img alt="../../_images/47f5ea311cf6ee0a4fdf2647a2f5a067477a4125630e56128913fefccd4bf68b.png" src="../../_images/47f5ea311cf6ee0a4fdf2647a2f5a067477a4125630e56128913fefccd4bf68b.png" />
 </div>
 </div>
 </div>
@@ -756,7 +743,15 @@ cannot be safely cast to variable data type
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/437ec9c7ecb1ef31be3446eb27ff86aaa426e7b7ea4795e9bbde3b8bf6f54ead.png" src="../../_images/437ec9c7ecb1ef31be3446eb27ff86aaa426e7b7ea4795e9bbde3b8bf6f54ead.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.9/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_coastline.zip
+  warnings.warn(f&#39;Downloading: {url}&#39;, DownloadWarning)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/share/miniconda3/envs/radar-cookbook-dev/lib/python3.9/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_1_states_provinces_lines.zip
+  warnings.warn(f&#39;Downloading: {url}&#39;, DownloadWarning)
+</pre></div>
+</div>
+<img alt="../../_images/f82436c82f17398ae563de9493e5494639b476c87049cde29c90e6e3077dd374.png" src="../../_images/f82436c82f17398ae563de9493e5494639b476c87049cde29c90e6e3077dd374.png" />
 </div>
 </div>
 </div>
@@ -798,7 +793,7 @@ cannot be safely cast to variable data type
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/6bb42f2990c7d45235fb04e4b85e9c4fd5f98e37eb9607e48537baa2d16c3730.png" src="../../_images/6bb42f2990c7d45235fb04e4b85e9c4fd5f98e37eb9607e48537baa2d16c3730.png" />
+<img alt="../../_images/26a08e4c6e28745604d002e6943adc2ff9af74d0869fffac36cb27f912a7eea3.png" src="../../_images/26a08e4c6e28745604d002e6943adc2ff9af74d0869fffac36cb27f912a7eea3.png" />
 </div>
 </div>
 </div>
@@ -907,11 +902,11 @@ cannot be safely cast to variable data type
     <div class="container-xl">
       <div class="d-flex justify-content-center">
         <p class="py-1 m-0">
-            &copy;&nbsp;2022.
+            &copy;&nbsp;2023.
         
           By Max Grover, Zachary Sherman.
         
-          Last updated on 24 March 2023.
+          Last updated on 21 June 2023.
         </p>
       </div>
     </div>
