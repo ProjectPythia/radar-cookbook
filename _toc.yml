@@ -11,3 +11,4 @@ parts:
       - file: notebooks/example-workflows/moore-oklahoma-tornado
       - file: notebooks/example-workflows/tracer-example
       - file: notebooks/example-workflows/cacti-data-quality-example
+      - file: notebooks/example-workflows/fastbarnes_interpolation_rhi

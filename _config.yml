@@ -2,7 +2,7 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 
 title: Radar Cookbook
-author: Max Grover, Zachary Sherman
+author: Max Grover, Zachary Sherman, Milind Sharma
 logo: notebooks/images/logos/pythia_logo-white-rtext.svg
 email: projectpythia@ucar.edu
 copyright: '2023'
