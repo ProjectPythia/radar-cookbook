@@ -17,3 +17,5 @@ dependencies:
   - pip
   - pip:
     - sphinx-pythia-theme
+    - fast-barnes-py
+    - git+https://github.com/vlouf/eth_radar.git
