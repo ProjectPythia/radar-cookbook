@@ -10,16 +10,16 @@ env:
 jobs:
   get-code:
     runs-on: ubuntu-latest
-      defaults:
-        run:
-          shell: bash -l {0}
-      steps:
-        - uses: actions/checkout@v3
-        
-        - name: Remove .github directory
-          id: remove_directory
-          run: |
-            rm -rF .github/
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Remove .github directory
+        id: remove_directory
+        run: |
+          rm -rF .github/
 
       - name: Zip the code
         run: |
