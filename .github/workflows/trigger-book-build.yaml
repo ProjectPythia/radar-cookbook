@@ -5,13 +5,42 @@ env:
   ARM_USERNAME: ${{ secrets.ARM_USERNAME }}
   ARM_PASSWORD: ${{ secrets.ARM_PASSWORD }}
 
+# instead of calling build-book directly, we will create and upload an artifact containing the source (minus .github directory)
+
 jobs:
-  build:
-    uses: ProjectPythia/cookbook-actions/.github/workflows/build-book.yaml@main
-    secrets:
-      ARM_USERNAME: ${{ secrets.ARM_USERNAME }}
-      ARM_PASSWORD: ${{ secrets.ARM_PASSWORD }}
-    with:
-      environment_name: radar-cookbook-dev
-      artifact_name: book-zip-${{ github.event.number }}
-      # Other input options are possible, see ProjectPythia/cookbook-actions/.github/workflows/build-book.yaml
+  get-code:
+    runs-on: ubuntu-latest
+      defaults:
+        run:
+          shell: bash -l {0}
+      steps:
+        - uses: actions/checkout@v3
+        
+        - name: Remove .github directory
+          id: remove_directory
+          run: |
+            rm -rF .github/
+
+      - name: Zip the code
+        run: |
+          set -x
+          set -e
+          if [ -f pr_code.zip ]; then
+              rm -rf pr_code.zip
+          fi
+          zip -r pr_code.zip .
+
+      - name: Upload zipped code artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: code-zip-${{ github.event.number }}
+          path: ./pr_code.zip
+  # build:
+  #   uses: ProjectPythia/cookbook-actions/.github/workflows/build-book.yaml@main
+  #   secrets:
+  #     ARM_USERNAME: ${{ secrets.ARM_USERNAME }}
+  #     ARM_PASSWORD: ${{ secrets.ARM_PASSWORD }}
+  #   with:
+  #     environment_name: radar-cookbook-dev
+  #     artifact_name: book-zip-${{ github.event.number }}
+  #     # Other input options are possible, see ProjectPythia/cookbook-actions/.github/workflows/build-book.yaml
