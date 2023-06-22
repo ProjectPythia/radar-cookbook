@@ -1,7 +1,10 @@
 format: jb-book
 root: README
 parts:
-  - caption: Foundations
+  - caption: Radar Weather Foundations
+    chapters:
+      - file: notebooks/radar-basics/radar-basics
+  - caption: Radar Toolkit Foundations
     chapters:
       - file: notebooks/foundations/pyart-basics
       - file: notebooks/foundations/pyart-corrections
