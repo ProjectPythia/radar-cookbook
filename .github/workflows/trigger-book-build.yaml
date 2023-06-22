@@ -19,7 +19,7 @@ jobs:
       - name: Remove .github directory
         id: remove_directory
         run: |
-          rm -rF .github/
+          rm -rf .github/
 
       - name: Zip the code
         run: |
