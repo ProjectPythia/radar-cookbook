@@ -1,7 +1,7 @@
 format: jb-book
 root: README
 parts:
-  - caption: Radar Weather Foundations
+  - caption: Weather Radar Foundations
     chapters:
       - file: notebooks/radar-basics/radar-basics
   - caption: Radar Software Foundations
