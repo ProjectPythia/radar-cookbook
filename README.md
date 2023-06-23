@@ -4,6 +4,7 @@
 
 [![nightly-build](https://github.com/ProjectPythia/radar-cookbook/actions/workflows/nightly-build.yaml/badge.svg)](https://github.com/ProjectPythia/radar-cookbook/actions/workflows/nightly-build.yaml)
 [![Binder](https://binder.projectpythia.org/badge_logo.svg)](https://binder.projectpythia.org/v2/gh/ProjectPythia/radar-cookbook/main?labpath=notebooks)
+[![DOI](https://zenodo.org/badge/479066261.svg)](https://zenodo.org/badge/latestdoi/479066261)
 
 This Project Pythia Cookbook covers the basics of working with weather radar data in Python.
 
