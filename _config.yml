@@ -4,16 +4,7 @@
 title: Radar Cookbook
 author: Max Grover, Zachary Sherman, Milind Sharma
 logo: notebooks/images/logos/pythia_logo-white-rtext.svg
-email: projectpythia@ucar.edu
 copyright: '2023'
-
-description: A cookbook meant to work with various weather radar data.
-thumbnail: thumbnail.png
-tags:
-  domains:
-    - radar
-  packages:
-    - Py-Art
 
 execute:
   # To execute notebooks via a Binder instead, replace 'cache' with 'binder'

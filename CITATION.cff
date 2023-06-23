@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this cookbook, please cite it as below."
+authors:
+  # add additional entries for each author -- see https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md
+  - family-names: Grover
+    given-names: Maxwell
+    orcid: https://orcid.org/0000-0002-0370-8974 # optional
+    website: https://github.com/mgrover1
+    affiliation: Argonne National Laboratory # optional
+  - family-names: Sherman
+    given-names: Zachary
+  - family-names: Sharma
+    given-names: Milind
+    website: https://github.com/gewitterblitz 
+    orcid: https://orcid.org/0000-0003-3318-7601
+    affiliation: Texas A&M University
+  - family-names: Ladino
+    given-names: Alfonso
+    website: https://github.com/aladinor
+    orcid: https://orcid.org/0000-0001-8081-7827
+    affiliation: University of Illinois at Urbana Champaign
+  - family-names: Camron
+    given-names: Crystal
+    website: https://github.com/crystalclearwx
+    orcid: https://orcid.org/0009-0009-6628-6287
+    affiliation: Problem Solutions, Inc./AccuWeather, Inc.
+  - name: "Radar Cookbook contributors" # use the 'name' field to acknowledge organizations
+    website: "https://github.com/ProjectPythia/radar-cookbook/graphs/contributors"
+title: "Radar Cookbook"
+abstract: "A cookbook meant to work with various weather radar data."
