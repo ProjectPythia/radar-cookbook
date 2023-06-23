@@ -4,7 +4,7 @@ parts:
   - caption: Radar Weather Foundations
     chapters:
       - file: notebooks/radar-basics/radar-basics
-  - caption: Radar Toolkit Foundations
+  - caption: Radar Software Foundations
     chapters:
       - file: notebooks/foundations/pyart-basics
       - file: notebooks/foundations/pyart-corrections
