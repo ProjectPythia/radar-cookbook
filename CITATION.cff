@@ -11,6 +11,19 @@ authors:
     given-names: Zachary
   - family-names: Sharma
     given-names: Milind
+    website: https://github.com/gewitterblitz 
+    orcid: https://orcid.org/0000-0003-3318-7601
+    affiliation: Texas A&M University
+  - family-names: Ladino
+    given-names: Alfonso
+    website: https://github.com/aladinor
+    orcid: https://orcid.org/0000-0001-8081-7827
+    affiliation: University of Illinois at Urbana Champaign
+  - family-names: Worley
+    given-names: Crystal
+    website: https://github.com/crystalclearwx
+    orcid: https://orcid.org/0009-0009-6628-6287
+    affiliation: Problem Solutions, Inc./AccuWeather, Inc.
   - name: "Radar Cookbook contributors" # use the 'name' field to acknowledge organizations
     website: "https://github.com/ProjectPythia/radar-cookbook/graphs/contributors"
 title: "Radar Cookbook"
