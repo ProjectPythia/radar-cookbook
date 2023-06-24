@@ -8,7 +8,7 @@ dependencies:
   - jupyterlab
   - matplotlib
   - cartopy
-  - jupyter_server<2
+  - jupyter_server
   - numpy
   - xarray
   - metpy
