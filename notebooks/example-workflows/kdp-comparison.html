@@ -728,8 +728,8 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 12.1 s, sys: 3.54 s, total: 15.7 s
-Wall time: 8.16 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 31 s, sys: 2min, total: 2min 31s
+Wall time: 5.54 s
 </pre></div>
 </div>
 </div>
@@ -742,8 +742,8 @@ Wall time: 8.16 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 206 ms, sys: 230 ms, total: 436 ms
-Wall time: 6min 10s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 301 ms, sys: 4.6 s, total: 4.9 s
+Wall time: 17.3 s
 </pre></div>
 </div>
 </div>
@@ -756,8 +756,8 @@ Wall time: 6min 10s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 205 ms, sys: 209 ms, total: 414 ms
-Wall time: 1.79 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 288 ms, sys: 3.27 s, total: 3.56 s
+Wall time: 3.53 s
 </pre></div>
 </div>
 </div>
@@ -901,12 +901,15 @@ Wall time: 1.79 s
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">display</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axis</span><span class="p">[:</span><span class="mi">4</span><span class="p">],</span> <span class="n">pad</span><span class="o">=</span><span class="mf">.01</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$Specific \ differential \  phase  \ [deg/km]$&#39;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">display</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axis</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:],</span> <span class="n">pad</span><span class="o">=</span><span class="mf">.01</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$Differential \ phase  \ [deg]$&#39;</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;../images/kdp_comparison.jpg&#39;</span><span class="p">)</span>
+<span class="c1"># fig.savefig(&#39;../images/kdp_comparison.jpg&#39;)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0e3aeb560729a1d5909f2bf8efac4ffba91e23c7b9d352a4db5dff811343386d.png" src="../../_images/0e3aeb560729a1d5909f2bf8efac4ffba91e23c7b9d352a4db5dff811343386d.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f7d6bf7c490&gt;
+</pre></div>
+</div>
+<img alt="../../_images/3f65a3503eabb3b3ecdbbcbf877713b0b2b404e9540bb4f3dc165f252744a33c.png" src="../../_images/3f65a3503eabb3b3ecdbbcbf877713b0b2b404e9540bb4f3dc165f252744a33c.png" />
 </div>
 </div>
 <p>In the top row, we can see the Specific Differential Phase (<span class="math notranslate nohighlight">\(K_{DP}\)</span>), and in the bottom row, the Differential Phase (<span class="math notranslate nohighlight">\(Phi_{DP}\)</span>). We can notice that the default <span class="math notranslate nohighlight">\(K_{DP}\)</span> shows values +10 deg/km, which we think is too high. On the other hand, Maesake’s and Scneebeli’s methods’ output suggests that they are probably not performing well. However, the Vulpiani method performs better since we can observe more realistic values on <span class="math notranslate nohighlight">\(K_{DP}\)</span> and <span class="math notranslate nohighlight">\(Phi_{DP}\)</span>.</p>
@@ -1005,10 +1008,10 @@ Wall time: 1.79 s
           <img alt="NCAR" src="../../_images/NCAR-contemp-logo-blue.svg" style="width: 100%">
         </div>
         <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
-          <img alt="Unidata" src="../../_images/Unidata_logo_horizontal_1200x300.svg" style="width: 100%">
+          <img alt="UAlbany" src="../../_images/UAlbany-A2-logo-purple-gold.svg" style="width: 100%">
         </div>
         <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
-          <img alt="UAlbany" src="../../_images/UAlbany-A2-logo-purple-gold.svg" style="width: 100%">
+          <img alt="Unidata" src="../../_images/Unidata_logo_horizontal_1200x300.svg" style="width: 100%">
         </div>
       </div>
     </div>
@@ -1028,7 +1031,7 @@ Wall time: 1.79 s
         
           By Max Grover, Zachary Sherman, Milind Sharma.
         
-          Last updated on 26 June 2023.
+          Last updated on 27 June 2023.
         </p>
       </div>
     </div>
