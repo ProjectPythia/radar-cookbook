@@ -3,6 +3,7 @@ channels:
   - conda-forge
   - pyviz
 dependencies:
+  - climlab # just to test environment logic
   - python>=3.10
   - jupyter-book
   - jupyterlab
