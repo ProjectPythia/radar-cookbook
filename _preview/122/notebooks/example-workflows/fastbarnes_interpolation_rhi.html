@@ -1,0 +1,1088 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2D objective analysis of weather radar RHI scan: Fast Barnes Interpolation Example &#8212; Radar Cookbook</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-pythia-theme.min.css?v=e502140d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=c54c090a" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/example-workflows/fastbarnes_interpolation_rhi';</script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Echo top height calculation from NEXRAD PPI volume data:" href="echo_top_height.html" />
+    <link rel="prev" title="Data Quality Check from the CACTI Field Campaign" href="cacti-data-quality-example.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <meta name="docbuild:last-update" content="1 April 2024"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <div class="pst-scroll-pixel-helper"></div>
+    <header class="bd-header navbar navbar-dark navbar-expand-lg bg-dark fixed-top bd-navbar shadow" id="navbar-main">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+   
+
+<a class="navbar-brand logo" href="https://projectpythia.org">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/pythia_logo-white-rtext.svg" class="logo__image only-light" alt="Radar Cookbook - Home"/>
+    <script>document.write(`<img src="../../_static/pythia_logo-white-rtext.svg" class="logo__image only-dark" alt="Radar Cookbook - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org">Home</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://foundations.projectpythia.org">Foundations</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://cookbooks.projectpythia.org">Cookbooks</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org/resource-gallery.html">Resources</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org/index.html#join-us">Community</a>
+  </li>
+  
+  
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ProjectPythia" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/project_pythia" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" title="YouTube" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-youtube-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">YouTube</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </header>
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+        
+        
+        
+        <div class="bd-sidebar-primary bd-sidebar">
+          
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org">Home</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://foundations.projectpythia.org">Foundations</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://cookbooks.projectpythia.org">Cookbooks</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org/resource-gallery.html">Resources</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org/index.html#join-us">Community</a>
+  </li>
+  
+  
+</ul></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ProjectPythia" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/project_pythia" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" title="YouTube" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-youtube-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">YouTube</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    Radar Cookbook
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preamble</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../how-to-cite.html">How to Cite This Cookbook</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Weather Radar Foundations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../radar-basics/radar-basics.html"><strong>The Basics of Weather Radar</strong></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Radar Software Foundations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../foundations/pyart-basics.html">Py-ART Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../foundations/pyart-corrections.html">Py-ART Corrections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../foundations/pyart-gridding.html">Py-ART Gridding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../foundations/interactive-radar-visualization.html">Interactive Radar Visualization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Example Workflows</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="moore-oklahoma-tornado.html">Looking at NEXRAD Data from Moore, Oklahoma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tracer-example.html">Plotting Data from a Field Campaign (TRACER)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kdp-comparison.html">Specific Differential Phase (<span class="math notranslate nohighlight">\(K_{DP}\)</span>) retrieval methods comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cacti-data-quality-example.html">Data Quality Check from the CACTI Field Campaign</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2D objective analysis of weather radar RHI scan: Fast Barnes Interpolation Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="echo_top_height.html">Echo top height calculation from NEXRAD PPI volume data:</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+        </div>
+
+        
+        <main id="main-content" class="bd-main" role="main">
+          
+
+            <div class="bd-content">
+
+              <div class="bd-article-container">
+
+                
+                  
+                  
+<div id="searchbox"></div>
+                  <article class="bd-article">
+                    
+  <section class="tex2jax_ignore mathjax_ignore" id="d-objective-analysis-of-weather-radar-rhi-scan-fast-barnes-interpolation-example">
+<h1>2D objective analysis of weather radar RHI scan: Fast Barnes Interpolation Example<a class="headerlink" href="#d-objective-analysis-of-weather-radar-rhi-scan-fast-barnes-interpolation-example" title="Link to this heading"><i class="fas fa-link"></i></a></h1>
+<p>This example uses the Fast Barnes interpolation methods as presented in <a class="reference external" href="https://doi.org/10.5194/gmd-16-1697-2023">Zürcher (2023)</a> available at <a class="reference external" href="https://github.com/MeteoSwiss/fast-barnes-py.git">fast-barnes-py</a>.</p>
+<p>The notebook applies the fast Barnes interpolation methods to RHI scan data from the ARM-CSAPR2 radar data from the [TRACER] (https://www.arm.gov/research/campaigns/amf2021tracer) field campaign.</p>
+<hr class="docutils" />
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<p>This notebook shows how to download the ARM-CSAPR2 RHI data from ARM data repository and grid radar variables on a two-dimensional Cartesian grid using Python.</p>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Concepts</p></th>
+<th class="head"><p>Importance</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://foundations.projectpythia.org/core/xarray/xarray-intro.html">Intro to Xarray</a></p></td>
+<td><p>Necessary</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://foundations.projectpythia.org/core/matplotlib/matplotlib-basics.html">Matplotlib Basics</a></p></td>
+<td><p>Required</p></td>
+<td><p>Basic plotting</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../foundations/pyart-basics.html"><span class="doc std std-doc">Py-ART Basics</span></a></p></td>
+<td><p>Required</p></td>
+<td><p>IO/Visualization</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://foundations.projectpythia.org/core/data-formats/netcdf-cf.html">Understanding of NetCDF</a></p></td>
+<td><p>Helpful</p></td>
+<td><p>Familiarity with metadata structure</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p><strong>Time to learn</strong>: 10 minutes</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyart</span>
+<span class="kn">import</span> <span class="nn">act</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">fastbarnes.interpolation</span> <span class="kn">import</span> <span class="n">barnes</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="setup-our-download-query">
+<h2>Setup our Download Query<a class="headerlink" href="#setup-our-download-query" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<p>Before downloading our data, we need to make sure we have an ARM Data Account, and ARM Live token. Both of these can be found using this link:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://adc.arm.gov/armlive/livedata/home">ARM Live Signup</a></p></li>
+</ul>
+<p>Once you sign up, you will see your token. Copy and replace that where we have <code class="docutils literal notranslate"><span class="pre">arm_username</span></code> and <code class="docutils literal notranslate"><span class="pre">arm_password</span></code> below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arm_username</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;ARM_USERNAME&quot;</span><span class="p">)</span>
+<span class="n">arm_password</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;ARM_PASSWORD&quot;</span><span class="p">)</span>
+
+<span class="n">datastream</span> <span class="o">=</span> <span class="s2">&quot;houcsapr2cfrS2.a1&quot;</span>
+
+<span class="n">start_date</span> <span class="o">=</span> <span class="s2">&quot;2022-08-07T18:39:04&quot;</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="s2">&quot;2022-08-07T18:39:05&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="grab-data">
+<h2>Grab Data<a class="headerlink" href="#grab-data" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<p>We use the ARM Live API, accessible through ACT!</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://arm-doe.github.io/ACT/API/generated/act.discovery.download_data.html#act.discovery.download_data">Download Data API</a></p></li>
+</ul>
+<p>We are interested in the C-band radar, which is utilizing a cell-tracking algorithm, with the datastream</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">houcsapr2cfrS2.a1</span></code></p></li>
+</ul>
+<p>One of the better cases was from June 2, 2022.</p>
+<p>This line will download data into the a new directory with the datastream name (<code class="docutils literal notranslate"><span class="pre">/houcsapr2cfrS2.a1</span></code>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aug7_csapr_files</span> <span class="o">=</span> <span class="n">act</span><span class="o">.</span><span class="n">discovery</span><span class="o">.</span><span class="n">download_data</span><span class="p">(</span><span class="n">arm_username</span><span class="p">,</span>
+                                               <span class="n">arm_password</span><span class="p">,</span>
+                                               <span class="n">datastream</span><span class="p">,</span>
+                                               <span class="n">start_date</span><span class="p">,</span>
+                                               <span class="n">end_date</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="read-in-and-plot-the-data">
+<h2>Read in and Plot the Data<a class="headerlink" href="#read-in-and-plot-the-data" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<p>Before following running the next cells, make sure you have created the following directories:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">quicklooks</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>mkdir<span class="w"> </span>quicklooks
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">radar_file</span> <span class="o">=</span> <span class="s2">&quot;houcsapr2cfrS2.a1/houcsapr2cfrS2.a1.20220807.183904.nc&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plot-one-of-the-rhi-scans">
+<h2>Plot one of the RHI scans<a class="headerlink" href="#plot-one-of-the-rhi-scans" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<p>We read in the data corresponding to 7 August 2022 18:39:04 UTC, and plot a basic <code class="docutils literal notranslate"><span class="pre">RadarDisplay</span></code> which will automatically detect whether the plot is a vertical cross section (RHI or VPT), or a horizontal scan (PPI)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">radar</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">radar_file</span><span class="p">)</span>
+<span class="n">display</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">RadarDisplay</span><span class="p">(</span><span class="n">radar</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;reflectivity&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;quicklooks/</span><span class="si">{</span><span class="n">Path</span><span class="p">(</span><span class="n">radar_file</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="define-a-function-to-grid-the-rhi-data-from-polar-antenna-coordinates-to-a-two-dimensional-caretsian-grid">
+<h2>Define a function to grid the RHI data from polar (antenna) coordinates to a two-dimensional Caretsian grid<a class="headerlink" href="#define-a-function-to-grid-the-rhi-data-from-polar-antenna-coordinates-to-a-two-dimensional-caretsian-grid" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<p>We use numba to vectorize the <code class="docutils literal notranslate"><span class="pre">dist_func</span></code> function to calculate the distance of each range gate from the radar. This makes our code run faster than simply executing this function for each gate in a for loop.</p>
+<p>Next, we use the <code class="docutils literal notranslate"><span class="pre">barnes</span></code> function from the fastbarnes Python package to interpolate the radar fields such as <code class="docutils literal notranslate"><span class="pre">equivalent</span> <span class="pre">reflectivity</span> <span class="pre">factor</span></code> (<span class="math notranslate nohighlight">\(Z_{H}\)</span>), <code class="docutils literal notranslate"><span class="pre">differential_reflectivity</span></code> (<span class="math notranslate nohighlight">\(Z_{DR}\)</span>), and <code class="docutils literal notranslate"><span class="pre">specific_differential_phase</span></code> (<span class="math notranslate nohighlight">\(K_{DP}\)</span>) to a uniform range-height Cartesian grid.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">grid_rhi</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="n">z_res</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span><span class="n">rng_res</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span><span class="n">z_limits</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">15000</span><span class="p">),</span><span class="n">rng_limits</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">109900.0</span><span class="p">),</span><span class="n">fields</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Input:</span>
+<span class="sd">    -------</span>
+<span class="sd">    file (str): Path of the RHI scan file that needs to be gridded.</span>
+<span class="sd">    z_res (float): Vertical grid spacing of the Cartesian grid.</span>
+<span class="sd">    rng_res (float): Horizontal grid spacing of the Cartesian grid.</span>
+<span class="sd">    z_limits (tuple): Lower and upper height limits within which radar data needs to be gridded. </span>
+<span class="sd">    rng_limits (tuple): Lower and upper range limits within which radar data needs to be gridded. </span>
+<span class="sd">    </span>
+<span class="sd">    Output:</span>
+<span class="sd">    -------</span>
+<span class="sd">    grid_ds (xarray Dataset): Xarray dataset containing radar fields on the Cartesian grid</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">z_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">z_limits</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">z_limits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">z_res</span><span class="p">,</span><span class="n">z_res</span><span class="p">)</span>
+    <span class="n">rng_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">rng_limits</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">rng_limits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">rng_res</span><span class="p">,</span><span class="n">rng_res</span><span class="p">)</span>
+   
+    
+    <span class="n">rhi</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+    <span class="n">radar</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+    <span class="n">rhi</span> <span class="o">=</span> <span class="n">rhi</span><span class="o">.</span><span class="n">swap_dims</span><span class="p">({</span><span class="s1">&#39;time&#39;</span><span class="p">:</span><span class="s1">&#39;elevation&#39;</span><span class="p">})</span>
+
+    <span class="n">lat</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">latitude</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
+    <span class="n">lon</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">longitude</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
+
+    <span class="n">grid_origin</span> <span class="o">=</span> <span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span>
+    <span class="n">grid_origin_lat</span><span class="p">,</span> <span class="n">grid_origin_lon</span> <span class="o">=</span> <span class="n">grid_origin</span>
+
+    <span class="n">grid_projection</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;proj&quot;</span><span class="p">:</span> <span class="s2">&quot;pyart_aeqd&quot;</span><span class="p">,</span> <span class="s2">&quot;_include_lon_0_lat_0&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+    <span class="n">projparams</span> <span class="o">=</span> <span class="n">grid_projection</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">projparams</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;_include_lon_0_lat_0&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="n">projparams</span><span class="p">[</span><span class="s2">&quot;lon_0&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grid_origin_lon</span>
+        <span class="n">projparams</span><span class="p">[</span><span class="s2">&quot;lat_0&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grid_origin_lat</span>
+
+    <span class="n">rg_loc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">range</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">],</span><span class="nb">len</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">elevation</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">elevation</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]),</span><span class="nb">len</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">range</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]))</span>
+
+    <span class="n">zg_loc</span> <span class="o">=</span> <span class="n">radar</span><span class="o">.</span><span class="n">gate_altitude</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">12</span> <span class="c1"># CSAPR2 antenna altitude = 12 m in this example</span>
+
+     
+    <span class="c1"># one of [ &#39;naive&#39;, &#39;radius&#39;, &#39;convolution&#39;, &#39;optimized_convolution&#39; ]</span>
+    <span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;optimized_convolution&quot;</span>
+
+    <span class="c1"># one of [ 0.25, 0.5, 1.0, 2.0, 4.0 ]</span>
+    <span class="n">sigma</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+    <span class="c1"># applies only to &#39;convolution&#39; interpolations: one of [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 50 ]</span>
+    <span class="n">num_iter</span> <span class="o">=</span> <span class="mi">4</span>
+    
+    <span class="k">if</span> <span class="n">fields</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;reflectivity&#39;</span><span class="p">,</span><span class="s1">&#39;differential_reflectivity&#39;</span><span class="p">,</span><span class="s1">&#39;specific_differential_phase&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;copol_correlation_coeff&#39;</span><span class="p">,</span><span class="s1">&#39;mean_doppler_velocity&#39;</span><span class="p">,</span><span class="s1">&#39;spectral_width&#39;</span><span class="p">]</span>
+        
+    <span class="n">res_field</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">z_pts</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">rng_pts</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">fields</span><span class="p">)))</span>
+
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fields</span><span class="p">)):</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="n">fields</span><span class="p">[</span><span class="n">j</span><span class="p">]][</span><span class="s1">&#39;data&#39;</span><span class="p">]))</span>
+        <span class="c1"># data = data.filled(np.nan)</span>
+
+        <span class="n">res_field</span><span class="p">[:,:,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">barnes</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">rg_loc</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span><span class="n">radar</span><span class="o">.</span><span class="n">gate_altitude</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span><span class="o">.</span><span class="n">transpose</span><span class="p">(),</span>
+                           <span class="n">data</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span>
+                           <span class="mi">100</span><span class="p">,</span>
+                           <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span>
+                           <span class="mi">100</span><span class="p">,</span>
+                           <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">z_pts</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">rng_pts</span><span class="p">)),</span>
+                           <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
+                           <span class="n">num_iter</span> <span class="o">=</span> <span class="n">num_iter</span><span class="p">,</span>
+                           <span class="n">min_weight</span><span class="o">=</span><span class="mf">0.0002</span>
+                          <span class="p">)</span>
+    
+
+    <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fields</span><span class="p">)):</span>
+        <span class="n">data_dict</span><span class="p">[</span><span class="n">fields</span><span class="p">[</span><span class="n">k</span><span class="p">]]</span> <span class="o">=</span> <span class="p">([</span><span class="s2">&quot;z&quot;</span><span class="p">,</span><span class="s2">&quot;range&quot;</span><span class="p">],</span><span class="n">res_field</span><span class="p">[:,:,</span><span class="n">k</span><span class="p">])</span>
+
+    <span class="n">grid_ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">data_vars</span><span class="o">=</span><span class="n">data_dict</span><span class="p">,</span>
+                         <span class="n">coords</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">z</span><span class="o">=</span><span class="p">([</span><span class="s2">&quot;z&quot;</span><span class="p">],</span> <span class="n">z_pts</span><span class="p">),</span>
+                                     <span class="nb">range</span><span class="o">=</span><span class="p">([</span><span class="s2">&quot;range&quot;</span><span class="p">],</span><span class="n">rng_pts</span><span class="p">),</span>
+                                    <span class="p">),</span>
+                         <span class="n">attrs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Gridded RHI data.&quot;</span><span class="p">),</span>
+                        <span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">grid_ds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="apply-the-gridding-function-to-your-radar-rhi-data-file">
+<h3>Apply the gridding function to your radar RHI data file<a class="headerlink" href="#apply-the-gridding-function-to-your-radar-rhi-data-file" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
+<p>Now, we are ready to grid the RHI data. The <code class="docutils literal notranslate"><span class="pre">grid_rhi</span></code> function requires the user to specify the vertical and horizontal grid spacing (<code class="docutils literal notranslate"><span class="pre">z_res</span></code> and <code class="docutils literal notranslate"><span class="pre">rng_res</span></code>, respectively), as well as the lower and upper limits of the Cartesian grid in the vertical and horizontal dimensions (<code class="docutils literal notranslate"><span class="pre">z_limits</span></code> and <code class="docutils literal notranslate"><span class="pre">rng_limits</span></code>, respectively). Custom fields of interest can be specified through the <code class="docutils literal notranslate"><span class="pre">fields</span></code> parameter. Otherwise, the function grids five radar fields by default i.e., (<span class="math notranslate nohighlight">\(Z_{H}\)</span>, <span class="math notranslate nohighlight">\(Z_{DR}\)</span>, <span class="math notranslate nohighlight">\(\rho_{hv}\)</span>, <span class="math notranslate nohighlight">\(K_{DP}\)</span>, and <span class="math notranslate nohighlight">\(\sigma\)</span>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_ds</span> <span class="o">=</span> <span class="n">grid_rhi</span><span class="p">(</span><span class="n">radar_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="grid-and-plot-the-rhi-data">
+<h2>Grid and plot the RHI data<a class="headerlink" href="#grid-and-plot-the-rhi-data" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Finally, plot the gridded reflectivity</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">grid_ds</span><span class="p">[</span><span class="s1">&#39;reflectivity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;pyart_HomeyerRainbow&#39;</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">55000</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<p>Within this example, we walked through how to access ARM data from a field campaign in Texas, plot a quick look of the RHI scan data, and grid our RHI data from native (polar) coordinates to a uniform range-height Caretsian grid.</p>
+</section>
+<section id="resources-and-references">
+<h2>Resources and References<a class="headerlink" href="#resources-and-references" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://adc.arm.gov/discovery">ARM Data Discovery</a></p></li>
+<li><p><a class="reference external" href="https://www.arm.gov/research/campaigns/amf2021tracer">TRACER Field Campaign</a></p></li>
+<li><p>CSAPR Radar Data:</p>
+<ul>
+<li><p>Bharadwaj, N., Collis, S., Hardin, J., Isom, B., Lindenmaier, I., Matthews, A., &amp; Nelson, D. C-Band Scanning ARM Precipitation Radar (CSAPR2CFR). Atmospheric Radiation Measurement (ARM) User Facility. https://doi.org/10.5439/1467901</p></li>
+</ul>
+</li>
+<li><p>Py-ART:</p>
+<ul>
+<li><p>Helmus, J.J. &amp; Collis, S.M., (2016). The Python ARM Radar Toolkit (Py-ART), a Library for Working with Weather Radar Data in the Python Programming Language. Journal of Open Research Software. 4(1), p.e25. DOI: http://doi.org/10.5334/jors.119</p></li>
+</ul>
+</li>
+<li><p>ACT:</p>
+<ul>
+<li><p>Adam Theisen, Ken Kehoe, Zach Sherman, Bobby Jackson, Alyssa Sockol, Corey Godine, Max Grover, Jason Hemedinger, Jenni Kyrouac, Maxwell Levin, Michael Giansiracusa (2022). The Atmospheric Data Community Toolkit (ACT). Zenodo. DOI: https://doi.org/10.5281/zenodo.6712343</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks/example-workflows"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                  </article>
+
+                
+                
+
+                
+                
+                  <footer class="prev-next-footer">
+                    
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="cacti-data-quality-example.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Data Quality Check from the CACTI Field Campaign</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="echo_top_height.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Echo top height calculation from NEXRAD PPI volume data:</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                  </footer>
+                
+              </div>
+
+              
+              
+                
+                  <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-our-download-query">Setup our Download Query</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grab-data">Grab Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-in-and-plot-the-data">Read in and Plot the Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-one-of-the-rhi-scans">Plot one of the RHI scans</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-a-function-to-grid-the-rhi-data-from-polar-antenna-coordinates-to-a-two-dimensional-caretsian-grid">Define a function to grid the RHI data from polar (antenna) coordinates to a two-dimensional Caretsian grid</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-the-gridding-function-to-your-radar-rhi-data-file">Apply the gridding function to your radar RHI data file</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grid-and-plot-the-rhi-data">Grid and plot the RHI data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources-and-references">Resources and References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+                
+              
+
+
+                
+                <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://binder.projectpythia.org/v2/gh/ProjectPythiaTutorials/radar-cookbook/main?urlpath=lab/tree/notebooks/example-workflows/fastbarnes_interpolation_rhi.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ProjectPythiaTutorials/radar-cookbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ProjectPythiaTutorials/radar-cookbook/edit/main/notebooks/example-workflows/fastbarnes_interpolation_rhi.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ProjectPythiaTutorials/radar-cookbook/issues/new?title=Issue%20on%20page%20%2Fnotebooks/example-workflows/fastbarnes_interpolation_rhi.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/example-workflows/fastbarnes_interpolation_rhi.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+            </div>
+
+            <footer class="bd-footer-content">
+              
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Max Grover, Zachary Sherman, Milind Sharma
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on 1 April 2024.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+            </footer>
+
+        </main>
+    </div>
+  </div>
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+     
+  
+  
+  
+  
+    <div class="footer-items__start">
+      <div class="container-fluid m-0 p-0">
+      
+        <div class="footer-item">
+  <div class="container-fluid footer-logos">
+    <div class="container-xl">
+      <div class="row d-flex flex-wrap align-items-center">
+        <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
+          <img alt="NCAR" src="../../_images/NSF-NCAR_Lockup-UCAR-Dark_102523.svg" style="width: 100%">
+        </div>
+        <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
+          <img alt="Unidata" src="../../_images/Unidata_logo_horizontal_1200x300.svg" style="width: 100%">
+        </div>
+        <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
+          <img alt="UAlbany" src="../../_images/UAlbany-A2-logo-purple-gold.svg" style="width: 100%">
+        </div>
+      </div>
+    </div>
+  </div></div>
+      
+        <div class="footer-item">  <div class="container-fluid footer-info">
+    <div class="container-xl">
+      <div class="d-flex justify-content-center">
+        <p class="py-1 m-0">
+            &copy;&nbsp;2024.
+        
+          By Max Grover, Zachary Sherman, Milind Sharma.
+        
+          Last updated on 1 April 2024.
+        </p>
+      </div>
+    </div>
+  </div></div>
+      
+      </div>
+    </div>
+  
+
+  </footer>
+  </body>
+</html>

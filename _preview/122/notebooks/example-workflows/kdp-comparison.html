@@ -1,0 +1,1148 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Specific Differential Phase (\(K_{DP}\)) retrieval methods comparison &#8212; Radar Cookbook</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-pythia-theme.min.css?v=e502140d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=c54c090a" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/example-workflows/kdp-comparison';</script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Data Quality Check from the CACTI Field Campaign" href="cacti-data-quality-example.html" />
+    <link rel="prev" title="Plotting Data from a Field Campaign (TRACER)" href="tracer-example.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <meta name="docbuild:last-update" content="1 April 2024"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <div class="pst-scroll-pixel-helper"></div>
+    <header class="bd-header navbar navbar-dark navbar-expand-lg bg-dark fixed-top bd-navbar shadow" id="navbar-main">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+   
+
+<a class="navbar-brand logo" href="https://projectpythia.org">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/pythia_logo-white-rtext.svg" class="logo__image only-light" alt="Radar Cookbook - Home"/>
+    <script>document.write(`<img src="../../_static/pythia_logo-white-rtext.svg" class="logo__image only-dark" alt="Radar Cookbook - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org">Home</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://foundations.projectpythia.org">Foundations</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://cookbooks.projectpythia.org">Cookbooks</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org/resource-gallery.html">Resources</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org/index.html#join-us">Community</a>
+  </li>
+  
+  
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ProjectPythia" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/project_pythia" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" title="YouTube" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-youtube-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">YouTube</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </header>
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+        
+        
+        
+        <div class="bd-sidebar-primary bd-sidebar">
+          
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org">Home</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://foundations.projectpythia.org">Foundations</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://cookbooks.projectpythia.org">Cookbooks</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org/resource-gallery.html">Resources</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org/index.html#join-us">Community</a>
+  </li>
+  
+  
+</ul></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ProjectPythia" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/project_pythia" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" title="YouTube" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-youtube-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">YouTube</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    Radar Cookbook
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preamble</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../how-to-cite.html">How to Cite This Cookbook</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Weather Radar Foundations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../radar-basics/radar-basics.html"><strong>The Basics of Weather Radar</strong></a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Radar Software Foundations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../foundations/pyart-basics.html">Py-ART Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../foundations/pyart-corrections.html">Py-ART Corrections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../foundations/pyart-gridding.html">Py-ART Gridding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../foundations/interactive-radar-visualization.html">Interactive Radar Visualization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Example Workflows</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="moore-oklahoma-tornado.html">Looking at NEXRAD Data from Moore, Oklahoma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tracer-example.html">Plotting Data from a Field Campaign (TRACER)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Specific Differential Phase (<span class="math notranslate nohighlight">\(K_{DP}\)</span>) retrieval methods comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cacti-data-quality-example.html">Data Quality Check from the CACTI Field Campaign</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fastbarnes_interpolation_rhi.html">2D objective analysis of weather radar RHI scan: Fast Barnes Interpolation Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="echo_top_height.html">Echo top height calculation from NEXRAD PPI volume data:</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+        </div>
+
+        
+        <main id="main-content" class="bd-main" role="main">
+          
+
+            <div class="bd-content">
+
+              <div class="bd-article-container">
+
+                
+                  
+                  
+<div id="searchbox"></div>
+                  <article class="bd-article">
+                    
+  <p><a class="reference internal" href="../../_images/kdp_comparison.jpg"><img alt="KDP Comparison" src="../../_images/kdp_comparison.jpg" style="width: 700px;" /></a></img></p>
+<section class="tex2jax_ignore mathjax_ignore" id="specific-differential-phase-k-dp-retrieval-methods-comparison">
+<h1>Specific Differential Phase (<span class="math notranslate nohighlight">\(K_{DP}\)</span>) retrieval methods comparison<a class="headerlink" href="#specific-differential-phase-k-dp-retrieval-methods-comparison" title="Link to this heading"><i class="fas fa-link"></i></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<p>Within this notebook, we will cover:</p>
+<ol class="arabic simple">
+<li><p>How to access Colombian national weather radar network data from AWS</p></li>
+<li><p>How to read and create a multipanel plot</p></li>
+<li><p>How to retrieve and compare three different methods</p></li>
+</ol>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Concepts</p></th>
+<th class="head"><p>Importance</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://foundations.projectpythia.org/core/matplotlib/matplotlib-basics.html">Matplotlib Basics</a></p></td>
+<td><p>Required</p></td>
+<td><p>Basic plotting</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://foundations.projectpythia.org/core/cartopy/cartopy.html">Introduction to Cartopy</a></p></td>
+<td><p>Helpful</p></td>
+<td><p>Adding projections to your plot</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../foundations/pyart-basics.html"><span class="doc std std-doc">Py-ART Basics</span></a></p></td>
+<td><p>Required</p></td>
+<td><p>IO/Visualization</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../foundations/pyart-corrections.html"><span class="doc std std-doc">Py-ART Corrections</span></a></p></td>
+<td><p>Required</p></td>
+<td><p>Radar Corrections</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#../Example-workflows/cacti-data-quality-example"><span class="xref myst">Py-ART Example-workflows</span></a></p></td>
+<td><p>Required</p></td>
+<td><p>Dual-polarization variables</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xradar</span> <span class="k">as</span> <span class="nn">xd</span>
+<span class="kn">import</span> <span class="nn">pyart</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">fsspec</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">from</span> <span class="nn">open_radar_data</span> <span class="kn">import</span> <span class="n">DATASETS</span>
+<span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="k">as</span> <span class="nn">mticker</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="how-to-access-colombian-national-weather-radar-network-data-from-aws">
+<h2>How to access Colombian national weather radar network data from AWS<a class="headerlink" href="#how-to-access-colombian-national-weather-radar-network-data-from-aws" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<p>Let’s start first with Level 2 radar data, which is ground-based radar data collected by the Instituto de Hidrología, Meteorología y Estudios Ambientales (IDEAM).</p>
+<section id="level-2-data">
+<h3>Level 2 Data<a class="headerlink" href="#level-2-data" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
+<p>Level 2 data includes all of the fields in a single file - for example, a file may include:</p>
+<ul class="simple">
+<li><p>Reflectivity</p></li>
+<li><p>Velocity</p></li>
+<li><p>Differential reflectivity</p></li>
+</ul>
+</section>
+<section id="search-for-data-during-a-mesoscale-convective-system-mcs-event-august-9-2022">
+<h3>Search for data during a Mesoscale Convective System - MCS event (August 9, 2022)<a class="headerlink" href="#search-for-data-during-a-mesoscale-convective-system-mcs-event-august-9-2022" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
+<p>We will access data from the <strong><code class="docutils literal notranslate"><span class="pre">radaresideam</span> <span class="pre">bucket</span></code></strong>, with the data organized as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s3</span><span class="p">:</span><span class="o">//</span><span class="n">s3</span><span class="o">-</span><span class="n">radaresideam</span><span class="o">/</span><span class="n">l2_data</span><span class="o">/</span><span class="n">year</span><span class="o">/</span><span class="n">month</span><span class="o">/</span><span class="n">date</span><span class="o">/</span><span class="n">radar_name</span><span class="o">/</span><span class="p">{</span><span class="n">radar_name</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()}{</span><span class="n">year</span><span class="p">}{</span><span class="n">month</span><span class="p">}{</span><span class="n">date</span><span class="p">}{</span><span class="n">hour</span><span class="p">}{</span><span class="n">minute</span><span class="p">}{</span><span class="n">second</span><span class="p">}</span><span class="o">.</span><span class="n">RAW</span><span class="o">*</span>
+</pre></div>
+</div>
+<p>We can use <a class="reference external" href="https://filesystem-spec.readthedocs.io/en/latest/">fsspec</a>, a tool to work with filesystems in Python, to search through the bucket to find our files!</p>
+<p>We start first by setting up our <a class="reference external" href="https://aws.amazon.com/s3/">AWS S3 filesystem</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fs</span> <span class="o">=</span> <span class="n">fsspec</span><span class="o">.</span><span class="n">filesystem</span><span class="p">(</span><span class="s2">&quot;s3&quot;</span><span class="p">,</span> <span class="n">anon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we can list files from August 9, 2022, from Carimagua radar (CAR), around 1900 UTC.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fs</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;s3-radaresideam/l2_data/2022/08/09/Carimagua/CAR22080919*&quot;</span><span class="p">))</span>
+<span class="n">files</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="read-the-data-into-py-art">
+<h2>Read the data into Py-ART<a class="headerlink" href="#read-the-data-into-py-art" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<p>When reading into Py-ART, we can use the <code class="docutils literal notranslate"><span class="pre">pyart.io.read_sigmet</span></code> or <code class="docutils literal notranslate"><span class="pre">pyart.io.read</span></code> module to read in our data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">radar</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_sigmet</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;s3://</span><span class="si">{</span><span class="n">files</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="list-the-available-fields">
+<h3>List the available fields<a class="headerlink" href="#list-the-available-fields" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">fields</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plot-dual-pol-variables">
+<h3>Plot dual-pol variables<a class="headerlink" href="#plot-dual-pol-variables" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
+<p>Let’s plot the radar reflectivity (<span class="math notranslate nohighlight">\(Z\)</span>), differential reflectivity (<span class="math notranslate nohighlight">\(Z_{DR}\)</span>), specific differential phase (<span class="math notranslate nohighlight">\(K_{DP}\)</span>), and cross correlation ratio (<span class="math notranslate nohighlight">\(\rho_{HV}\)</span>) using a four panel plot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">display</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">RadarMapDisplay</span><span class="p">(</span><span class="n">radar</span><span class="p">)</span>
+<span class="c1"># Extract the latitude and longitude of the radar and use it for the center of the map</span>
+<span class="n">lat_center</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">latitude</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">lon_center</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">longitude</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+
+
+<span class="c1"># Determine the ticks</span>
+<span class="n">lat_ticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">lat_center</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="n">lat_center</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="n">lon_ticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">lon_center</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="n">lon_center</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+
+<span class="c1"># Set the projection - in this case, we use a general PlateCarree projection</span>
+<span class="n">projection</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">()</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span><span class="s2">&quot;reflectivity&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> 
+                     <span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;10m&#39;</span><span class="p">,</span> 
+                     <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> 
+                     <span class="n">lat_lines</span><span class="o">=</span><span class="n">lat_ticks</span><span class="p">,</span> 
+                     <span class="n">lon_lines</span><span class="o">=</span><span class="n">lon_ticks</span><span class="p">)</span>
+
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span><span class="s2">&quot;differential_reflectivity&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> 
+                     <span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;10m&#39;</span><span class="p">,</span> 
+                     <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> 
+                     <span class="n">lat_lines</span><span class="o">=</span><span class="n">lat_ticks</span><span class="p">,</span> 
+                     <span class="n">lon_lines</span><span class="o">=</span><span class="n">lon_ticks</span><span class="p">)</span>
+
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">223</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span><span class="s2">&quot;differential_phase&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> 
+                     <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">180</span><span class="p">,</span>  
+                     <span class="n">ax</span><span class="o">=</span><span class="n">ax3</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;10m&#39;</span><span class="p">,</span> 
+                     <span class="n">lat_lines</span><span class="o">=</span><span class="n">lat_ticks</span><span class="p">,</span> 
+                     <span class="n">lon_lines</span><span class="o">=</span><span class="n">lon_ticks</span><span class="p">)</span>
+
+<span class="n">ax4</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span><span class="s2">&quot;specific_differential_phase&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> 
+                     <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>  
+                     <span class="n">ax</span><span class="o">=</span><span class="n">ax4</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;10m&#39;</span><span class="p">,</span> 
+                     <span class="n">lat_lines</span><span class="o">=</span><span class="n">lat_ticks</span><span class="p">,</span> 
+                     <span class="n">lon_lines</span><span class="o">=</span><span class="n">lon_ticks</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can notice from the previous figure that this is a intense precipitation event in Colombia with reflectivity values up to +55 dBZ, big raindrops (<span class="math notranslate nohighlight">\(Z_{DR}\)</span> +3 dB), heavy rainfall rates with <span class="math notranslate nohighlight">\(K_{DP}\)</span> +10 dB/km, and multiples foldings in differential phase (<span class="math notranslate nohighlight">\(Phi_{DP}\)</span>). We can notice negative values in the <span class="math notranslate nohighlight">\(Z_{DR}\)</span> panel (differential attenuation) in the north-east side of the radar location.</p>
+</section>
+</section>
+<section id="k-dp-retrieval-methods">
+<h2><span class="math notranslate nohighlight">\(K_{DP}\)</span> retrieval methods<a class="headerlink" href="#k-dp-retrieval-methods" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<p>Although the radar data already contains the specific differential phase (<span class="math notranslate nohighlight">\(K_{DP}\)</span>), we can use the following alternative methods for comparison:</p>
+<ol class="arabic simple">
+<li><p>Variational method by Maesaka et al. (2012).</p></li>
+<li><p>Kalman filter method by Schneebeli and al. (2014)</p></li>
+<li><p>Vulpiani method by Vulpiani et al. (2012)</p></li>
+</ol>
+<p>The <code class="docutils literal notranslate"><span class="pre">Py-Art</span></code> Python package includes all the methods mentioned above. We can access the retrieval methods using <code class="docutils literal notranslate"><span class="pre">pyart.retrieve.kdp_maesaka</span></code>, <code class="docutils literal notranslate"><span class="pre">pyart.retrieve.kdp_schneebeli</span></code>, and <code class="docutils literal notranslate"><span class="pre">pyart.retrieve.kdp_vulpiani</span></code>. The output from all retrieval methods is a tuple with two dictionaries that contain the retrieved <span class="math notranslate nohighlight">\(K_{DP}\)</span> as well as the Differential phase (<span class="math notranslate nohighlight">\(Phi_{DP}\)</span>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">kdp_maesaka</span><span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">retrieve</span><span class="o">.</span><span class="n">kdp_maesaka</span><span class="p">(</span><span class="n">radar</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">kdp_schneebeli</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">retrieve</span><span class="o">.</span><span class="n">kdp_schneebeli</span><span class="p">(</span><span class="n">radar</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">kdp_vulpiani</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">retrieve</span><span class="o">.</span><span class="n">kdp_vulpiani</span><span class="p">(</span><span class="n">radar</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is how a dictionary with the retrieve <span class="math notranslate nohighlight">\(K_{DP}\)</span> looks like</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kdp_vulpiani</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="add-the-new-retrieved-k-dp-values-to-the-radar-object">
+<h3>Add the new retrieved <span class="math notranslate nohighlight">\(K_{DP}\)</span> values to the radar object<a class="headerlink" href="#add-the-new-retrieved-k-dp-values-to-the-radar-object" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
+<p>We can add new fields to our <code class="docutils literal notranslate"><span class="pre">Py-Art</span></code> radar object by using the <code class="docutils literal notranslate"><span class="pre">pyart.core.Radar.add_field</span></code> method as follows</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">radar</span><span class="o">.</span><span class="n">add_field</span><span class="p">(</span><span class="s1">&#39;kdp_maesaka&#39;</span><span class="p">,</span> <span class="n">kdp_maesaka</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">radar</span><span class="o">.</span><span class="n">add_field</span><span class="p">(</span><span class="s1">&#39;phidp_maesaka&#39;</span><span class="p">,</span> <span class="n">kdp_maesaka</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">radar</span><span class="o">.</span><span class="n">add_field</span><span class="p">(</span><span class="s1">&#39;kdp_schneebeli&#39;</span><span class="p">,</span> <span class="n">kdp_schneebeli</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">radar</span><span class="o">.</span><span class="n">add_field</span><span class="p">(</span><span class="s1">&#39;phidp_schneebeli&#39;</span><span class="p">,</span> <span class="n">kdp_schneebeli</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">radar</span><span class="o">.</span><span class="n">add_field</span><span class="p">(</span><span class="s1">&#39;kdp_vulpiani&#39;</span><span class="p">,</span> <span class="n">kdp_vulpiani</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">radar</span><span class="o">.</span><span class="n">add_field</span><span class="p">(</span><span class="s1">&#39;phidp_vulpiani&#39;</span><span class="p">,</span> <span class="n">kdp_vulpiani</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="list-the-new-fields-variables">
+<h3>List the new fields/variables<a class="headerlink" href="#list-the-new-fields-variables" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">fields</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="compare-default-and-retrieved-phi-dp-and-k-dp">
+<h3>Compare default and retrieved <span class="math notranslate nohighlight">\(Phi_{DP}\)</span> and <span class="math notranslate nohighlight">\(K_{DP}\)</span><a class="headerlink" href="#compare-default-and-retrieved-phi-dp-and-k-dp" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
+<p>We can look at the difference between all the methods using a side-by-side comparison figure</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># list of the variables to be plotted</span>
+<span class="n">vpol</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;specific_differential_phase&#39;</span><span class="p">,</span> <span class="s1">&#39;kdp_maesaka&#39;</span><span class="p">,</span> <span class="s1">&#39;kdp_schneebeli&#39;</span><span class="p">,</span> <span class="s1">&#39;kdp_vulpiani&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;differential_phase&#39;</span><span class="p">,</span> <span class="s1">&#39;phidp_maesaka&#39;</span><span class="p">,</span> <span class="s1">&#39;phidp_schneebeli&#39;</span><span class="p">,</span> <span class="s1">&#39;phidp_vulpiani&#39;</span><span class="p">]</span>
+<span class="c1"># list of cmaps</span>
+<span class="n">cmaps</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pyart_Carbone42&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;pyart_Wild25&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span>
+
+<span class="c1"># list of maximum values</span>
+<span class="n">vmaxs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">+</span> <span class="p">[</span><span class="mi">180</span><span class="p">]</span>  <span class="o">*</span> <span class="mi">4</span> 
+
+<span class="c1"># list of tltles</span>
+<span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="sa">r</span><span class="s2">&quot;$K_</span><span class="si">{DP}</span><span class="s2"> \ Default$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$K_</span><span class="si">{DP}</span><span class="s2"> \ Maesaka$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$K_</span><span class="si">{DP}</span><span class="s2"> \ Schneebeli$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$K_</span><span class="si">{DP}</span><span class="s2"> \ Vulpiani$&quot;</span><span class="p">,</span> 
+          <span class="sa">r</span><span class="s2">&quot;$Phi_</span><span class="si">{DP}</span><span class="s2"> \ Default$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$Phi_</span><span class="si">{DP}</span><span class="s2"> \ Maesaka$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$Phi_</span><span class="si">{DP}</span><span class="s2"> \ Schneebeli$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$Phi_</span><span class="si">{DP}</span><span class="s2"> \ Vulpiani$&quot;</span><span class="p">]</span>
+
+<span class="c1"># display object from PyArt</span>
+<span class="n">display</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">RadarMapDisplay</span><span class="p">(</span><span class="n">radar</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;projection&#39;</span><span class="p">:</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">()},</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Extract the latitude and longitude of the radar and use it for the center of the map</span>
+<span class="n">lat_center</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">latitude</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">lon_center</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">longitude</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Set the projection - in this case, we use a general PlateCarree projection</span>
+<span class="n">projection</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">()</span>
+
+<span class="c1"># Determine the ticks</span>
+<span class="n">lat_ticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">lat_center</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="n">lat_center</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="n">lon_ticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">lon_center</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="n">lon_center</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+
+<span class="c1">#make axis flatten for iteration</span>
+<span class="n">axis</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="c1"># Loop to create all plots</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">axis</span><span class="p">):</span>
+    <span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span><span class="n">vpol</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;10m&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> 
+                         <span class="n">lat_lines</span><span class="o">=</span><span class="n">lat_ticks</span><span class="p">,</span> 
+                         <span class="n">lon_lines</span><span class="o">=</span><span class="n">lon_ticks</span><span class="p">,</span>
+                         <span class="n">cmap</span><span class="o">=</span><span class="n">cmaps</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span>
+                         <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+                         <span class="n">vmax</span><span class="o">=</span><span class="n">vmaxs</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span>
+                         <span class="n">colorbar_flag</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
+                         <span class="n">title_flag</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
+                         <span class="n">add_grid_lines</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+    <span class="n">gl</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">gridlines</span><span class="p">(</span><span class="n">draw_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">rasterized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">gl</span><span class="o">.</span><span class="n">xlocator</span> <span class="o">=</span> <span class="n">mticker</span><span class="o">.</span><span class="n">FixedLocator</span><span class="p">(</span><span class="n">lon_ticks</span><span class="p">)</span>
+    <span class="n">gl</span><span class="o">.</span><span class="n">ylabels_right</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">gl</span><span class="o">.</span><span class="n">xlabels_top</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">gl</span><span class="o">.</span><span class="n">ylabels_left</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">gl</span><span class="o">.</span><span class="n">xlabels_bottom</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">idx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">idx</span><span class="o">==</span> <span class="mi">4</span><span class="p">):</span>
+        <span class="n">gl</span><span class="o">.</span><span class="n">ylabels_left</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">if</span>  <span class="n">idx</span><span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="n">gl</span><span class="o">.</span><span class="n">xlabels_bottom</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">display</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axis</span><span class="p">[:</span><span class="mi">4</span><span class="p">],</span> <span class="n">pad</span><span class="o">=</span><span class="mf">.01</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$Specific \ differential \  phase  \ [deg/km]$&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">display</span><span class="o">.</span><span class="n">plots</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axis</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:],</span> <span class="n">pad</span><span class="o">=</span><span class="mf">.01</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$Differential \ phase  \ [deg]$&#39;</span><span class="p">)</span>
+<span class="c1"># fig.savefig(&#39;../images/kdp_comparison.jpg&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the top row, we can see the Specific Differential Phase (<span class="math notranslate nohighlight">\(K_{DP}\)</span>), and in the bottom row, the Differential Phase (<span class="math notranslate nohighlight">\(Phi_{DP}\)</span>). We can notice that the default <span class="math notranslate nohighlight">\(K_{DP}\)</span> shows values +10 deg/km, which we think is too high. On the other hand, Maesake’s and Scneebeli’s methods’ output suggests that they are probably not performing well. However, the Vulpiani method performs better since we can observe more realistic values on <span class="math notranslate nohighlight">\(K_{DP}\)</span> and <span class="math notranslate nohighlight">\(Phi_{DP}\)</span>.</p>
+<div class="admonition alert alert-warning">
+<p class="admonition-title">Warning</p>
+<p>This notebook is intended to be demonstrative; therefore, we can not make any conclusions regarding the methods we tested.</p>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<p>Within this example, we walked through how to access Colombian radar data from IDEAM, plot a quick look of the data, and compare the the specific differential phase using the default and three different methods!</p>
+<section id="whats-next">
+<h3>What’s Next?<a class="headerlink" href="#whats-next" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
+<p>We will showcase other data workflow examples, including field campaigns in other regions and data access methods from other data centers.</p>
+</section>
+</section>
+<section id="resources-and-references">
+<h2>Resources and References<a class="headerlink" href="#resources-and-references" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://registry.opendata.aws/ideam-radares/">IDEAM radar data</a></p></li>
+<li><p>Py-ART:</p>
+<ul>
+<li><p>Helmus, J.J. &amp; Collis, S.M., (2016). The Python ARM Radar Toolkit (Py-ART), a Library for Working with Weather Radar Data in the Python Programming Language. Journal of Open Research Software. 4(1), p.e25. DOI: http://doi.org/10.5334/jors.119</p></li>
+</ul>
+</li>
+<li><p>ACT:</p>
+<ul>
+<li><p>Adam Theisen, Ken Kehoe, Zach Sherman, Bobby Jackson, Alyssa Sockol, Corey Godine, Max Grover, Jason Hemedinger, Jenni Kyrouac, Maxwell Levin, Michael Giansiracusa (2022). The Atmospheric Data Community Toolkit (ACT). Zenodo. DOI: https://doi.org/10.5281/zenodo.6712343</p></li>
+</ul>
+</li>
+<li><p>Maesaka, T., Iwanami, K. and Maki, M., 2012: Non-negative KDP Estimation by Monotone Increasing PHIDP Assumption below Melting Layer. The Seventh European Conference on Radar in Meteorology and Hydrology.</p></li>
+<li><p>Schneebeli, M., Grazioli, J., and Berne, A., 2014: Improved Estimation of the Specific Differential Phase SHIFT Using a Compilation of Kalman Filter Ensembles, IEEE T. Geosci. Remote Sens., 52, 5137-5149, https://doi:10.1109/TGRS.2013.2287017</p></li>
+<li><p>Gianfranco Vulpiani, Mario Montopoli, Luca Delli Passeri, Antonio G. Gioia, Pietro Giordano, and Frank S. Marzano, 2012: On the Use of Dual-Polarized C-Band Radar for Operational Rainfall Retrieval in Mountainous Areas. J. Appl. Meteor. Climatol., 51, 405-425, doi: https://10.1175/JAMC-D-10-05024.1.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks/example-workflows"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                  </article>
+
+                
+                
+
+                
+                
+                  <footer class="prev-next-footer">
+                    
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tracer-example.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Plotting Data from a Field Campaign (TRACER)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="cacti-data-quality-example.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data Quality Check from the CACTI Field Campaign</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                  </footer>
+                
+              </div>
+
+              
+              
+                
+                  <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-access-colombian-national-weather-radar-network-data-from-aws">How to access Colombian national weather radar network data from AWS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#level-2-data">Level 2 Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#search-for-data-during-a-mesoscale-convective-system-mcs-event-august-9-2022">Search for data during a Mesoscale Convective System - MCS event (August 9, 2022)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-the-data-into-py-art">Read the data into Py-ART</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-the-available-fields">List the available fields</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-dual-pol-variables">Plot dual-pol variables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-dp-retrieval-methods"><span class="math notranslate nohighlight">\(K_{DP}\)</span> retrieval methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-the-new-retrieved-k-dp-values-to-the-radar-object">Add the new retrieved <span class="math notranslate nohighlight">\(K_{DP}\)</span> values to the radar object</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-the-new-fields-variables">List the new fields/variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-default-and-retrieved-phi-dp-and-k-dp">Compare default and retrieved <span class="math notranslate nohighlight">\(Phi_{DP}\)</span> and <span class="math notranslate nohighlight">\(K_{DP}\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#whats-next">What’s Next?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources-and-references">Resources and References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+                
+              
+
+
+                
+                <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://binder.projectpythia.org/v2/gh/ProjectPythiaTutorials/radar-cookbook/main?urlpath=lab/tree/notebooks/example-workflows/kdp-comparison.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ProjectPythiaTutorials/radar-cookbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ProjectPythiaTutorials/radar-cookbook/edit/main/notebooks/example-workflows/kdp-comparison.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ProjectPythiaTutorials/radar-cookbook/issues/new?title=Issue%20on%20page%20%2Fnotebooks/example-workflows/kdp-comparison.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/example-workflows/kdp-comparison.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+            </div>
+
+            <footer class="bd-footer-content">
+              
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Max Grover, Zachary Sherman, Milind Sharma
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on 1 April 2024.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+            </footer>
+
+        </main>
+    </div>
+  </div>
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+     
+  
+  
+  
+  
+    <div class="footer-items__start">
+      <div class="container-fluid m-0 p-0">
+      
+        <div class="footer-item">
+  <div class="container-fluid footer-logos">
+    <div class="container-xl">
+      <div class="row d-flex flex-wrap align-items-center">
+        <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
+          <img alt="NCAR" src="../../_images/NSF-NCAR_Lockup-UCAR-Dark_102523.svg" style="width: 100%">
+        </div>
+        <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
+          <img alt="Unidata" src="../../_images/Unidata_logo_horizontal_1200x300.svg" style="width: 100%">
+        </div>
+        <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
+          <img alt="UAlbany" src="../../_images/UAlbany-A2-logo-purple-gold.svg" style="width: 100%">
+        </div>
+      </div>
+    </div>
+  </div></div>
+      
+        <div class="footer-item">  <div class="container-fluid footer-info">
+    <div class="container-xl">
+      <div class="d-flex justify-content-center">
+        <p class="py-1 m-0">
+            &copy;&nbsp;2024.
+        
+          By Max Grover, Zachary Sherman, Milind Sharma.
+        
+          Last updated on 1 April 2024.
+        </p>
+      </div>
+    </div>
+  </div></div>
+      
+      </div>
+    </div>
+  
+
+  </footer>
+  </body>
+</html>
