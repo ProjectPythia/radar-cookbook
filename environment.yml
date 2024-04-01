@@ -1,19 +1,23 @@
 name: radar-cookbook-dev
 channels:
   - conda-forge
+  - pyviz
 dependencies:
-  - python=3.9
+  - python>=3.10
   - jupyter-book
   - jupyterlab
   - matplotlib
   - cartopy
-  - jupyter_server<2
+  - jupyter_server
   - numpy
   - xarray
   - metpy
   - act-atmos>=1.2.0
   - imageio
   - arm_pyart
+  - hvplot
+  - datashader
+  - panel
   - pip
   - pip:
     - sphinx-pythia-theme
