@@ -52,7 +52,7 @@ sphinx:
       launch_buttons:
         binderhub_url: https://binder.projectpythia.org
         notebook_interface: jupyterlab
-      jupyterhub_url: https://jupyterhub.arm.gov
+        jupyterhub_url: https://jupyterhub.arm.gov
       logo:
         link: https://projectpythia.org
       navbar_start:
