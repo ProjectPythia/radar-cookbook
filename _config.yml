@@ -7,8 +7,7 @@ logo: notebooks/images/logos/pythia_logo-white-rtext.svg
 copyright: '2024'
 
 execute:
-  # To execute notebooks via a Binder instead, replace 'cache' with 'binder'
-  execute_notebooks: binder
+  execute_notebooks: off
   timeout: 600
   allow_errors: False  # cells with expected failures must set the `raises-exception` cell tag
 
@@ -52,7 +51,7 @@ sphinx:
         binderhub_url: https://binder.projectpythia.org
         notebook_interface: jupyterlab
       jupyterhub_url: https://jupyterhub.arm.gov
-            logo:
+      logo:
         link: https://projectpythia.org
       navbar_start:
         - navbar-logo
