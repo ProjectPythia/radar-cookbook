@@ -57,7 +57,6 @@ sphinx:
         - navbar-logo
       navbar_end:
         - navbar-icon-links
-      logo_link: https://projectpythia.org
       navbar_links:
         - name: Home
           url: https://projectpythia.org
