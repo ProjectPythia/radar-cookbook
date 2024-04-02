@@ -1,95 +1,133 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="../../" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Py-ART Basics &#8212; Radar Cookbook</title>
-    
-  <link href="../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-pythia-theme.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-pythia-theme.min.css?v=e502140d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-    
-  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=c54c090a" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js"></script>
-    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-T52X8HNYE8"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-T52X8HNYE8');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-T52X8HNYE8');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/foundations/pyart-basics';</script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Py-ART Corrections" href="pyart-corrections.html" />
     <link rel="prev" title="The Basics of Weather Radar" href="../radar-basics/radar-basics.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <meta name="docbuild:last-update" content="2 April 2024"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="132">
-    <div class="container-fluid" id="shim"></div>
-    <div class="container-fluid" id="banner"></div>
-    <nav class="navbar navbar-dark navbar-expand-lg bg-dark fixed-top bd-navbar shadow" id="navbar-main"><div class="container-xl">
-
-  <div id="navbar-start">
-    
-    
-
-<a class="navbar-brand" href="https://projectpythia.org">
-  <img src="../../_static/pythia_logo-white-rtext.svg" class="logo" alt="logo">
-</a>
-
-
-    
-  </div>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
   
-  <div id="navbar-collapsible" class=" collapse navbar-collapse">
-    <div id="navbar-center" class="mr-auto">
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <div class="pst-scroll-pixel-helper"></div>
+    <header class="bd-header navbar navbar-dark navbar-expand-lg bg-dark fixed-top bd-navbar shadow" id="navbar-main">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+   
+
+<a class="navbar-brand logo" href="https://projectpythia.org">
+  
+  
+  
+  
+  
+    
+    
       
-      <div class="navbar-center-item">
-        <ul id="navbar-main-elements" class="navbar-nav">
+    
+    
+    <img src="../../_static/pythia_logo-white-rtext.svg" class="logo__image only-light" alt="Radar Cookbook - Home"/>
+    <script>document.write(`<img src="../../_static/pythia_logo-white-rtext.svg" class="logo__image only-dark" alt="Radar Cookbook - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
   
   <li class="nav-item">
     
@@ -127,377 +165,258 @@ const thebe_selector_output = ".output, .cell_output"
   </li>
   
   
-</ul>
-      </div>
+</ul></div>
       
     </div>
-
-    <div id="navbar-end">
-      
-      <div class="navbar-end-item">
-        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
-        <li class="nav-item">
-          <a class="nav-link" href="https://github.com/ProjectPythia" rel="noopener" target="_blank" title="GitHub">
-            <span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="https://twitter.com/project_pythia" rel="noopener" target="_blank" title="Twitter">
-            <span><i class="fab fa-twitter-square"></i></span>
-            <label class="sr-only">Twitter</label>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" rel="noopener" target="_blank" title="YouTube">
-            <span><i class="fab fa-youtube-square"></i></span>
-            <label class="sr-only">YouTube</label>
-          </a>
-        </li>
-      </ul>
-      </div>
-      
-    </div>
-  </div>
-</div>
-    </nav>
-    <div class="container-xl">
-      <div class="row">
-        
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
-        <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../README.html">
-   Radar Cookbook
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Preamble
- </span>
-</p>
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ProjectPythia" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/project_pythia" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" title="YouTube" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-youtube-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">YouTube</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </header>
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+        
+        
+        
+        <div class="bd-sidebar-primary bd-sidebar">
+          
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org">Home</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://foundations.projectpythia.org">Foundations</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://cookbooks.projectpythia.org">Cookbooks</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org/resource-gallery.html">Resources</a>
+  </li>
+  
+  <li class="nav-item">
+    
+    
+    
+    <a class="nav-link nav-internal" href="https://projectpythia.org/index.html#join-us">Community</a>
+  </li>
+  
+  
+</ul></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ProjectPythia" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/project_pythia" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" title="YouTube" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-youtube-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">YouTube</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    Radar Cookbook
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preamble</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../how-to-cite.html">
-   How to Cite This Cookbook
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../how-to-cite.html">How to Cite This Cookbook</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Weather Radar Foundations
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Weather Radar Foundations</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../radar-basics/radar-basics.html">
-   <strong>
-    The Basics of Weather Radar
-   </strong>
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../radar-basics/radar-basics.html"><strong>The Basics of Weather Radar</strong></a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Radar Software Foundations
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Radar Software Foundations</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Py-ART Basics
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="pyart-corrections.html">
-   Py-ART Corrections
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="pyart-gridding.html">
-   Py-ART Gridding
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="interactive-radar-visualization.html">
-   Interactive Radar Visualization
-  </a>
- </li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Py-ART Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyart-corrections.html">Py-ART Corrections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyart-gridding.html">Py-ART Gridding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interactive-radar-visualization.html">Interactive Radar Visualization</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Example Workflows
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Example Workflows</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../example-workflows/moore-oklahoma-tornado.html">
-   Looking at NEXRAD Data from Moore, Oklahoma
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../example-workflows/tracer-example.html">
-   Plotting Data from a Field Campaign (TRACER)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../example-workflows/kdp-comparison.html">
-   Specific Differential Phase (
-   <span class="math notranslate nohighlight">
-    \(K_{DP}\)
-   </span>
-   ) retrieval methods comparison
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../example-workflows/cacti-data-quality-example.html">
-   Data Quality Check from the CACTI Field Campaign
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../example-workflows/fastbarnes_interpolation_rhi.html">
-   2D objective analysis of weather radar RHI scan: Fast Barnes Interpolation Example
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../example-workflows/echo_top_height.html">
-   Echo top height calculation from NEXRAD PPI volume data:
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../example-workflows/moore-oklahoma-tornado.html">Looking at NEXRAD Data from Moore, Oklahoma</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example-workflows/tracer-example.html">Plotting Data from a Field Campaign (TRACER)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example-workflows/kdp-comparison.html">Specific Differential Phase (<span class="math notranslate nohighlight">\(K_{DP}\)</span>) retrieval methods comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example-workflows/cacti-data-quality-example.html">Data Quality Check from the CACTI Field Campaign</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example-workflows/fastbarnes_interpolation_rhi.html">2D objective analysis of weather radar RHI scan: Fast Barnes Interpolation Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example-workflows/echo_top_height.html">Echo top height calculation from NEXRAD PPI volume data:</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Theme by <a href="https://projectpythia.org">Project Pythia</a>.<br><br>
-All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code content is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons BY 4.0 (CC BY 4.0)</a>.<br><br>
-
-</div>
-
-</div>
-
-        
-
-        <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main"><div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/notebooks/foundations/pyart-basics.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/ProjectPythiaTutorials/radar-cookbook"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/ProjectPythiaTutorials/radar-cookbook/issues/new?title=Issue%20on%20page%20%2Fnotebooks/foundations/pyart-basics.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/ProjectPythiaTutorials/radar-cookbook/edit/main/notebooks/foundations/pyart-basics.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://binder.projectpythia.org/v2/gh/ProjectPythiaTutorials/radar-cookbook/main?urlpath=lab/tree/notebooks/foundations/pyart-basics.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        <a class="jupyterhub-button" href="https://jupyterhub.arm.gov/hub/user-redirect/git-pull?repo=https://github.com/ProjectPythiaTutorials/radar-cookbook&urlpath=lab/tree/radar-cookbook/notebooks/foundations/pyart-basics.ipynb&branch=main"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
-                data-placement="left"><img class="jupyterhub-button-logo"
-                    src="../../_static/images/logo_jupyterhub.svg"
-                    alt="Interact on JupyterHub">JupyterHub</button></a>
-        
-        
-        
-    </div>
-</div>
 
         </div>
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> On this page
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#overview">
-   Overview
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#prerequisites">
-   Prerequisites
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#imports">
-   Imports
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#an-overview-of-py-art">
-   An Overview of Py-ART
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#history-of-the-py-art">
-     History of the Py-ART
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-can-pyart-do">
-     What can PyART Do?
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reading-in-data-using-py-art">
-   Reading in Data Using Py-ART
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#reading-data-in-using-pyart-io-read">
-     Reading data in using
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       pyart.io.read
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#investigate-the-pyart-radar-object">
-     Investigate the
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       pyart.Radar
-      </span>
-     </code>
-     object
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#extract-a-sample-data-field">
-       Extract a sample data field
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#plotting-our-radar-data">
-   Plotting our Radar Data
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#an-overview-of-py-art-plotting-utilities">
-     An Overview of Py-ART Plotting Utilities
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#use-the-radarmapdisplay-with-our-data">
-     Use the RadarMapDisplay with our data
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#summary">
-   Summary
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#whats-next">
-     What’s Next
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#resources-and-references">
-   Resources and References
-  </a>
- </li>
-</ul>
+        
+        <main id="main-content" class="bd-main" role="main">
+          
 
-            </nav>
-        </div>
-    </div>
-</div>
-          <div id="main-content" class="row">
-            <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-              
-              <div>
+            <div class="bd-content">
+
+              <div class="bd-article-container">
+
                 
+                  
+                  
+<div id="searchbox"></div>
+                  <article class="bd-article">
+                    
   <p><a class="reference internal" href="../../_images/arm_logo.png"><img alt="ARM Logo" src="../../_images/arm_logo.png" style="width: 500px;" /></a></img></p>
-<div class="tex2jax_ignore mathjax_ignore section" id="py-art-basics">
-<h1>Py-ART Basics<a class="headerlink" href="#py-art-basics" title="Permalink to this headline"><i class="fas fa-link"></i></a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="py-art-basics">
+<h1>Py-ART Basics<a class="headerlink" href="#py-art-basics" title="Link to this heading"><i class="fas fa-link"></i></a></h1>
 <hr class="docutils" />
-<div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
 <p>Within this notebook, we will cover:</p>
 <ol class="arabic simple">
 <li><p>General overview of Py-ART and its functionality</p></li>
@@ -505,10 +424,10 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <li><p>An overview of the <code class="docutils literal notranslate"><span class="pre">pyart.Radar</span></code> object</p></li>
 <li><p>Create a Plot of our Radar Data</p></li>
 </ol>
-</div>
-<div class="section" id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<table class="colwidths-auto table">
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Concepts</p></th>
 <th class="head"><p>Importance</p></th>
@@ -533,10 +452,10 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 <ul class="simple">
 <li><p><strong>Time to learn</strong>: 45 minutes</p></li>
 </ul>
-</div>
+</section>
 <hr class="docutils" />
-<div class="section" id="imports">
-<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<section id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -567,11 +486,11 @@ All code in Pythia Cookbooks is licensed under Apache 2.0. All other non-code co
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="an-overview-of-py-art">
-<h2>An Overview of Py-ART<a class="headerlink" href="#an-overview-of-py-art" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<div class="section" id="history-of-the-py-art">
-<h3>History of the Py-ART<a class="headerlink" href="#history-of-the-py-art" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+</section>
+<section id="an-overview-of-py-art">
+<h2>An Overview of Py-ART<a class="headerlink" href="#an-overview-of-py-art" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<section id="history-of-the-py-art">
+<h3>History of the Py-ART<a class="headerlink" href="#history-of-the-py-art" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
 <ul class="simple">
 <li><p>Development began to address the needs of ARM with the acquisition of a number of
 new scanning cloud and precipitation radar as part of the American Recovery Act.</p></li>
@@ -580,9 +499,9 @@ base including radar researchers and climate modelers.</p></li>
 <li><p>The software has been released on GitHub as open source software under a BSD license.
 Runs on Linux, OS X. It also runs on Windows with more limited functionality.</p></li>
 </ul>
-</div>
-<div class="section" id="what-can-pyart-do">
-<h3>What can PyART Do?<a class="headerlink" href="#what-can-pyart-do" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+</section>
+<section id="what-can-pyart-do">
+<h3>What can PyART Do?<a class="headerlink" href="#what-can-pyart-do" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
 <p>Py-ART can be used for a variety of tasks from basic plotting to more complex
 processing pipelines. Specific uses for Py-ART include:</p>
 <ul class="simple">
@@ -599,12 +518,12 @@ processing pipelines. Specific uses for Py-ART include:</p>
 <li><p>Performing retrievals.</p></li>
 <li><p>Writing radial and Cartesian data to NetCDF files.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="reading-in-data-using-py-art">
-<h2>Reading in Data Using Py-ART<a class="headerlink" href="#reading-in-data-using-py-art" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<div class="section" id="reading-data-in-using-pyart-io-read">
-<h3>Reading data in using <code class="docutils literal notranslate"><span class="pre">pyart.io.read</span></code><a class="headerlink" href="#reading-data-in-using-pyart-io-read" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+</section>
+</section>
+<section id="reading-in-data-using-py-art">
+<h2>Reading in Data Using Py-ART<a class="headerlink" href="#reading-in-data-using-py-art" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<section id="reading-data-in-using-pyart-io-read">
+<h3>Reading data in using <code class="docutils literal notranslate"><span class="pre">pyart.io.read</span></code><a class="headerlink" href="#reading-data-in-using-pyart-io-read" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
 <p>When reading in a radar file, we use the <code class="docutils literal notranslate"><span class="pre">pyart.io.read</span></code> module.</p>
 <p><code class="docutils literal notranslate"><span class="pre">pyart.io.read</span></code> can read a variety of different radar formats, such as Cf/Radial, LASSEN, and more.
 The documentation on what formats can be read by Py-ART can be found here:</p>
@@ -631,14 +550,17 @@ The documentation on what formats can be read by Py-ART can be found here:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pyart.core.radar.Radar at 0x7f74f5bd61d0&gt;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading file &#39;swx_20120520_0641.nc&#39; from &#39;https://adc.arm.gov/pyart/example_data/swx_20120520_0641.nc&#39; to &#39;/home/runner/.cache/pyart-datasets&#39;.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pyart.core.radar.Radar at 0x7fc831f75b80&gt;
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="investigate-the-pyart-radar-object">
-<h3>Investigate the <a class="reference external" href="https://arm-doe.github.io/pyart/API/generated/pyart.core.Radar.html#pyart.core.Radar"><code class="docutils literal notranslate"><span class="pre">pyart.Radar</span></code> object</a><a class="headerlink" href="#investigate-the-pyart-radar-object" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+</section>
+<section id="investigate-the-pyart-radar-object">
+<h3>Investigate the <a class="reference external" href="https://arm-doe.github.io/pyart/API/generated/pyart.core.Radar.html#pyart.core.Radar"><code class="docutils literal notranslate"><span class="pre">pyart.Radar</span></code> object</a><a class="headerlink" href="#investigate-the-pyart-radar-object" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
 <p>Within this <a class="reference external" href="https://arm-doe.github.io/pyart/API/generated/pyart.core.Radar.html#pyart.core.Radar"><code class="docutils literal notranslate"><span class="pre">pyart.Radar</span></code> object</a> object are the actual data fields.</p>
 <p>This is where data such as reflectivity and velocity are stored.</p>
 <p>To see what fields are present we can add the fields and keys additions to the variable where the radar object is stored.</p>
@@ -654,8 +576,8 @@ The documentation on what formats can be read by Py-ART can be found here:</p>
 </div>
 </div>
 </div>
-<div class="section" id="extract-a-sample-data-field">
-<h4>Extract a sample data field<a class="headerlink" href="#extract-a-sample-data-field" title="Permalink to this headline"><i class="fas fa-link"></i></a></h4>
+<section id="extract-a-sample-data-field">
+<h4>Extract a sample data field<a class="headerlink" href="#extract-a-sample-data-field" title="Link to this heading"><i class="fas fa-link"></i></a></h4>
 <p>The fields are stored in a dictionary, each containing coordinates, units and more.
 All can be accessed by just adding the fields addition to the radar object variable.</p>
 <p>For an individual field, we add a string in brackets after the fields addition to see
@@ -754,13 +676,13 @@ the contents of that field.</p>
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="section" id="plotting-our-radar-data">
-<h2>Plotting our Radar Data<a class="headerlink" href="#plotting-our-radar-data" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
-<div class="section" id="an-overview-of-py-art-plotting-utilities">
-<h3>An Overview of Py-ART Plotting Utilities<a class="headerlink" href="#an-overview-of-py-art-plotting-utilities" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+</section>
+</section>
+</section>
+<section id="plotting-our-radar-data">
+<h2>Plotting our Radar Data<a class="headerlink" href="#plotting-our-radar-data" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
+<section id="an-overview-of-py-art-plotting-utilities">
+<h3>An Overview of Py-ART Plotting Utilities<a class="headerlink" href="#an-overview-of-py-art-plotting-utilities" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
 <p>Now that we have loaded the data and inspected it, the next logical thing to do is to visualize the data! Py-ART’s visualization functionality is done through the objects in the <a class="reference external" href="https://arm-doe.github.io/pyart/API/generated/pyart.graph.html">pyart.graph</a> module.</p>
 <p>In Py-ART there are 4 primary visualization classes in pyart.graph:</p>
 <ul class="simple">
@@ -772,9 +694,9 @@ the contents of that field.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://arm-doe.github.io/pyart/API/generated/pyart.graph.GridMapDisplay.html">GridMapDisplay</a></p></li>
 </ul>
-</div>
-<div class="section" id="use-the-radarmapdisplay-with-our-data">
-<h3>Use the <a class="reference external" href="https://arm-doe.github.io/pyart/API/generated/pyart.graph.RadarMapDisplay.html">RadarMapDisplay</a> with our data<a class="headerlink" href="#use-the-radarmapdisplay-with-our-data" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+</section>
+<section id="use-the-radarmapdisplay-with-our-data">
+<h3>Use the <a class="reference external" href="https://arm-doe.github.io/pyart/API/generated/pyart.graph.RadarMapDisplay.html">RadarMapDisplay</a> with our data<a class="headerlink" href="#use-the-radarmapdisplay-with-our-data" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
 <p>For the this example, we will be using <code class="docutils literal notranslate"><span class="pre">RadarMapDisplay</span></code>, using Cartopy to deal with geographic coordinates.</p>
 <p>We start by creating a figure first.</p>
 <div class="cell docutils container">
@@ -811,7 +733,7 @@ the contents of that field.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/88765f322ed9e63322229376c54e9f9440ad3d08f1b97dd8572d7b1ba85080eb.png" src="../../_images/88765f322ed9e63322229376c54e9f9440ad3d08f1b97dd8572d7b1ba85080eb.png" />
+<img alt="../../_images/7e78f87fee7e555ba9728c1ed3d63db851ebe7e3c243ff331c2e8c249326e35a.png" src="../../_images/7e78f87fee7e555ba9728c1ed3d63db851ebe7e3c243ff331c2e8c249326e35a.png" />
 </div>
 </div>
 <p>By default, it will plot the elevation scan, the the default colormap from <code class="docutils literal notranslate"><span class="pre">Matplotlib</span></code>… let’s customize!</p>
@@ -838,7 +760,7 @@ the contents of that field.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ae384cc843d277b8982dd73d019553efd1c1fa0e3bcb9271fd09a23253ae7ada.png" src="../../_images/ae384cc843d277b8982dd73d019553efd1c1fa0e3bcb9271fd09a23253ae7ada.png" />
+<img alt="../../_images/daf9c7641d5e1c7976acdc642e6c2ba950aa81b4e7c653947133376a073a7175.png" src="../../_images/daf9c7641d5e1c7976acdc642e6c2ba950aa81b4e7c653947133376a073a7175.png" />
 </div>
 </div>
 <p>You can change many parameters in the graph by changing the arguments to plot_ppi_map. As you can recall from earlier. simply view these arguments in a Jupyter notebook by typing:</p>
@@ -865,7 +787,7 @@ the contents of that field.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/7cd85b9bec29c74405b1955cad21549f0a71d69e55cbada70ea2d177c0a4a3d8.png" src="../../_images/7cd85b9bec29c74405b1955cad21549f0a71d69e55cbada70ea2d177c0a4a3d8.png" />
+<img alt="../../_images/e326cc19161d10b8e91866a4b211dc64eabbdfac6628b2565e26f1bcd8d8caf3.png" src="../../_images/e326cc19161d10b8e91866a4b211dc64eabbdfac6628b2565e26f1bcd8d8caf3.png" />
 </div>
 </div>
 <p>Or, let’s view a different elevation scan! To do this, change the sweep parameter in the plot_ppi_map function.</p>
@@ -884,7 +806,7 @@ the contents of that field.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/50cde23b4433a254520eb4ba9683547d58befd220ca4578d7cbf26b8a9ad5065.png" src="../../_images/50cde23b4433a254520eb4ba9683547d58befd220ca4578d7cbf26b8a9ad5065.png" />
+<img alt="../../_images/07a1da2acf77967c7465883f69fa6c0835271e7ef633ceafa1d16d44da7de55a.png" src="../../_images/07a1da2acf77967c7465883f69fa6c0835271e7ef633ceafa1d16d44da7de55a.png" />
 </div>
 </div>
 <p>Let’s take a look at a different field - for example, correlation coefficient (<code class="docutils literal notranslate"><span class="pre">corr_coeff</span></code>)</p>
@@ -903,37 +825,37 @@ the contents of that field.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/da2a954ec7c72a241ea945ddf5848f24848746940d529f2870ea9400ac947ba8.png" src="../../_images/da2a954ec7c72a241ea945ddf5848f24848746940d529f2870ea9400ac947ba8.png" />
+<img alt="../../_images/bc30f31e2cf667985f1ac97ae3bfff1214866baaf9e3619868739f14f11767f6.png" src="../../_images/bc30f31e2cf667985f1ac97ae3bfff1214866baaf9e3619868739f14f11767f6.png" />
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 <hr class="docutils" />
-<div class="section" id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
 <p>Within this notebook, we covered the basics of working with radar data using <code class="docutils literal notranslate"><span class="pre">pyart</span></code>, including:</p>
 <ul class="simple">
 <li><p>Reading in a file using <code class="docutils literal notranslate"><span class="pre">pyart.io</span></code></p></li>
 <li><p>Investigating the <code class="docutils literal notranslate"><span class="pre">Radar</span></code> object</p></li>
 <li><p>Visualizing radar data using the <code class="docutils literal notranslate"><span class="pre">RadarMapDisplay</span></code></p></li>
 </ul>
-<div class="section" id="whats-next">
-<h3>What’s Next<a class="headerlink" href="#whats-next" title="Permalink to this headline"><i class="fas fa-link"></i></a></h3>
+<section id="whats-next">
+<h3>What’s Next<a class="headerlink" href="#whats-next" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
 <p>In the next few notebooks, we walk through gridding radar data, applying data cleaning methods, and advanced visualization methods!</p>
-</div>
-</div>
-<div class="section" id="resources-and-references">
-<h2>Resources and References<a class="headerlink" href="#resources-and-references" title="Permalink to this headline"><i class="fas fa-link"></i></a></h2>
+</section>
+</section>
+<section id="resources-and-references">
+<h2>Resources and References<a class="headerlink" href="#resources-and-references" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
 <p>Py-ART essentials links:</p>
 <ul class="simple">
-<li><p><span class="xref myst">Landing page</span></p></li>
+<li><p><a class="reference internal" href="#arm-doe.github.io/pyart/"><span class="xref myst">Landing page</span></a></p></li>
 <li><p><a class="reference external" href="https://arm-doe.github.io/pyart/examples/index.html">Examples</a></p></li>
-<li><p><span class="xref myst">Source Code</span></p></li>
-<li><p><span class="xref myst">Mailing list</span></p></li>
-<li><p><span class="xref myst">Issue Tracker</span></p></li>
+<li><p><a class="reference internal" href="#github.com/ARM-DOE/pyart"><span class="xref myst">Source Code</span></a></p></li>
+<li><p><a class="reference internal" href="#groups.google.com/group/pyart-users/"><span class="xref myst">Mailing list</span></a></p></li>
+<li><p><a class="reference internal" href="#github.com/ARM-DOE/pyart/issues"><span class="xref myst">Issue Tracker</span></a></p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -955,80 +877,401 @@ the contents of that field.</p>
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
-              <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../radar-basics/radar-basics.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><strong>The Basics of Weather Radar</strong></p>
-        </div>
+                  </article>
+
+                
+                
+
+                
+                
+                  <footer class="prev-next-footer">
+                    
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../radar-basics/radar-basics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><strong>The Basics of Weather Radar</strong></p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="pyart-corrections.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="pyart-corrections.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Py-ART Corrections</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </div>
-          </div>
-        </main>
+                  </footer>
+                
+              </div>
 
-      </div>
+              
+              
+                
+                  <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-overview-of-py-art">An Overview of Py-ART</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#history-of-the-py-art">History of the Py-ART</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-can-pyart-do">What can PyART Do?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-in-data-using-py-art">Reading in Data Using Py-ART</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-data-in-using-pyart-io-read">Reading data in using <code class="docutils literal notranslate"><span class="pre">pyart.io.read</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#investigate-the-pyart-radar-object">Investigate the <code class="docutils literal notranslate"><span class="pre">pyart.Radar</span></code> object</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-a-sample-data-field">Extract a sample data field</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-our-radar-data">Plotting our Radar Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#an-overview-of-py-art-plotting-utilities">An Overview of Py-ART Plotting Utilities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-the-radarmapdisplay-with-our-data">Use the RadarMapDisplay with our data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#whats-next">What’s Next</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources-and-references">Resources and References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+                
+              
+
+
+                
+                <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
     </div>
   
-  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
-
-<footer class="footer">
-  <div class="container-fluid m-0 p-0">
   
-    <div class="footer-item">
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://binder.projectpythia.org/v2/gh/ProjectPythiaTutorials/radar-cookbook/main?urlpath=lab/tree/notebooks/foundations/pyart-basics.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://jupyterhub.arm.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/ProjectPythiaTutorials/radar-cookbook&urlpath=lab/tree/radar-cookbook/notebooks/foundations/pyart-basics.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ProjectPythiaTutorials/radar-cookbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ProjectPythiaTutorials/radar-cookbook/edit/main/notebooks/foundations/pyart-basics.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ProjectPythiaTutorials/radar-cookbook/issues/new?title=Issue%20on%20page%20%2Fnotebooks/foundations/pyart-basics.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/foundations/pyart-basics.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+            </div>
+
+            <footer class="bd-footer-content">
+              
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
     
+<p class="component-author">
+By Max Grover, Zachary Sherman, Milind Sharma
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on 2 April 2024.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+            </footer>
+
+        </main>
+    </div>
+  </div>
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+     
+  
+  
+  
+  
+    <div class="footer-items__start">
+      <div class="container-fluid m-0 p-0">
+      
+        <div class="footer-item">
   <div class="container-fluid footer-logos">
     <div class="container-xl">
       <div class="row d-flex flex-wrap align-items-center">
         <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
-          <img alt="NCAR" src="../../_images/NCAR-contemp-logo-blue.svg" style="width: 100%">
-        </div>
-        <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
-          <img alt="UAlbany" src="../../_images/UAlbany-A2-logo-purple-gold.svg" style="width: 100%">
+          <img alt="NCAR" src="../../_images/NSF-NCAR_Lockup-UCAR-Dark_102523.svg" style="width: 100%">
         </div>
         <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
           <img alt="Unidata" src="../../_images/Unidata_logo_horizontal_1200x300.svg" style="width: 100%">
         </div>
+        <div class="d-flex col-lg-3 col-md-4 col-sm-6 p-2 mx-auto">
+          <img alt="UAlbany" src="../../_images/UAlbany-A2-logo-purple-gold.svg" style="width: 100%">
+        </div>
       </div>
     </div>
-  </div>
-    </div>
-  
-    <div class="footer-item">
-    
-    </div>
-  
-    <div class="footer-item">
-      <div class="container-fluid footer-info">
+  </div></div>
+      
+        <div class="footer-item">  <div class="container-fluid footer-info">
     <div class="container-xl">
       <div class="d-flex justify-content-center">
         <p class="py-1 m-0">
-            &copy;&nbsp;2023.
+            &copy;&nbsp;2024.
         
           By Max Grover, Zachary Sherman, Milind Sharma.
         
-          Last updated on 27 June 2023.
+          Last updated on 2 April 2024.
         </p>
       </div>
     </div>
-  </div>
+  </div></div>
+      
+      </div>
     </div>
   
-    <div class="footer-item">
-    
-    </div>
-  
-  </div>
-</footer>
+
+  </footer>
   </body>
 </html>
