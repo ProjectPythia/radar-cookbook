@@ -19,6 +19,7 @@ dependencies:
   - datashader
   - panel
   - sphinx-pythia-theme
+  - s3fs>=2024.3.1
   - pip
   - pip:
     - fast-barnes-py
