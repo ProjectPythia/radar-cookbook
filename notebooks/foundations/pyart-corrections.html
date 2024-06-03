@@ -14,19 +14,19 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-pythia-theme.min.css?v=e502140d" />
@@ -38,9 +38,9 @@
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=c54c090a" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
     <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
@@ -81,7 +81,7 @@
     <link rel="prev" title="Py-ART Basics" href="pyart-basics.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="14 May 2024"/>
+    <meta name="docbuild:last-update" content="3 June 2024"/>
   </head>
   
   
@@ -89,15 +89,15 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
 
   
   <div class="pst-scroll-pixel-helper"></div>
     <header class="bd-header navbar navbar-dark navbar-expand-lg bg-dark fixed-top bd-navbar shadow" id="navbar-main">
 <div class="bd-header__inner bd-page-width">
-  <label class="sidebar-toggle primary-toggle" for="__primary">
+  <button class="sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
-  </label>
+  </button>
   
   
   <div class=" navbar-header-items__start">
@@ -222,9 +222,9 @@
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+    <button class="sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
-    </label>
+    </button>
   
 </div>
 
@@ -243,7 +243,9 @@
     
       <div class="sidebar-header-items__center">
         
-          <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+          
+          
+            <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
   
   <li class="nav-item">
     
@@ -282,6 +284,7 @@
   
   
 </ul></div>
+          
         
       </div>
     
@@ -428,7 +431,7 @@
 </section>
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"><i class="fas fa-link"></i></a></h2>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Concepts</p></th>
 <th class="head"><p>Importance</p></th>
@@ -450,6 +453,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <ul class="simple">
 <li><p><strong>Time to learn</strong>: 30 minutes</p></li>
 </ul>
@@ -540,7 +544,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/afbadb21d8861c1da5561d25df0103d5946e800ea3ea77397e999591bfaad9e6.png" src="../../_images/afbadb21d8861c1da5561d25df0103d5946e800ea3ea77397e999591bfaad9e6.png" />
+<img alt="../../_images/6f0000dc1f2b1a55ad86f983c95b73bf874373696abd463e737ecdabe67595ce.png" src="../../_images/6f0000dc1f2b1a55ad86f983c95b73bf874373696abd463e737ecdabe67595ce.png" />
 </div>
 </div>
 </section>
@@ -627,18 +631,18 @@
  &#39;standard_name&#39;: &#39;texture_of_radial_velocity_of_scatters_away_from_instrument&#39;,
  &#39;long_name&#39;: &#39;Doppler velocity texture&#39;,
  &#39;coordinates&#39;: &#39;elevation azimuth range&#39;,
- &#39;data&#39;: array([[5.8774082 , 5.73538228, 1.29254402, ..., 3.09248932, 3.11758189,
+ &#39;data&#39;: array([[6.3984301 , 5.7426186 , 0.80846799, ..., 3.09248932, 3.11758189,
          3.11758189],
-        [5.8774082 , 5.60215107, 1.29254402, ..., 7.30583692, 7.31494978,
+        [6.3984301 , 4.86013397, 0.7420654 , ..., 7.30583692, 7.31494978,
          7.3283932 ],
-        [6.98970645, 5.25008601, 1.93385618, ..., 7.32173353, 7.33318301,
+        [5.94460205, 4.47111979, 0.63881868, ..., 7.32173353, 7.33318301,
          7.33770852],
         ...,
-        [8.27919632, 7.05635664, 5.84890822, ..., 2.72774608, 2.76027457,
+        [7.73145863, 7.36437686, 5.41054078, ..., 2.72774608, 2.76027457,
          2.79050846],
-        [7.15030826, 6.57482555, 5.37450144, ..., 1.37623459, 1.40499757,
+        [7.36437686, 6.70111978, 5.47734179, ..., 1.37623459, 1.40499757,
          1.42364895],
-        [7.05635664, 6.57482555, 5.37450144, ..., 1.35595468, 1.35852404,
+        [7.20446253, 6.64973473, 5.47734179, ..., 1.35595468, 1.35852404,
          1.40499757]])}
 </pre></div>
 </div>
@@ -671,7 +675,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/3999ccf2d76c28b100283a75b224b5b9abbb179a649bdde1eaa27d3d2b3cdf89.png" src="../../_images/3999ccf2d76c28b100283a75b224b5b9abbb179a649bdde1eaa27d3d2b3cdf89.png" />
+<img alt="../../_images/2145f846baf2c438074922892883669321a45fb4fe20483c55509b50a1b91085.png" src="../../_images/2145f846baf2c438074922892883669321a45fb4fe20483c55509b50a1b91085.png" />
 </div>
 </div>
 </section>
@@ -699,10 +703,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff748e3deb0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f9686fa09d0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/8fb30384d91741cd8fdf12c78dd055cfea7cf7b34e0a0c60432cae87135b0201.png" src="../../_images/8fb30384d91741cd8fdf12c78dd055cfea7cf7b34e0a0c60432cae87135b0201.png" />
+<img alt="../../_images/2b7e393a0adbce4211e2a952ad456bd726118cc0d0c4dc93138b7d9d69cebb35.png" src="../../_images/2b7e393a0adbce4211e2a952ad456bd726118cc0d0c4dc93138b7d9d69cebb35.png" />
 </div>
 </div>
 </section>
@@ -717,7 +721,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pyart.filters.gatefilter.GateFilter at 0x7ff740c12fc0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pyart.filters.gatefilter.GateFilter at 0x7f9686e10a10&gt;
 </pre></div>
 </div>
 </div>
@@ -772,7 +776,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/32eac1119f4778e2331764008daec1b73ec64a49df2a777c0e90382cf6ef958d.png" src="../../_images/32eac1119f4778e2331764008daec1b73ec64a49df2a777c0e90382cf6ef958d.png" />
+<img alt="../../_images/a6cb2c6cbb08a280559fcb355afdf9a7a88706f15aed31ebec8b8abec1ff8fe2.png" src="../../_images/a6cb2c6cbb08a280559fcb355afdf9a7a88706f15aed31ebec8b8abec1ff8fe2.png" />
 </div>
 </div>
 </section>
@@ -815,7 +819,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/d73249e70758f2f3a396ec9eb561e447e2fef0c64ab159203faffec1079a0f23.png" src="../../_images/d73249e70758f2f3a396ec9eb561e447e2fef0c64ab159203faffec1079a0f23.png" />
+<img alt="../../_images/3a09ff40fea3962f39906e48c92cc7a7e6686aa0865b8ceafa9bccd0d7f9f003.png" src="../../_images/3a09ff40fea3962f39906e48c92cc7a7e6686aa0865b8ceafa9bccd0d7f9f003.png" />
 </div>
 </div>
 </section>
@@ -861,7 +865,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/04bd7cc273432c1a2b2198bb8f65567b74c08a3fe303125dc3226c15d4678d04.png" src="../../_images/04bd7cc273432c1a2b2198bb8f65567b74c08a3fe303125dc3226c15d4678d04.png" />
+<img alt="../../_images/f728d39d225826261a0c62a1d2cd09bcf5ef942ca72484c80365b1f92eac5bd0.png" src="../../_images/f728d39d225826261a0c62a1d2cd09bcf5ef942ca72484c80365b1f92eac5bd0.png" />
 </div>
 </div>
 </section>
@@ -1242,7 +1246,7 @@ By Max Grover, Zachary Sherman, Milind Sharma
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on 14 May 2024.
+  Last updated on 3 June 2024.
   <br/>
 </p>
   </div>
@@ -1259,8 +1263,8 @@ By Max Grover, Zachary Sherman, Milind Sharma
   </div>
     
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
 
   <footer class="bd-footer">
      
@@ -1296,7 +1300,7 @@ By Max Grover, Zachary Sherman, Milind Sharma
         
           By Max Grover, Zachary Sherman, Milind Sharma.
         
-          Last updated on 14 May 2024.
+          Last updated on 3 June 2024.
         </p>
       </div>
     </div>
