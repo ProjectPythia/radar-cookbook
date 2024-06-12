@@ -2,7 +2,7 @@ version: 1
 project:
   open_access: true
   license:
-    content: MIT
+    content: Apache-2.0
     code: CC-BY-4.0
 site:
   template: book-theme
