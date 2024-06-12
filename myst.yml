@@ -1,18 +1,6 @@
 version: 1
-site:
-  options:
-    logo: notebooks/images/logos/pythia_logo-white-rtext.svg
-  nav:
-    - title: Home
-      url: https://projectpythia.org
-    - title: Foundations
-      url: https://foundations.projectpythia.org
-    - title: Cookbooks
-      url: https://cookbooks.projectpythia.org
-    - title: Resources
-      url: https://projectpythia.org/resource-gallery.html
-    - title: Community
-      url: https://projectpythia.org/index.html#join-us
+extends:
+  - pythia.yml
 project:
   title: Radar Cookbook
   github: https://github.com/projectpythia-mystmd/radar-cookbook
