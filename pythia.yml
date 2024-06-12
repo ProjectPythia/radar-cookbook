@@ -8,7 +8,8 @@ site:
   template: book-theme
   options:
     # favicon: favicon.ico
-    logo: notebooks/images/logos/pythia_logo-white-rtext.svg
+    logo: notebooks/images/logos/pythia_logo-white-rtext-blue.svg
+    logo_dark: notebooks/images/logos/pythia_logo-white-rtext.svg
   nav:
     - title: Home
       url: https://projectpythia.org
