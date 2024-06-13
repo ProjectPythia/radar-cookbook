@@ -24,3 +24,4 @@ dependencies:
   - pip:
     - fast-barnes-py
     - git+https://github.com/vlouf/eth_radar.git
+    - open-radar-data>=0.1.2
