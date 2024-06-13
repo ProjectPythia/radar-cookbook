@@ -1,6 +1,6 @@
 version: 1
 extends:
-  - pythia.yml
+  - https://raw.githubusercontent.com/projectpythia-mystmd/pythia-config/main/pythia.yml
 project:
   title: Radar Cookbook
   github: https://github.com/projectpythia-mystmd/radar-cookbook
