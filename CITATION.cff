@@ -24,6 +24,11 @@ authors:
     website: https://github.com/crystalclearwx
     orcid: https://orcid.org/0009-0009-6628-6287
     affiliation: Problem Solutions, Inc./AccuWeather, Inc.
+  - family-names: Unuma
+    given-names: Takashi
+    website: https://github.com/TakashiUNUMA
+    orcid: https://orcid.org/0000-0003-4350-9758
+    affiliation: Meteorological Research Institute - Japan Meteorological Agency
   - name: "Radar Cookbook contributors" # use the 'name' field to acknowledge organizations
     website: "https://github.com/ProjectPythia/radar-cookbook/graphs/contributors"
 title: "Radar Cookbook"
