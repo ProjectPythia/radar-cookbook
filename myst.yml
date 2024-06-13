@@ -33,6 +33,6 @@ project:
         - file: notebooks/example-workflows/echo_top_height.ipynb
   jupyter:
     binder:
-      url: https://binder.projectpythia.org/
+      repo: projectpythia-mystmd/radar-cookbook
   abbreviations:
     ARM: Atmospheric Radiation Measurement
