@@ -34,3 +34,5 @@ project:
   jupyter:
     binder:
       url: https://binder.projectpythia.org/
+  abbreviations:
+    ARM: Atmospheric Radiation Measurement
