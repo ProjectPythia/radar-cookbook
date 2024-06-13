@@ -13,7 +13,7 @@ parts:
       - file: notebooks/foundations/pyart-corrections
       - file: notebooks/foundations/pyart-gridding
       - file: notebooks/foundations/interactive-radar-visualization
-      - file: notebooks/foundations/interactive-radar-visualization-jmaradar
+      - file: notebooks/foundations/interactive-radar-visualization-jmaradar-cfradial1
   - caption: Example Workflows
     chapters:
       - file: notebooks/example-workflows/moore-oklahoma-tornado
