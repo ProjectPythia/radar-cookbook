@@ -3,7 +3,7 @@ channels:
   - conda-forge
   - pyviz
 dependencies:
-  - python>=3.10
+  - python<3.12
   - jupyter-book
   - jupyterlab
   - matplotlib
@@ -18,8 +18,10 @@ dependencies:
   - hvplot
   - datashader
   - panel
+  - sphinx-pythia-theme
+  - s3fs>=2024.3.1
   - pip
   - pip:
-    - sphinx-pythia-theme
     - fast-barnes-py
     - git+https://github.com/vlouf/eth_radar.git
+    - open-radar-data>=0.1.2
