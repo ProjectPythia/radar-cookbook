@@ -47,7 +47,7 @@
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -80,7 +80,7 @@
     <link rel="prev" title="2D objective analysis of weather radar RHI scan: Fast Barnes Interpolation Example" href="fastbarnes_interpolation_rhi.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="5 June 2024"/>
+    <meta name="docbuild:last-update" content="13 June 2024"/>
   </head>
   
   
@@ -602,7 +602,9 @@ If <span class="math notranslate nohighlight">\(\theta_{b}\)</span> is not the h
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/miniconda3/envs/radar-cookbook-dev/lib/python3.11/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/110m_physical/ne_110m_coastline.zip
   warnings.warn(f&#39;Downloading: {url}&#39;, DownloadWarning)
-/home/runner/miniconda3/envs/radar-cookbook-dev/lib/python3.11/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/110m_cultural/ne_110m_admin_1_states_provinces_lines.zip
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/miniconda3/envs/radar-cookbook-dev/lib/python3.11/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/110m_cultural/ne_110m_admin_1_states_provinces_lines.zip
   warnings.warn(f&#39;Downloading: {url}&#39;, DownloadWarning)
 </pre></div>
 </div>
@@ -627,7 +629,7 @@ If <span class="math notranslate nohighlight">\(\theta_{b}\)</span> is not the h
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2534/379810223.py:54: RuntimeWarning: invalid value encountered in cast
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2581/379810223.py:54: RuntimeWarning: invalid value encountered in cast
   cth_grid = np.ma.masked_invalid(cth_grid).astype(np.int32).filled(FILLVALUE)
 </pre></div>
 </div>
@@ -648,7 +650,7 @@ If <span class="math notranslate nohighlight">\(\theta_{b}\)</span> is not the h
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f32665bd990&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f0fc939f3d0&gt;
 </pre></div>
 </div>
 <img alt="../../_images/fb43426c747a4067e94bc9e13e007e71c49154e5482e26110304fbab2899f870.png" src="../../_images/fb43426c747a4067e94bc9e13e007e71c49154e5482e26110304fbab2899f870.png" />
@@ -758,9 +760,9 @@ If <span class="math notranslate nohighlight">\(\theta_{b}\)</span> is not the h
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -785,14 +787,14 @@ If <span class="math notranslate nohighlight">\(\theta_{b}\)</span> is not the h
       
       <li><a href="https://binder.projectpythia.org/v2/gh/ProjectPythiaTutorials/radar-cookbook/main?urlpath=lab/tree/notebooks/example-workflows/echo_top_height.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../../_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -803,14 +805,14 @@ If <span class="math notranslate nohighlight">\(\theta_{b}\)</span> is not the h
       
       <li><a href="https://jupyterhub.arm.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/ProjectPythiaTutorials/radar-cookbook&urlpath=lab/tree/radar-cookbook/notebooks/example-workflows/echo_top_height.ipynb&branch=main" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onJupyterHub"
+   title="Launch on JupyterHub"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../../_static/images/logo_jupyterhub.svg">
+    <img alt="JupyterHub logo" src="../../_static/images/logo_jupyterhub.svg">
   </span>
 <span class="btn__text-container">JupyterHub</span>
 </a>
@@ -967,9 +969,9 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -1004,7 +1006,7 @@ By Max Grover, Zachary Sherman, Milind Sharma
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on 5 June 2024.
+  Last updated on 13 June 2024.
   <br/>
 </p>
   </div>
@@ -1058,7 +1060,7 @@ By Max Grover, Zachary Sherman, Milind Sharma
         
           By Max Grover, Zachary Sherman, Milind Sharma.
         
-          Last updated on 5 June 2024.
+          Last updated on 13 June 2024.
         </p>
       </div>
     </div>

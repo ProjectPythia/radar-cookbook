@@ -47,7 +47,7 @@
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -81,7 +81,7 @@
     <link rel="prev" title="Plotting Data from a Field Campaign (TRACER)" href="tracer-example.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="5 June 2024"/>
+    <meta name="docbuild:last-update" content="13 June 2024"/>
   </head>
   
   
@@ -650,8 +650,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 15.5 s, sys: 27.3 ms, total: 15.6 s
-Wall time: 4.11 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 15.7 s, sys: 27.1 ms, total: 15.7 s
+Wall time: 4.15 s
 </pre></div>
 </div>
 </div>
@@ -664,8 +664,8 @@ Wall time: 4.11 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 279 ms, sys: 364 ms, total: 643 ms
-Wall time: 2min 26s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 298 ms, sys: 369 ms, total: 666 ms
+Wall time: 2min 33s
 </pre></div>
 </div>
 </div>
@@ -678,8 +678,8 @@ Wall time: 2min 26s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 123 ms, sys: 327 ms, total: 450 ms
-Wall time: 859 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 137 ms, sys: 324 ms, total: 461 ms
+Wall time: 883 ms
 </pre></div>
 </div>
 </div>
@@ -828,10 +828,10 @@ Wall time: 859 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f97a5e458d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7fc354e81850&gt;
 </pre></div>
 </div>
-<img alt="../../_images/d4332fe91ad4ea4bbc902b6d81a2bcb978e65d168ac1bf37b24990935aa3fcb0.png" src="../../_images/d4332fe91ad4ea4bbc902b6d81a2bcb978e65d168ac1bf37b24990935aa3fcb0.png" />
+<img alt="../../_images/64ab4f367586089fccad770433c1f12588e9d18ce0c9921c1bc8bc090d5ef4dc.png" src="../../_images/64ab4f367586089fccad770433c1f12588e9d18ce0c9921c1bc8bc090d5ef4dc.png" />
 </div>
 </div>
 <p>In the top row, we can see the Specific Differential Phase (<span class="math notranslate nohighlight">\(K_{DP}\)</span>), and in the bottom row, the Differential Phase (<span class="math notranslate nohighlight">\(Phi_{DP}\)</span>). We can notice that the default <span class="math notranslate nohighlight">\(K_{DP}\)</span> shows values +10 deg/km, which we think is too high. On the other hand, Maesake’s and Scneebeli’s methods’ output suggests that they are probably not performing well. However, the Vulpiani method performs better since we can observe more realistic values on <span class="math notranslate nohighlight">\(K_{DP}\)</span> and <span class="math notranslate nohighlight">\(Phi_{DP}\)</span>.</p>
@@ -974,9 +974,9 @@ Wall time: 859 ms
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -1001,14 +1001,14 @@ Wall time: 859 ms
       
       <li><a href="https://binder.projectpythia.org/v2/gh/ProjectPythiaTutorials/radar-cookbook/main?urlpath=lab/tree/notebooks/example-workflows/kdp-comparison.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../../_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -1019,14 +1019,14 @@ Wall time: 859 ms
       
       <li><a href="https://jupyterhub.arm.gov/hub/user-redirect/git-pull?repo=https%3A//github.com/ProjectPythiaTutorials/radar-cookbook&urlpath=lab/tree/radar-cookbook/notebooks/example-workflows/kdp-comparison.ipynb&branch=main" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onJupyterHub"
+   title="Launch on JupyterHub"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../../_static/images/logo_jupyterhub.svg">
+    <img alt="JupyterHub logo" src="../../_static/images/logo_jupyterhub.svg">
   </span>
 <span class="btn__text-container">JupyterHub</span>
 </a>
@@ -1183,9 +1183,9 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -1220,7 +1220,7 @@ By Max Grover, Zachary Sherman, Milind Sharma
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on 5 June 2024.
+  Last updated on 13 June 2024.
   <br/>
 </p>
   </div>
@@ -1274,7 +1274,7 @@ By Max Grover, Zachary Sherman, Milind Sharma
         
           By Max Grover, Zachary Sherman, Milind Sharma.
         
-          Last updated on 5 June 2024.
+          Last updated on 13 June 2024.
         </p>
       </div>
     </div>
