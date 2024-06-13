@@ -63,7 +63,7 @@ on the rocket ship icon, (see figure below), and be sure to select
 notebook that you can interact with. I.e. you’ll be able to execute
 and even change the example programs. You’ll see that the code cells
 have no output at first, until you execute them by pressing
-`Shift` `Enter`. Complete details on how to interact with
+{kbd}`Shift` + {kbd}`Enter`. Complete details on how to interact with
 a live Jupyter notebook are described in [Getting Started with
 Jupyter](https://foundations.projectpythia.org/foundations/getting-started-jupyter.html).
 
