@@ -32,6 +32,7 @@ project:
         - file: notebooks/example-workflows/fastbarnes_interpolation_rhi.ipynb
         - file: notebooks/example-workflows/echo_top_height.ipynb
   jupyter:
+    lite: true
     binder:
       repo: projectpythia-mystmd/radar-cookbook
   abbreviations:
