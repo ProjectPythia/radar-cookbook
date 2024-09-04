@@ -9,7 +9,7 @@ dependencies:
   - matplotlib
   - cartopy
   - jupyter_server
-  - numpy
+  - numpy<2.0
   - xarray
   - metpy
   - act-atmos>=1.2.0
