@@ -16,17 +16,19 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-
-  
-  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-pythia-theme.min.css?v=ba7ce088" />
@@ -34,13 +36,14 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=c54c090a" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
-  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
@@ -53,7 +56,7 @@
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-T52X8HNYE8"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -81,7 +84,8 @@
     <link rel="prev" title="Py-ART Basics" href="pyart-basics.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="13 June 2024"/>
+  <meta name="docsearch:version" content="" />
+    <meta name="docbuild:last-update" content="12 November 2024"/>
   </head>
   
   
@@ -95,7 +99,7 @@
   <div class="pst-scroll-pixel-helper"></div>
     <header class="bd-header navbar navbar-dark navbar-expand-lg bg-dark fixed-top bd-navbar shadow" id="navbar-main">
 <div class="bd-header__inner bd-page-width">
-  <button class="sidebar-toggle primary-toggle" aria-label="Site navigation">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
   </button>
   
@@ -104,7 +108,9 @@
     
       <div class="navbar-item">
 
-   
+  
+     
+  
 
 <a class="navbar-brand logo" href="https://projectpythia.org">
   
@@ -118,7 +124,7 @@
     
     
     <img src="../../_static/pythia_logo-white-rtext.svg" class="logo__image only-light" alt="Radar Cookbook - Home"/>
-    <script>document.write(`<img src="../../_static/pythia_logo-white-rtext.svg" class="logo__image only-dark" alt="Radar Cookbook - Home"/>`);</script>
+    <img src="../../_static/pythia_logo-white-rtext.svg" class="logo__image only-dark pst-js-only" alt="Radar Cookbook - Home"/>
   
   
 </a></div>
@@ -175,7 +181,7 @@
     <div class="navbar-header-items__end">
       
       
-        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+        <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
         <li class="nav-item">
           
@@ -186,7 +192,7 @@
           
           
           
-          <a href="https://github.com/ProjectPythia" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+          <a href="https://github.com/ProjectPythia" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -198,7 +204,7 @@
           
           
           
-          <a href="https://twitter.com/project_pythia" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+          <a href="https://twitter.com/project_pythia" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
             <span class="sr-only">Twitter</span></a>
         </li>
         <li class="nav-item">
@@ -210,7 +216,7 @@
           
           
           
-          <a href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" title="YouTube" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-youtube-square fa-lg" aria-hidden="true"></i></span>
+          <a href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" title="YouTube" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-youtube-square fa-lg" aria-hidden="true"></i>
             <span class="sr-only">YouTube</span></a>
         </li>
 </ul></div>
@@ -222,7 +228,7 @@
   
 
   
-    <button class="sidebar-toggle secondary-toggle" aria-label="On this page">
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
     </button>
   
@@ -292,7 +298,7 @@
     
       <div class="sidebar-header-items__end">
         
-          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+          <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
         <li class="nav-item">
           
@@ -303,7 +309,7 @@
           
           
           
-          <a href="https://github.com/ProjectPythia" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+          <a href="https://github.com/ProjectPythia" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -315,7 +321,7 @@
           
           
           
-          <a href="https://twitter.com/project_pythia" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+          <a href="https://twitter.com/project_pythia" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
             <span class="sr-only">Twitter</span></a>
         </li>
         <li class="nav-item">
@@ -327,7 +333,7 @@
           
           
           
-          <a href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" title="YouTube" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-youtube-square fa-lg" aria-hidden="true"></i></span>
+          <a href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" title="YouTube" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-youtube-square fa-lg" aria-hidden="true"></i>
             <span class="sr-only">YouTube</span></a>
         </li>
 </ul></div>
@@ -345,7 +351,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -545,7 +550,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/afbadb21d8861c1da5561d25df0103d5946e800ea3ea77397e999591bfaad9e6.png" src="../../_images/afbadb21d8861c1da5561d25df0103d5946e800ea3ea77397e999591bfaad9e6.png" />
+<img alt="../../_images/0f5a32861785f4c8b5970ff2dc20802a2a3c91632f9a2bc90693fbd2d90dcc71.png" src="../../_images/0f5a32861785f4c8b5970ff2dc20802a2a3c91632f9a2bc90693fbd2d90dcc71.png" />
 </div>
 </div>
 </section>
@@ -676,7 +681,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/3999ccf2d76c28b100283a75b224b5b9abbb179a649bdde1eaa27d3d2b3cdf89.png" src="../../_images/3999ccf2d76c28b100283a75b224b5b9abbb179a649bdde1eaa27d3d2b3cdf89.png" />
+<img alt="../../_images/780ea8f8521aef41d135aa2b2b1d968c9abacc9509e4554b5755def67b3db9bb.png" src="../../_images/780ea8f8521aef41d135aa2b2b1d968c9abacc9509e4554b5755def67b3db9bb.png" />
 </div>
 </div>
 </section>
@@ -704,10 +709,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f558b417850&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fd6ae0210d0&gt;
 </pre></div>
 </div>
-<img alt="../../_images/8fb30384d91741cd8fdf12c78dd055cfea7cf7b34e0a0c60432cae87135b0201.png" src="../../_images/8fb30384d91741cd8fdf12c78dd055cfea7cf7b34e0a0c60432cae87135b0201.png" />
+<img alt="../../_images/1ba3bdbbcecdbf7c0294f92a5fbbacca1a3d69d20495dcf7ff7897e95d8e5371.png" src="../../_images/1ba3bdbbcecdbf7c0294f92a5fbbacca1a3d69d20495dcf7ff7897e95d8e5371.png" />
 </div>
 </div>
 </section>
@@ -722,7 +727,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pyart.filters.gatefilter.GateFilter at 0x7f558b3e5e90&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pyart.filters.gatefilter.GateFilter at 0x7fd6b6226650&gt;
 </pre></div>
 </div>
 </div>
@@ -777,7 +782,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/32eac1119f4778e2331764008daec1b73ec64a49df2a777c0e90382cf6ef958d.png" src="../../_images/32eac1119f4778e2331764008daec1b73ec64a49df2a777c0e90382cf6ef958d.png" />
+<img alt="../../_images/db5a079351ea879fb2a52715982879366f26c53acf2300b9b85c54a5c96a1048.png" src="../../_images/db5a079351ea879fb2a52715982879366f26c53acf2300b9b85c54a5c96a1048.png" />
 </div>
 </div>
 </section>
@@ -820,7 +825,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/d73249e70758f2f3a396ec9eb561e447e2fef0c64ab159203faffec1079a0f23.png" src="../../_images/d73249e70758f2f3a396ec9eb561e447e2fef0c64ab159203faffec1079a0f23.png" />
+<img alt="../../_images/6e4bf3a1a070ad94313dab15719caf06041527669aab4c987b999b9c18cc9d86.png" src="../../_images/6e4bf3a1a070ad94313dab15719caf06041527669aab4c987b999b9c18cc9d86.png" />
 </div>
 </div>
 </section>
@@ -866,7 +871,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/04bd7cc273432c1a2b2198bb8f65567b74c08a3fe303125dc3226c15d4678d04.png" src="../../_images/04bd7cc273432c1a2b2198bb8f65567b74c08a3fe303125dc3226c15d4678d04.png" />
+<img alt="../../_images/e12cffdea0ec85247e632f06f019726750e4a865f91c184aa365b404c02478dc.png" src="../../_images/e12cffdea0ec85247e632f06f019726750e4a865f91c184aa365b404c02478dc.png" />
 </div>
 </div>
 </section>
@@ -1192,24 +1197,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -1247,7 +1244,7 @@ By Max Grover, Zachary Sherman, Milind Sharma
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on 13 June 2024.
+  Last updated on 12 November 2024.
   <br/>
 </p>
   </div>
@@ -1264,8 +1261,8 @@ By Max Grover, Zachary Sherman, Milind Sharma
   </div>
     
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
      
@@ -1301,7 +1298,7 @@ By Max Grover, Zachary Sherman, Milind Sharma
         
           By Max Grover, Zachary Sherman, Milind Sharma.
         
-          Last updated on 13 June 2024.
+          Last updated on 12 November 2024.
         </p>
       </div>
     </div>

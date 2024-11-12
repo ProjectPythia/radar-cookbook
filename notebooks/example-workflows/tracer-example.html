@@ -16,17 +16,19 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-
-  
-  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-pythia-theme.min.css?v=ba7ce088" />
@@ -34,13 +36,14 @@
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=c54c090a" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
-  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
@@ -53,7 +56,7 @@
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-T52X8HNYE8"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -79,7 +82,8 @@
     <link rel="prev" title="Looking at NEXRAD Data from Moore, Oklahoma" href="moore-oklahoma-tornado.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-    <meta name="docbuild:last-update" content="13 June 2024"/>
+  <meta name="docsearch:version" content="" />
+    <meta name="docbuild:last-update" content="12 November 2024"/>
   </head>
   
   
@@ -93,7 +97,7 @@
   <div class="pst-scroll-pixel-helper"></div>
     <header class="bd-header navbar navbar-dark navbar-expand-lg bg-dark fixed-top bd-navbar shadow" id="navbar-main">
 <div class="bd-header__inner bd-page-width">
-  <button class="sidebar-toggle primary-toggle" aria-label="Site navigation">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
     <span class="fa-solid fa-bars"></span>
   </button>
   
@@ -102,7 +106,9 @@
     
       <div class="navbar-item">
 
-   
+  
+     
+  
 
 <a class="navbar-brand logo" href="https://projectpythia.org">
   
@@ -116,7 +122,7 @@
     
     
     <img src="../../_static/pythia_logo-white-rtext.svg" class="logo__image only-light" alt="Radar Cookbook - Home"/>
-    <script>document.write(`<img src="../../_static/pythia_logo-white-rtext.svg" class="logo__image only-dark" alt="Radar Cookbook - Home"/>`);</script>
+    <img src="../../_static/pythia_logo-white-rtext.svg" class="logo__image only-dark pst-js-only" alt="Radar Cookbook - Home"/>
   
   
 </a></div>
@@ -173,7 +179,7 @@
     <div class="navbar-header-items__end">
       
       
-        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+        <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
         <li class="nav-item">
           
@@ -184,7 +190,7 @@
           
           
           
-          <a href="https://github.com/ProjectPythia" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+          <a href="https://github.com/ProjectPythia" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -196,7 +202,7 @@
           
           
           
-          <a href="https://twitter.com/project_pythia" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+          <a href="https://twitter.com/project_pythia" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
             <span class="sr-only">Twitter</span></a>
         </li>
         <li class="nav-item">
@@ -208,7 +214,7 @@
           
           
           
-          <a href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" title="YouTube" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-youtube-square fa-lg" aria-hidden="true"></i></span>
+          <a href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" title="YouTube" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-youtube-square fa-lg" aria-hidden="true"></i>
             <span class="sr-only">YouTube</span></a>
         </li>
 </ul></div>
@@ -220,7 +226,7 @@
   
 
   
-    <button class="sidebar-toggle secondary-toggle" aria-label="On this page">
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
       <span class="fa-solid fa-outdent"></span>
     </button>
   
@@ -290,7 +296,7 @@
     
       <div class="sidebar-header-items__end">
         
-          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+          <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
         <li class="nav-item">
           
@@ -301,7 +307,7 @@
           
           
           
-          <a href="https://github.com/ProjectPythia" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+          <a href="https://github.com/ProjectPythia" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -313,7 +319,7 @@
           
           
           
-          <a href="https://twitter.com/project_pythia" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+          <a href="https://twitter.com/project_pythia" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i>
             <span class="sr-only">Twitter</span></a>
         </li>
         <li class="nav-item">
@@ -325,7 +331,7 @@
           
           
           
-          <a href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" title="YouTube" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-youtube-square fa-lg" aria-hidden="true"></i></span>
+          <a href="https://www.youtube.com/channel/UCoZPBqJal5uKpO8ZiwzavCw" title="YouTube" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-youtube-square fa-lg" aria-hidden="true"></i>
             <span class="sr-only">YouTube</span></a>
         </li>
 </ul></div>
@@ -343,7 +349,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -687,7 +692,7 @@ User Facility. https://doi.org/10.5439/1467901
     <span class="nb">print</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">scan_type</span><span class="p">)</span>
     <span class="n">display</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">RadarDisplay</span><span class="p">(</span><span class="n">radar</span><span class="p">)</span>
     <span class="n">display</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;reflectivity&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;quicklooks/</span><span class="si">{</span><span class="n">radar</span><span class="o">.</span><span class="n">scan_type</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">Path</span><span class="p">(</span><span class="n">file</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">radar</span><span class="o">.</span><span class="n">scan_type</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">Path</span><span class="p">(</span><span class="n">file</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> 
 </pre></div>
@@ -697,135 +702,131 @@ User Facility. https://doi.org/10.5439/1467901
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/miniconda3/envs/radar-cookbook-dev/lib/python3.11/site-packages/numpy/core/fromnumeric.py:771: UserWarning: Warning: &#39;partition&#39; will ignore the &#39;mask&#39; of the MaskedArray.
-  a.partition(kth, axis=axis, kind=kind, order=order)
-</pre></div>
-</div>
-<img alt="../../_images/5ea97498b76d9c0e29e40070a6c9954bd39aa8f26da406e5b73b351443e780e3.png" src="../../_images/5ea97498b76d9c0e29e40070a6c9954bd39aa8f26da406e5b73b351443e780e3.png" />
+<img alt="../../_images/44a5a7550b92a7fea05e7bb4a6b2ec021e210c8e5ec919218948ee13e1a7b536.png" src="../../_images/44a5a7550b92a7fea05e7bb4a6b2ec021e210c8e5ec919218948ee13e1a7b536.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/bb48806b5fc47e9b9fc8ed59a4dc2d793fdaf5e255828a4ce88975aafd8fbf3e.png" src="../../_images/bb48806b5fc47e9b9fc8ed59a4dc2d793fdaf5e255828a4ce88975aafd8fbf3e.png" />
+<img alt="../../_images/459dae233e5137b2308446073b5692103cadda80ba74ac16d651e0f86548eb5b.png" src="../../_images/459dae233e5137b2308446073b5692103cadda80ba74ac16d651e0f86548eb5b.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/e68bf93d1c348715ace27ea0f3afc1f6b4ea0f72faf3b99b7bde1cee6b3bcd6a.png" src="../../_images/e68bf93d1c348715ace27ea0f3afc1f6b4ea0f72faf3b99b7bde1cee6b3bcd6a.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ppi
+<img alt="../../_images/1bc90a06640fee9c3e955e5de3e536f6a8a666accf5993aa9933332aa84918c0.png" src="../../_images/1bc90a06640fee9c3e955e5de3e536f6a8a666accf5993aa9933332aa84918c0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sector
 </pre></div>
 </div>
-<img alt="../../_images/0dd6a1ce9586c65a7af642e0b5b5d5a700cfe378939057e9c18407537fbc4bc2.png" src="../../_images/0dd6a1ce9586c65a7af642e0b5b5d5a700cfe378939057e9c18407537fbc4bc2.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ppi
+<img alt="../../_images/c3e01c53b282007fe166e25420082496fd818816eb94dd5ba424f3fd32180a70.png" src="../../_images/c3e01c53b282007fe166e25420082496fd818816eb94dd5ba424f3fd32180a70.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sector
 </pre></div>
 </div>
-<img alt="../../_images/7b3c750eadf5e776012e377f06fb70d35cf369e121ee95ab1a00634430d76ffc.png" src="../../_images/7b3c750eadf5e776012e377f06fb70d35cf369e121ee95ab1a00634430d76ffc.png" />
+<img alt="../../_images/a1f7497f08ac3ee132dab61a5b575e71123b607eb033ed6fc54647b8afb5c0f2.png" src="../../_images/a1f7497f08ac3ee132dab61a5b575e71123b607eb033ed6fc54647b8afb5c0f2.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/62e4b9c5af2ab757bb4b40dd1b3d2d3c39c68b63e8bd18a975d09caa4e5bcc09.png" src="../../_images/62e4b9c5af2ab757bb4b40dd1b3d2d3c39c68b63e8bd18a975d09caa4e5bcc09.png" />
+<img alt="../../_images/d2881d5fc2221f4812716a9ce2a07bcd37f3fb398faee0a47bccfa632482c59d.png" src="../../_images/d2881d5fc2221f4812716a9ce2a07bcd37f3fb398faee0a47bccfa632482c59d.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/59abd745ae0bade9e6d1a2cf35f21f78089a6dcef8a6307784e1a456b98ca8a1.png" src="../../_images/59abd745ae0bade9e6d1a2cf35f21f78089a6dcef8a6307784e1a456b98ca8a1.png" />
+<img alt="../../_images/fd10565b0d78420482dae076c5ece091f4216c8a2e5b7c975ff1c32bdd064f58.png" src="../../_images/fd10565b0d78420482dae076c5ece091f4216c8a2e5b7c975ff1c32bdd064f58.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/5ff45e65e770e93d985434ef1f4ee531430e299ae8e35e7574250f1c14e7a0a8.png" src="../../_images/5ff45e65e770e93d985434ef1f4ee531430e299ae8e35e7574250f1c14e7a0a8.png" />
+<img alt="../../_images/8c61fb25e07aaf7e3b045df1122c2d94f5958d8490bf52681dfebe19dba06ceb.png" src="../../_images/8c61fb25e07aaf7e3b045df1122c2d94f5958d8490bf52681dfebe19dba06ceb.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/7bae42137b6fcee35c48522a25a996c0925a8b48ef1b1c809cc2745e29737109.png" src="../../_images/7bae42137b6fcee35c48522a25a996c0925a8b48ef1b1c809cc2745e29737109.png" />
+<img alt="../../_images/df5756d382bc6dc3f38723649a17a6f8774f88cdc05309340a9c21c4703bab8d.png" src="../../_images/df5756d382bc6dc3f38723649a17a6f8774f88cdc05309340a9c21c4703bab8d.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/f8299d5415467bd9c4be08a05ae265f4a065569c882e5ca7619b841805947f75.png" src="../../_images/f8299d5415467bd9c4be08a05ae265f4a065569c882e5ca7619b841805947f75.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ppi
+<img alt="../../_images/57fc92a31a3beab49e1f7f33a0e23ac0cfd2e29338e07d69aace6ef25dc42ac7.png" src="../../_images/57fc92a31a3beab49e1f7f33a0e23ac0cfd2e29338e07d69aace6ef25dc42ac7.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sector
 </pre></div>
 </div>
-<img alt="../../_images/aefd058a7f5ed8bd54ab0ae6a27e21558d5cad2471d4a2207c59327bd245c6cc.png" src="../../_images/aefd058a7f5ed8bd54ab0ae6a27e21558d5cad2471d4a2207c59327bd245c6cc.png" />
+<img alt="../../_images/8b2cdb91ae513c922192e4f4150d41e51d7d2ec40d549d2f83142fc35fbab7c3.png" src="../../_images/8b2cdb91ae513c922192e4f4150d41e51d7d2ec40d549d2f83142fc35fbab7c3.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/afdf2bcf08d399b94726728482b8f3188a1ad905757bf9fbd6b3986fe62ee035.png" src="../../_images/afdf2bcf08d399b94726728482b8f3188a1ad905757bf9fbd6b3986fe62ee035.png" />
+<img alt="../../_images/1ed11f053ab9ee2ef7508788a99810a75ad78f3b78a088924469116108574c21.png" src="../../_images/1ed11f053ab9ee2ef7508788a99810a75ad78f3b78a088924469116108574c21.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/9b632ae841ec8c4a7d7cb148721a08658894b362256b8d3b2163bde297c2c755.png" src="../../_images/9b632ae841ec8c4a7d7cb148721a08658894b362256b8d3b2163bde297c2c755.png" />
+<img alt="../../_images/60f4fe44261849be6e6d284f1aafe17eb22870adca3bad728259b508e6a6be22.png" src="../../_images/60f4fe44261849be6e6d284f1aafe17eb22870adca3bad728259b508e6a6be22.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/555de3eb4d5eebeaf2978369d621a57d56a1df6789293089a98ce5094c536c29.png" src="../../_images/555de3eb4d5eebeaf2978369d621a57d56a1df6789293089a98ce5094c536c29.png" />
+<img alt="../../_images/cfadddab4aca376db3480197f07ebc463eaf3857193cf2acda1d09d3bb34c0ed.png" src="../../_images/cfadddab4aca376db3480197f07ebc463eaf3857193cf2acda1d09d3bb34c0ed.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/8f2fd856bb991c76f7d34b578b29e82282dc746b27190a0fb16213a92080dbf3.png" src="../../_images/8f2fd856bb991c76f7d34b578b29e82282dc746b27190a0fb16213a92080dbf3.png" />
+<img alt="../../_images/11f04ca0929cc9d1bbf98f31f112fa15f64d3e10180ffa661306f3d65a6dd88b.png" src="../../_images/11f04ca0929cc9d1bbf98f31f112fa15f64d3e10180ffa661306f3d65a6dd88b.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/0ce27dca36e861f4a5f77fa85b914a539f290c50c68acab98954892908b42234.png" src="../../_images/0ce27dca36e861f4a5f77fa85b914a539f290c50c68acab98954892908b42234.png" />
+<img alt="../../_images/31d22ad89435d90f323f776807e5a433c4504dad96f1942e79da81ee86be1613.png" src="../../_images/31d22ad89435d90f323f776807e5a433c4504dad96f1942e79da81ee86be1613.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/3c86ba28934197006f723db518bbb5b75576a3259c2853f28ee88f62b9c464f4.png" src="../../_images/3c86ba28934197006f723db518bbb5b75576a3259c2853f28ee88f62b9c464f4.png" />
+<img alt="../../_images/46a03a44c2da6feedcccec349c6d2011ff459d4152ccd648c5bf848d4415aab4.png" src="../../_images/46a03a44c2da6feedcccec349c6d2011ff459d4152ccd648c5bf848d4415aab4.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/992932e499d5ef0a0ec8ce5332ce35a5b5948eed4299f541d04c3328250f0498.png" src="../../_images/992932e499d5ef0a0ec8ce5332ce35a5b5948eed4299f541d04c3328250f0498.png" />
+<img alt="../../_images/f4289c44bcb399b01499002c6f0ead61d291db65206382a5d94497beb91fafec.png" src="../../_images/f4289c44bcb399b01499002c6f0ead61d291db65206382a5d94497beb91fafec.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/5d45157eb164c1e4556e4c23898c2ac6e3db25021da0bb4aa97480bea84adac2.png" src="../../_images/5d45157eb164c1e4556e4c23898c2ac6e3db25021da0bb4aa97480bea84adac2.png" />
+<img alt="../../_images/bf4bc4c5b167469f81f033d45e5ad0c5710a5d7b5089b8cfaed3e2ad86476aa1.png" src="../../_images/bf4bc4c5b167469f81f033d45e5ad0c5710a5d7b5089b8cfaed3e2ad86476aa1.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/f3bf0fe7524eaf7650564816096a3d8f3b18c0aa3e7f7d19cbd103eac3894835.png" src="../../_images/f3bf0fe7524eaf7650564816096a3d8f3b18c0aa3e7f7d19cbd103eac3894835.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ppi
+<img alt="../../_images/52d20a15b769892f0aa167be6eac03cb90c70c0bab98f5450151c9d80568b9be.png" src="../../_images/52d20a15b769892f0aa167be6eac03cb90c70c0bab98f5450151c9d80568b9be.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sector
 </pre></div>
 </div>
-<img alt="../../_images/944844793ef7c7c41eb41bff94c8103f6d4ffb6d62a2d0e39346b15753522f9f.png" src="../../_images/944844793ef7c7c41eb41bff94c8103f6d4ffb6d62a2d0e39346b15753522f9f.png" />
+<img alt="../../_images/4429acf27771ed15463b6d456c7e0803177c31f05388ad934c3c3225436c04f6.png" src="../../_images/4429acf27771ed15463b6d456c7e0803177c31f05388ad934c3c3225436c04f6.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/6d22b467e381c067fd3080852fd4d4dd5c6cbd835f4071c765a6f313a049f83f.png" src="../../_images/6d22b467e381c067fd3080852fd4d4dd5c6cbd835f4071c765a6f313a049f83f.png" />
+<img alt="../../_images/eec45e84efaae5509ec10d265caf9f089b71fe6298e5170cc33b194bb6239a99.png" src="../../_images/eec45e84efaae5509ec10d265caf9f089b71fe6298e5170cc33b194bb6239a99.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/254b76026a94d8e79f550f55486cd87b703ee92c359c478f0ff1e8d35e1b2f9b.png" src="../../_images/254b76026a94d8e79f550f55486cd87b703ee92c359c478f0ff1e8d35e1b2f9b.png" />
+<img alt="../../_images/32f44d0cd257e7507be592be8bff8da89007fab540b6acff9f7f6bcfe42ffb9d.png" src="../../_images/32f44d0cd257e7507be592be8bff8da89007fab540b6acff9f7f6bcfe42ffb9d.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/0fd6a31ea42172a98caa22b9aa00a4d4ed9b12f4ef847921345d24958934f3cf.png" src="../../_images/0fd6a31ea42172a98caa22b9aa00a4d4ed9b12f4ef847921345d24958934f3cf.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ppi
+<img alt="../../_images/f23f130ca8a2cc389b1dde5caf2603245b3422d3d9483a32f976477e08731dbb.png" src="../../_images/f23f130ca8a2cc389b1dde5caf2603245b3422d3d9483a32f976477e08731dbb.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sector
 </pre></div>
 </div>
-<img alt="../../_images/6002738fda212ed08470fcf162d9dd3fc4a35296a5eaa2823434569747e40a63.png" src="../../_images/6002738fda212ed08470fcf162d9dd3fc4a35296a5eaa2823434569747e40a63.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ppi
+<img alt="../../_images/a25b63689fe0b9632384d3db1080eb6832b8069b2c0cbb32576228d90541b556.png" src="../../_images/a25b63689fe0b9632384d3db1080eb6832b8069b2c0cbb32576228d90541b556.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sector
 </pre></div>
 </div>
-<img alt="../../_images/bee0d5340257796d35133435aec0272b3feb65c7f85c9d31352dd78f39cfd948.png" src="../../_images/bee0d5340257796d35133435aec0272b3feb65c7f85c9d31352dd78f39cfd948.png" />
+<img alt="../../_images/af3d0887e3ef150ff64a5f72f6f54d98e5085b9a2d9f9d16debfecf883a2ca4f.png" src="../../_images/af3d0887e3ef150ff64a5f72f6f54d98e5085b9a2d9f9d16debfecf883a2ca4f.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/509a8044ae745caba7714a4628e8c4f48553fd491bfdfda8fe95173002013a31.png" src="../../_images/509a8044ae745caba7714a4628e8c4f48553fd491bfdfda8fe95173002013a31.png" />
+<img alt="../../_images/804111240417f4f8a9d7d46e238afceed73c069fd8cda4f25759871e9e617b6d.png" src="../../_images/804111240417f4f8a9d7d46e238afceed73c069fd8cda4f25759871e9e617b6d.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/0adf7e8f5867036489b1de8e4bae8f6771b29018074ceef2eaf758667aadd055.png" src="../../_images/0adf7e8f5867036489b1de8e4bae8f6771b29018074ceef2eaf758667aadd055.png" />
+<img alt="../../_images/9f354c810ee6c2066be6f7a6c1cd87fcb2a1bf2734bd84e2b079081542fd9071.png" src="../../_images/9f354c810ee6c2066be6f7a6c1cd87fcb2a1bf2734bd84e2b079081542fd9071.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/5e411a1e7b1f283e18c67e55396e4735b00b8fe21dfe641b4798375de3b78e8f.png" src="../../_images/5e411a1e7b1f283e18c67e55396e4735b00b8fe21dfe641b4798375de3b78e8f.png" />
+<img alt="../../_images/3b2be7a5f17c3f9ee39f1b60952280ea6826d018f5ef048e8cadb16ef286164e.png" src="../../_images/3b2be7a5f17c3f9ee39f1b60952280ea6826d018f5ef048e8cadb16ef286164e.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/8cd840e5ac8e207a9e1e6c3201fb6737e1857b710720b962253093efe8ff230f.png" src="../../_images/8cd840e5ac8e207a9e1e6c3201fb6737e1857b710720b962253093efe8ff230f.png" />
+<img alt="../../_images/27f00273c15c29833c4a5da04c1918376a847f1fb7d7bbd8f026e762f05f9444.png" src="../../_images/27f00273c15c29833c4a5da04c1918376a847f1fb7d7bbd8f026e762f05f9444.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/78f694919893201a17ae48a397cbfc5d6ab84dd1aaf3d1e9e37a5055894ad0a4.png" src="../../_images/78f694919893201a17ae48a397cbfc5d6ab84dd1aaf3d1e9e37a5055894ad0a4.png" />
+<img alt="../../_images/9c581f0704f36f9ed76273b37129e93a279caab645f2a797fc59ad02645b908a.png" src="../../_images/9c581f0704f36f9ed76273b37129e93a279caab645f2a797fc59ad02645b908a.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rhi
 </pre></div>
 </div>
-<img alt="../../_images/51475647ec2a1297a0c4cb1ed7011049de36cce8d3849b3cc23d47654f0058b9.png" src="../../_images/51475647ec2a1297a0c4cb1ed7011049de36cce8d3849b3cc23d47654f0058b9.png" />
+<img alt="../../_images/389e669b395e9dfde6f933daf22698783faaa727446910b500a95478edc8e233.png" src="../../_images/389e669b395e9dfde6f933daf22698783faaa727446910b500a95478edc8e233.png" />
 </div>
 </div>
 </section>
@@ -883,48 +884,48 @@ User Facility. https://doi.org/10.5439/1467901
                      <span class="n">vmax</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">62</span><span class="p">,</span><span class="mi">68</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;quicklooks/</span><span class="si">{</span><span class="n">radar</span><span class="o">.</span><span class="n">scan_type</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">Path</span><span class="p">(</span><span class="n">file</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">radar</span><span class="o">.</span><span class="n">scan_type</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">Path</span><span class="p">(</span><span class="n">file</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> 
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/52eb9f019aa07f153d2e05b854cd5c304eff4e2acd05f35cd6e1d3fd1af95d5f.png" src="../../_images/52eb9f019aa07f153d2e05b854cd5c304eff4e2acd05f35cd6e1d3fd1af95d5f.png" />
-<img alt="../../_images/ca322f109390aca514f1557db97aaa1c90158156c49313a2ed1edd2b23aec59c.png" src="../../_images/ca322f109390aca514f1557db97aaa1c90158156c49313a2ed1edd2b23aec59c.png" />
-<img alt="../../_images/dd5177042179ce97563e653a816c6d14a2f3b16d0c556f2bd744af2606dbc18d.png" src="../../_images/dd5177042179ce97563e653a816c6d14a2f3b16d0c556f2bd744af2606dbc18d.png" />
-<img alt="../../_images/e081a973271dd20146dcc9d73efa6477eb729d1d8e5c24ead4136d2a7268ad5b.png" src="../../_images/e081a973271dd20146dcc9d73efa6477eb729d1d8e5c24ead4136d2a7268ad5b.png" />
-<img alt="../../_images/d3d366a1a2a847b4f07d45405cc5a1619b9e32138d21d41514249027a73c0969.png" src="../../_images/d3d366a1a2a847b4f07d45405cc5a1619b9e32138d21d41514249027a73c0969.png" />
-<img alt="../../_images/f0a1512ebc1c7e2bac44ed542eef08d129d4de08fbfeb3dd03233c3e6d0e0a6d.png" src="../../_images/f0a1512ebc1c7e2bac44ed542eef08d129d4de08fbfeb3dd03233c3e6d0e0a6d.png" />
-<img alt="../../_images/3a5ed25370b0a9fe2e2204ee4d8fd5edbb5d734605474839c8542626c31e2c50.png" src="../../_images/3a5ed25370b0a9fe2e2204ee4d8fd5edbb5d734605474839c8542626c31e2c50.png" />
-<img alt="../../_images/6c912a7a2c33c2120f4849b9952aa01ff0cf6e0d594295922e881bf5ebfe6426.png" src="../../_images/6c912a7a2c33c2120f4849b9952aa01ff0cf6e0d594295922e881bf5ebfe6426.png" />
-<img alt="../../_images/f23b43234ba110bcdcd398d53872683e153e82e081101d22e0839a8d93a339af.png" src="../../_images/f23b43234ba110bcdcd398d53872683e153e82e081101d22e0839a8d93a339af.png" />
-<img alt="../../_images/3b16617361a6036820b08b07fd6456f3d7d259db964fbdb20b311412ca86b9d1.png" src="../../_images/3b16617361a6036820b08b07fd6456f3d7d259db964fbdb20b311412ca86b9d1.png" />
-<img alt="../../_images/1acdaececaa44af99364e2c37ec04da4817200e5ef31eada9a21f4000f7ff2b6.png" src="../../_images/1acdaececaa44af99364e2c37ec04da4817200e5ef31eada9a21f4000f7ff2b6.png" />
-<img alt="../../_images/3f33bf629b2219527abd655d63acd91251b30cc48bf324978992b1f6234a60c2.png" src="../../_images/3f33bf629b2219527abd655d63acd91251b30cc48bf324978992b1f6234a60c2.png" />
-<img alt="../../_images/1e29a38c51e1b085599f3902e230d15d282c1e88880111366b3067d444937172.png" src="../../_images/1e29a38c51e1b085599f3902e230d15d282c1e88880111366b3067d444937172.png" />
-<img alt="../../_images/9b02bab6022c8926a8317be9759d34c917c95e4d6f6a408e43d58900c1a51a1d.png" src="../../_images/9b02bab6022c8926a8317be9759d34c917c95e4d6f6a408e43d58900c1a51a1d.png" />
-<img alt="../../_images/4fbeea8be8a922b4f076231200edc57376e9d6a651a3c4a9937cb4bb6c49330d.png" src="../../_images/4fbeea8be8a922b4f076231200edc57376e9d6a651a3c4a9937cb4bb6c49330d.png" />
-<img alt="../../_images/803029a2ca070d2620767000115b674b6365e64caf59efd084b1dee8d5719fed.png" src="../../_images/803029a2ca070d2620767000115b674b6365e64caf59efd084b1dee8d5719fed.png" />
-<img alt="../../_images/d628646e16350f8ba976f61c91eedb2b51039e69c1d7f10c1212ddc1e0acbad6.png" src="../../_images/d628646e16350f8ba976f61c91eedb2b51039e69c1d7f10c1212ddc1e0acbad6.png" />
-<img alt="../../_images/2661f467e350e98caf393ec68d54dc3ec8ea021479ea902c7e6be54d8770c6bb.png" src="../../_images/2661f467e350e98caf393ec68d54dc3ec8ea021479ea902c7e6be54d8770c6bb.png" />
-<img alt="../../_images/8f45c05efa425cbfc3a73943b01851cc064ce986a948e9bd3500d0e4e6015ccf.png" src="../../_images/8f45c05efa425cbfc3a73943b01851cc064ce986a948e9bd3500d0e4e6015ccf.png" />
-<img alt="../../_images/2cc7fb0d97a415137d5febc4e3e8b75efe0cc6dba25de03c5e333c982b242f93.png" src="../../_images/2cc7fb0d97a415137d5febc4e3e8b75efe0cc6dba25de03c5e333c982b242f93.png" />
-<img alt="../../_images/bc01d4394ab0bc99094afbb3e847fde3c9f400cae04e2eeb2501aaa6d87ff593.png" src="../../_images/bc01d4394ab0bc99094afbb3e847fde3c9f400cae04e2eeb2501aaa6d87ff593.png" />
-<img alt="../../_images/f1386b667806615d2a08d3eaae6ef077268b16fe29550da720ef28639afc0431.png" src="../../_images/f1386b667806615d2a08d3eaae6ef077268b16fe29550da720ef28639afc0431.png" />
-<img alt="../../_images/04f4b3bacedb03d5b58966e7b7193a3997cc2dff0aa45480716e46b4d013870a.png" src="../../_images/04f4b3bacedb03d5b58966e7b7193a3997cc2dff0aa45480716e46b4d013870a.png" />
-<img alt="../../_images/b25702b609f55369d37fe2e9a0bf9928115637175795ae6ff5dac6295ce670e0.png" src="../../_images/b25702b609f55369d37fe2e9a0bf9928115637175795ae6ff5dac6295ce670e0.png" />
-<img alt="../../_images/2e291c97472add8db1d99fde6605df3acaa54b519ee7bc3c2f7228ae6146a3de.png" src="../../_images/2e291c97472add8db1d99fde6605df3acaa54b519ee7bc3c2f7228ae6146a3de.png" />
-<img alt="../../_images/24b096f43a74b051682a7d7d74892876d3edf0860c3e4331b54b42bd4c28e150.png" src="../../_images/24b096f43a74b051682a7d7d74892876d3edf0860c3e4331b54b42bd4c28e150.png" />
+<img alt="../../_images/41fbdd3ebe1fc5891b92800fcc1918b874980c26e90cbb0da966efaea6c59906.png" src="../../_images/41fbdd3ebe1fc5891b92800fcc1918b874980c26e90cbb0da966efaea6c59906.png" />
+<img alt="../../_images/21c42b825432f369542dcd2be8da06631b85eace5496e23b825551d2b782a90f.png" src="../../_images/21c42b825432f369542dcd2be8da06631b85eace5496e23b825551d2b782a90f.png" />
+<img alt="../../_images/505dd0cdaf8d2710fa61511c6b2afb3ad6223081892a6aaae4d89ff06468840b.png" src="../../_images/505dd0cdaf8d2710fa61511c6b2afb3ad6223081892a6aaae4d89ff06468840b.png" />
+<img alt="../../_images/990a0a8e713ab68c29da6c712203f75c9c2cd51d71042a0a2226a7e0688b1fa1.png" src="../../_images/990a0a8e713ab68c29da6c712203f75c9c2cd51d71042a0a2226a7e0688b1fa1.png" />
+<img alt="../../_images/654cf2513247dd1a9147ec9c4f7ea5d6ba9711326442108ca43e2b1486d1b0fd.png" src="../../_images/654cf2513247dd1a9147ec9c4f7ea5d6ba9711326442108ca43e2b1486d1b0fd.png" />
+<img alt="../../_images/877beda39a0b03390f3a2e7a44fffbf73ad17b67215e27f2de6ca5dca7003af1.png" src="../../_images/877beda39a0b03390f3a2e7a44fffbf73ad17b67215e27f2de6ca5dca7003af1.png" />
+<img alt="../../_images/4994de9e0b9917a5e56f3617af547268d535d600a3c7b5866b85043d4f85bc19.png" src="../../_images/4994de9e0b9917a5e56f3617af547268d535d600a3c7b5866b85043d4f85bc19.png" />
+<img alt="../../_images/293272a70028b59fd61c582f6a02fa12b88067f5a76c97cd8a24754b2b8f0013.png" src="../../_images/293272a70028b59fd61c582f6a02fa12b88067f5a76c97cd8a24754b2b8f0013.png" />
+<img alt="../../_images/798038882ec298d42172d31cb5edab50a56d5cc5c7379b8152f719046603214c.png" src="../../_images/798038882ec298d42172d31cb5edab50a56d5cc5c7379b8152f719046603214c.png" />
+<img alt="../../_images/34b3f12a5ffe5a18f5138a211c9f4c682812093f76395f3e92c751f025f55168.png" src="../../_images/34b3f12a5ffe5a18f5138a211c9f4c682812093f76395f3e92c751f025f55168.png" />
+<img alt="../../_images/8439aa784399a7572bbf060b57a1e40b4b37362d0009b72eaff4a92ffb3ac830.png" src="../../_images/8439aa784399a7572bbf060b57a1e40b4b37362d0009b72eaff4a92ffb3ac830.png" />
+<img alt="../../_images/22b5ecf2b625c14d9276d0d497583ec2da4e321424e02f79158d38f7b1188e2b.png" src="../../_images/22b5ecf2b625c14d9276d0d497583ec2da4e321424e02f79158d38f7b1188e2b.png" />
+<img alt="../../_images/58951bdd3ccfcb6cdf375efc455bbb6b55d57087a2be0cd6350547824b795ed6.png" src="../../_images/58951bdd3ccfcb6cdf375efc455bbb6b55d57087a2be0cd6350547824b795ed6.png" />
+<img alt="../../_images/05dd481804a3e6565566ddb8b25296857d0942a9eec1c7e32067a6815c72adf7.png" src="../../_images/05dd481804a3e6565566ddb8b25296857d0942a9eec1c7e32067a6815c72adf7.png" />
+<img alt="../../_images/016e852e4d655a6d83700b143568acc46fc3487367d99dd97cffdef5bdae2dfa.png" src="../../_images/016e852e4d655a6d83700b143568acc46fc3487367d99dd97cffdef5bdae2dfa.png" />
+<img alt="../../_images/d649ac72eef716883e8d9250ef4c57d2bdd112d8aa0fc1f8297c7313007017b2.png" src="../../_images/d649ac72eef716883e8d9250ef4c57d2bdd112d8aa0fc1f8297c7313007017b2.png" />
+<img alt="../../_images/77a8eeee1e7131f7286949e86971cf58c81e52db18c06583019aee9b8d2efb41.png" src="../../_images/77a8eeee1e7131f7286949e86971cf58c81e52db18c06583019aee9b8d2efb41.png" />
+<img alt="../../_images/9a16b2be9e2b511f77afde5ae6823122b459267bd761d1128dd06109f831938b.png" src="../../_images/9a16b2be9e2b511f77afde5ae6823122b459267bd761d1128dd06109f831938b.png" />
+<img alt="../../_images/eda8135ec0bdbfccd00cb88f463006de7d6163b604415fe0db549f37a896a447.png" src="../../_images/eda8135ec0bdbfccd00cb88f463006de7d6163b604415fe0db549f37a896a447.png" />
+<img alt="../../_images/4ef2d0fed039eda331cec666328f0416b5a066c4529e768a90c1034d40378819.png" src="../../_images/4ef2d0fed039eda331cec666328f0416b5a066c4529e768a90c1034d40378819.png" />
+<img alt="../../_images/93a91bc4cdcf42e01b156bb0480c037a1f1fbeff069c8e8e6777a609cdfff387.png" src="../../_images/93a91bc4cdcf42e01b156bb0480c037a1f1fbeff069c8e8e6777a609cdfff387.png" />
+<img alt="../../_images/b49e49ae43e4c8c832ccc37184b6a6a11e8826929f21f46e5c12197c10c50e15.png" src="../../_images/b49e49ae43e4c8c832ccc37184b6a6a11e8826929f21f46e5c12197c10c50e15.png" />
+<img alt="../../_images/2b285857291e8dabb880eb8be8986853258eca106419f7fd7a0eda58621d31f7.png" src="../../_images/2b285857291e8dabb880eb8be8986853258eca106419f7fd7a0eda58621d31f7.png" />
+<img alt="../../_images/80092de9e4dec07354a9c41bd06126d17542eea8981b69a336153ce264e30cae.png" src="../../_images/80092de9e4dec07354a9c41bd06126d17542eea8981b69a336153ce264e30cae.png" />
+<img alt="../../_images/f60ee29512d80e40f25881c6b381a007deca49c619f74bb40d21c7a626f74c76.png" src="../../_images/f60ee29512d80e40f25881c6b381a007deca49c619f74bb40d21c7a626f74c76.png" />
+<img alt="../../_images/b5271025c4d1d2e49ddda75157507ea3443d9d6edfd16b6a4d17f807e75f9ca7.png" src="../../_images/b5271025c4d1d2e49ddda75157507ea3443d9d6edfd16b6a4d17f807e75f9ca7.png" />
 </div>
 </div>
 </section>
 </section>
-<section id="create-a-gif-of-teh-rhi-images">
-<h3>Create a GIF of teh RHI images<a class="headerlink" href="#create-a-gif-of-teh-rhi-images" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
+<section id="create-a-gif-of-the-rhi-images">
+<h3>Create a GIF of the RHI images<a class="headerlink" href="#create-a-gif-of-the-rhi-images" title="Link to this heading"><i class="fas fa-link"></i></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rhi_images</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;quicklooks/rhi/*&quot;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rhi_images</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">radar</span><span class="o">.</span><span class="n">scan_type</span><span class="si">}</span><span class="s2">*&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1056,7 +1057,7 @@ User Facility. https://doi.org/10.5439/1467901
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-our-plotting-loop">Apply our Plotting Loop</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-gif-of-teh-rhi-images">Create a GIF of teh RHI images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-gif-of-the-rhi-images">Create a GIF of the RHI images</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a><ul class="nav section-nav flex-column">
@@ -1269,24 +1270,16 @@ User Facility. https://doi.org/10.5439/1467901
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -1324,7 +1317,7 @@ By Max Grover, Zachary Sherman, Milind Sharma
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on 13 June 2024.
+  Last updated on 12 November 2024.
   <br/>
 </p>
   </div>
@@ -1341,8 +1334,8 @@ By Max Grover, Zachary Sherman, Milind Sharma
   </div>
     
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
      
@@ -1378,7 +1371,7 @@ By Max Grover, Zachary Sherman, Milind Sharma
         
           By Max Grover, Zachary Sherman, Milind Sharma.
         
-          Last updated on 13 June 2024.
+          Last updated on 12 November 2024.
         </p>
       </div>
     </div>
