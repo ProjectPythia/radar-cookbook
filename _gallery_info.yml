@@ -1,6 +1,11 @@
 thumbnail: thumbnail.png
 tags:
   domains:
+    - atmosphere
     - radar
   packages:
     - Py-Art
+    - Xradar
+  events:
+    - Cook-off 2023
+    - Cook-off 2024
