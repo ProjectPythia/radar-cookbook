@@ -16,9 +16,10 @@ jobs:
     secrets:
       ARM_USERNAME: ${{ secrets.ARM_USERNAME }}
       ARM_PASSWORD: ${{ secrets.ARM_PASSWORD }}
-    with:
-      environment_name: radar-cookbook-dev
-      environment_file: environment.yml
+
+  deploy:
+    needs: build
+    uses: ProjectPythia/cookbook-actions/.github/workflows/deploy-book.yaml@main
 
   link-check:
     if: ${{ github.repository_owner == 'ProjectPythia' }}
