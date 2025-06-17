@@ -1,9 +1,9 @@
 version: 1
 extends:
-  - https://raw.githubusercontent.com/projectpythia-mystmd/pythia-config/main/pythia.yml
+  - https://raw.githubusercontent.com/projectpythia/pythia-config/main/pythia.yml
 project:
   title: Radar Cookbook
-  github: https://github.com/projectpythia-mystmd/radar-cookbook
+  github: https://github.com/projectpythia/radar-cookbook
   authors:
     - name: Max Grover
     - name: Zachary Sherman
@@ -33,6 +33,6 @@ project:
         - file: notebooks/example-workflows/echo_top_height.ipynb
   jupyter:
       binder:
-        repo: projectpythia-mystmd/radar-cookbook
+        repo: projectpythia/radar-cookbook
   abbreviations:
     ARM: Atmospheric Radiation Measurement
