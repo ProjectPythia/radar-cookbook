@@ -1,0 +1,38 @@
+version: 1
+extends:
+  - https://raw.githubusercontent.com/projectpythia/pythia-config/main/pythia.yml
+project:
+  title: Radar Cookbook
+  github: https://github.com/projectpythia/radar-cookbook
+  authors:
+    - name: Max Grover
+    - name: Zachary Sherman
+    - name: Milind Sharma
+  copyright: '2024'
+  toc:
+    - file: README.md
+    - title: Preamble
+      children:
+        - file: notebooks/how-to-cite.md
+    - title: Weather Radar Foundations
+      children:
+        - file: notebooks/radar-basics/radar-basics.ipynb
+    - title: Radar Software Foundations
+      children:
+        - file: notebooks/foundations/pyart-basics.ipynb
+        - file: notebooks/foundations/pyart-corrections.ipynb
+        - file: notebooks/foundations/pyart-gridding.ipynb
+        - file: notebooks/foundations/interactive-radar-visualization.ipynb
+    - title: Example Workflows
+      children:
+        - file: notebooks/example-workflows/moore-oklahoma-tornado.ipynb
+        - file: notebooks/example-workflows/tracer-example.ipynb
+        - file: notebooks/example-workflows/kdp-comparison.ipynb
+        - file: notebooks/example-workflows/cacti-data-quality-example.ipynb
+        - file: notebooks/example-workflows/fastbarnes_interpolation_rhi.ipynb
+        - file: notebooks/example-workflows/echo_top_height.ipynb
+  jupyter:
+      binder:
+        repo: projectpythia/radar-cookbook
+  abbreviations:
+    ARM: Atmospheric Radiation Measurement

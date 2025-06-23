@@ -19,6 +19,8 @@ dependencies:
   - datashader
   - panel
   - sphinx-pythia-theme
+  - mystmd
+  - nodejs
   - s3fs>=2024.3.1
   - pip
   - pip:
