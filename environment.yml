@@ -3,7 +3,7 @@ channels:
   - conda-forge
   - pyviz
 dependencies:
-  - python<3.12
+  - python
   - jupyter-book
   - jupyterlab
   - matplotlib
