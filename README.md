@@ -16,7 +16,7 @@ Most of the curriculum is focused around the Python ARM Toolkit, which is define
 
 "a Python module containing a collection of weather radar algorithms and utilities. Py-ART is used by the Atmospheric Radiation Measurement (ARM) user facility for working with data from a number of its precipitation and cloud radars, but has been designed so that it can be used by others in the radar and atmospheric communities to examine, processes, and analyze data from many types of weather radars."
 
-Once you go through this material, you will have the skills to read in radar data, apply data corrections, and visualize your data, building off of the core foundational Python material covered in the [Foundations Book](https://foundations.projectpythia.org/landing-page.html)
+Once you go through this material, you will have the skills to read in radar data, apply data corrections, and visualize your data, building off of the core foundational Python material covered in the [Foundations Book](https://foundations.projectpythia.org)
 
 ## Authors
 
@@ -65,7 +65,7 @@ and even change the example programs. You’ll see that the code cells
 have no output at first, until you execute them by pressing
 {kbd}`Shift` + {kbd}`Enter`. Complete details on how to interact with
 a live Jupyter notebook are described in [Getting Started with
-Jupyter](https://foundations.projectpythia.org/foundations/getting-started-jupyter.html).
+Jupyter](https://foundations.projectpythia.org/foundations/getting-started-jupyter).
 
 ### Running on Your Own Machine
 
@@ -96,4 +96,4 @@ If you are interested in running this material locally on your computer, you wil
    jupyter lab
    ```
 
-At this point, you can interact with the notebooks! Make sure to check out the ["Getting Started with Jupyter"](https://foundations.projectpythia.org/foundations/getting-started-jupyter.html) content from the [Pythia Foundations](https://foundations.projectpythia.org/landing-page.html) material if you are new to Jupyter or need a refresher.
+At this point, you can interact with the notebooks! Make sure to check out the ["Getting Started with Jupyter"](https://foundations.projectpythia.org/foundations/getting-started-jupyter) content from the [Pythia Foundations](https://foundations.projectpythia.org) material if you are new to Jupyter or need a refresher.
