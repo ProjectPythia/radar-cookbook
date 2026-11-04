@@ -29,6 +29,10 @@ authors:
     website: https://github.com/TakashiUNUMA
     orcid: https://orcid.org/0000-0003-4350-9758
     affiliation: Meteorological Research Institute - Japan Meteorological Agency
+  - family-names: Kanzer
+    given-names: Aaron
+    website: https://github.com/aaronkanzer
+    affiliation: Scigantic
   - name: "Radar Cookbook contributors" # use the 'name' field to acknowledge organizations
     website: "https://github.com/ProjectPythia/radar-cookbook/graphs/contributors"
 title: "Radar Cookbook"
