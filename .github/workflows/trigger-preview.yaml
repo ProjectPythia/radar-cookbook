@@ -26,6 +26,7 @@ jobs:
       artifact_name: book-zip-${{ needs.find-pull-request.outputs.number }}
       build_from_code_artifact: "true"
       code_artifact_name: code-zip-${{ needs.find-pull-request.outputs.number }}
+      base_url: '/${{ github.event.repository.name }}/_preview/${{ needs.find-pull-request.outputs.number }}'
 
   deploy-preview:
     needs: [find-pull-request, build-book-for-preview]
