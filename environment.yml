@@ -15,6 +15,7 @@ dependencies:
   - act-atmos>=1.2.0
   - imageio
   - arm_pyart
+  - cmweather
   - hvplot
   - datashader
   - panel
