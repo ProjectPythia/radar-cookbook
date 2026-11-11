@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="http://localhost:3000/sitemap_style.xsl" ?>
+<?xml-stylesheet type="text/xsl" href="http://pre.render/sitemap_style.xsl" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://localhost:3000</loc>
+    <loc>http://pre.render</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/how-to-cite</loc>
+    <loc>http://pre.render/notebooks/how-to-cite</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/radar-basics/radar-basics</loc>
+    <loc>http://pre.render/notebooks/radar-basics/radar-basics</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/foundations/pyart-basics</loc>
+    <loc>http://pre.render/notebooks/foundations/pyart-basics</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/foundations/pyart-corrections</loc>
+    <loc>http://pre.render/notebooks/foundations/pyart-corrections</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/foundations/pyart-gridding</loc>
+    <loc>http://pre.render/notebooks/foundations/pyart-gridding</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/foundations/interactive-radar-visualization</loc>
+    <loc>http://pre.render/notebooks/foundations/interactive-radar-visualization</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/example-workflows/moore-oklahoma-tornado</loc>
+    <loc>http://pre.render/notebooks/example-workflows/moore-oklahoma-tornado</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/example-workflows/tracer-example</loc>
+    <loc>http://pre.render/notebooks/example-workflows/tracer-example</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/example-workflows/kdp-comparison</loc>
+    <loc>http://pre.render/notebooks/example-workflows/kdp-comparison</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/example-workflows/cacti-data-quality-example</loc>
+    <loc>http://pre.render/notebooks/example-workflows/cacti-data-quality-example</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/example-workflows/fastbarnes-interpolation-rhi</loc>
+    <loc>http://pre.render/notebooks/example-workflows/fastbarnes-interpolation-rhi</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/example-workflows/echo-top-height</loc>
+    <loc>http://pre.render/notebooks/example-workflows/echo-top-height</loc>
   </url>
 </urlset>
